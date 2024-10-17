@@ -1,14 +1,14 @@
 *{
-    /* border: 1px solid black; */
+    /* border: 1px solid red; */
 }
 
 /* Sidebar */
 .sidebar{
     background-color: #1e1f26;
-    width: 200px !important;
+    width: 185px !important;
 }
 .logo{
-    font-size: 28px;
+    font-size: 24px;
     letter-spacing: 3px;
 }
 .sidebar-heading{
@@ -18,7 +18,7 @@
 li{
     list-style: none;
 }
-li i{
+.sidebar li i{
     color: #6c6e75;
 }
 .create-btn{
@@ -64,21 +64,91 @@ li i{
     height: 75px;
     border-bottom: 1px solid #1e1f26;
 }
-/* debug */
-.navbar a{
-    /* background-color: red; */
+.navbar .btn-group button{
+    background-color: #282b33;
+    border: none;
+    height: 45px;
+    border-bottom: 2px solid #282b33;
+    /* color: #b7bbc8 !important; */
 }
-.dropdown img{
-    height: 40px;
-    width: 40px;
+.navbar .btn-group a{
+    color: #b7bbc8 !important;
+}
+.navbar .btn-group button:hover{
+    box-sizing: border-box;
+    background-color: #282b3390;
+    border-bottom: 2px solid #b7bbc8;
+}
+.navbar .btn-group button:hover a{
+    color: #ffffff !important;
+}
+.navbar .selected{
+    background-color: #444857 !important;
+    border-bottom: 2px solid #47cf73 !important;
+}
+.navbar .selected:hover{
+    background-color: #444857 !important;
+    border-bottom: 2px solid #47cf73 !important;
+}
+.navbar .selected a{
+    color: #ffffff !important;
+}
+.navbar .input-group-text{
+    background-color: #282b33;
+    color: #b7bbc8;
+    border: none;
+}
+.navbar input{
+    border: none;
+    background-color: #282b33;
+    color: #b7bbc8;
+    height: 45px;
+    border-radius: 0 5px 5px 0;
+}
+.navbar input:focus{
+    border: none;
+    outline: none;
+    background-color: #282b33;
+    color: #b7bbc8;
+}
+.navbar .menus button{
+    background-color: #282b33;
+    border: none;
+    height: 45px;
+}
+.navbar .menus button:hover{
+    background-color: #444857;
+    border: none;
+}
+.navbar .dropdown img{
+    height: 45px;
+    width: 45px;
     border-radius: 5px;
 }
-.dropdown img:hover{
+.navbar .dropdown img:hover{
     cursor: pointer;
 }
-.dropdown ul{
-    left: -120px !important;
+.navbar .dropdown-menu{
+    background-color: #282b33;
 }
+.navbar .dropdown ul{
+    margin-top: 5px;
+    width: 175px;
+    left: -130px !important;
+}
+
+/* Footer */
+footer{
+    background-color: #000000;
+    height: 150px;
+}
+footer a:hover .label{
+    color: #f5da60;
+}
+footer .copyright{
+    font-size: 13px;
+}
+
 
 
 

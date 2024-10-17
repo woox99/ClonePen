@@ -78,46 +78,59 @@
             <nav class="navbar">
                 <div class="container-fluid d-flex">
                     <div class="btn-group gap-1" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary px-4 selected">
                             <a href="" class="text-white text-decoration-none">Trending</a>
                         </button>
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary px-4">
                             <a href="" class="text-white text-decoration-none">Messages</a>
                         </button>
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary px-4">
                             <a href="" class="text-white text-decoration-none">Your Work</a>
                         </button>
                     </div>
+                    <!-- Searchbar -->
                     <form action="">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-search"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Search ClonePen..."
-                                aria-label="Username" aria-describedby="basic-addon1">
+                            <!-- <input type="search" class="form-control" placeholder="Search ClonePen..."
+                                aria-label="Username" aria-describedby="basic-addon1"> -->
+                            <input type="search" placeholder="Search ClonePen...">
                         </div>
                     </form>
-                    <div class="d-flex gap-1">
+                    <div class="d-flex gap-2 menus">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
-                            <i class="bi bi-pin-fill"></i><i class="bi bi-chevron-down"></i>
+                            <i class="bi bi-pin-fill fs-5"></i><i class="bi bi-chevron-down"></i>
                         </button>
                         <!-- Dropdown -->
                         <div class="dropdown">
                             <img data-bs-toggle="dropdown"
                                 src="https://assets.codepen.io/t-1/user-default-avatar.jpg?fit=crop&format=auto&height=512&version=0&width=512"
                                 alt="">
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Support</a></li>
+                            <ul class="dropdown-menu dropdown-menu-dark text-white">
+                                <li>
+                                    <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white fw-medium" href="#">Support</a>
+                                </li>
                                 <hr class="mt-5 mb-1">
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li>
+                                    <a class="dropdown-item text-white fw-medium" href="#">
+                                        <i class="bi bi-box-arrow-right text-white"></i>
+                                        Logout
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
+
+            <!-- Main content -->
             <p>content</p>
             <p>content</p>
             <p>content</p>
@@ -137,6 +150,32 @@
             <p>content</p>
             <p>content</p>
             <p>content</p>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container p-4">
+                    <div class="row m-0">
+                        <div class="col p-0">
+                            <ul class="p-0">
+                                <li>
+                                    <a href="" class="text-white text-decoration-none fw-medium"><span class="label">ClonePen </span><span
+                                            class="text-secondary">
+                                            | GitHub</span></a>
+                                </li>
+                                <li>
+                                    <a href="" class="text-white text-decoration-none fw-medium"><span class="label">Contact Me </span> <span
+                                            class="text-secondary">
+                                            | LinkedIn</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <span class="text-end text-white logo">CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
+                            <span class="text-end text-secondary copyright"><i class="bi bi-c-circle"></i> 2024 Garett Janulewicz</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 
