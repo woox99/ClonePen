@@ -32,32 +32,27 @@
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">SHOW</span>
                 <li>
-                    <a href=""
-                        class="sidebar-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-bar-chart-line-fill"></i>Trending
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="sidebar-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-pin-fill"></i>Pinned Items
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="sidebar-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-chat-left-fill"></i>Messages
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="sidebar-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-people-fill"></i>Following
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="sidebar-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-fill"></i>Your Work
                     </a>
                 </li>
@@ -65,8 +60,7 @@
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">VISIT</span>
                 <li>
-                    <a href=""
-                        class="sidebar-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="fa-brands fa-codepen"></i>CodePen
                     </a>
                 </li>
@@ -77,15 +71,25 @@
             <!-- Navbar -->
             <nav class="navbar">
                 <div class="container-fluid d-flex">
-                    <div class="btn-group gap-1" role="group" aria-label="Basic example">
+                    <div class="btn-group d-none d-lg-block" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-primary px-4 selected">
                             <a href="" class="text-white text-decoration-none">Trending</a>
                         </button>
                         <button type="button" class="btn btn-primary px-4">
-                            <a href="" class="text-white text-decoration-none">Messages</a>
+                            <a href="" class="text-white text-decoration-none">Following</a>
                         </button>
                         <button type="button" class="btn btn-primary px-4">
                             <a href="" class="text-white text-decoration-none">Your Work</a>
+                        </button>
+                    </div>
+                    <div class="d-md-none d-flex align-items-center gap-2">
+                        <a href="">
+                            <i class="fa-brands fa-codepen text-white fs-1"></i>
+                        </a>
+                        <!-- Button trigger offcanvas -->
+                        <button class="offcanvas-btn btn btn-primary py-0 px-2" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                            <i class="bi bi-layout-sidebar-inset text-white fs-2"></i>
                         </button>
                     </div>
                     <!-- Searchbar -->
@@ -94,12 +98,10 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-search"></i>
                             </span>
-                            <!-- <input type="search" class="form-control" placeholder="Search ClonePen..."
-                                aria-label="Username" aria-describedby="basic-addon1"> -->
-                            <input type="search" placeholder="Search ClonePen...">
+                            <input type="search" placeholder="Search ClonePen">
                         </div>
                     </form>
-                    <div class="d-flex gap-2 menus">
+                    <div class="d-flex menus gap-2">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
@@ -152,26 +154,32 @@
             <p>content</p>
 
             <!-- Footer -->
-            <footer>
-                <div class="container p-4">
+            <footer class="">
+                <div class="container-lg p-4">
                     <div class="row m-0">
-                        <div class="col p-0">
+                        <div class="col-md-6 p-0">
                             <ul class="p-0">
                                 <li>
-                                    <a href="" class="text-white text-decoration-none fw-medium"><span class="label">ClonePen </span><span
-                                            class="text-secondary">
+                                    <a href="" class="text-white text-decoration-none fw-medium"><span
+                                            class="label">ClonePen </span><span class="text-secondary">
                                             | GitHub</span></a>
                                 </li>
                                 <li>
-                                    <a href="" class="text-white text-decoration-none fw-medium"><span class="label">Contact Me </span> <span
-                                            class="text-secondary">
+                                    <a href="" class="text-white text-decoration-none fw-medium"><span
+                                            class="label">Contact Me </span> <span class="text-secondary">
                                             | LinkedIn</span></a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="col d-flex flex-column">
+                        <div class="col-md-6 d-flex flex-column d-none d-md-flex p-0">
                             <span class="text-end text-white logo">CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
-                            <span class="text-end text-secondary copyright"><i class="bi bi-c-circle"></i> 2024 Garett Janulewicz</span>
+                            <span class="text-end text-secondary copyright"><i class="bi bi-c-circle"></i> 2024 Garett
+                                Janulewicz</span>
+                        </div>
+                        <div class="col-md-6 d-flex flex-column d-md-none p-0">
+                            <i class="fa-brands fa-codepen text-white fs-1 mb-3"></i>
+                            <span class="text-secondary copyright"><i class="bi bi-c-circle"></i> 2024 Garett
+                                Janulewicz</span>
                         </div>
                     </div>
                 </div>
@@ -200,6 +208,73 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-start pt-3" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header justify-content-between p-0">
+            <a href="/" class="logo d-flex align-items-center text-white text-decoration-none ps-3">
+                <span>CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
+            </a>
+            <button class="btn me-2" data-bs-dismiss="offcanvas">
+                <i class="bi bi-x-lg text-secondary fs-2"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <ul class="p-0 mt-3">
+                <span class="text-secondary item-menu-heading ps-3 fw-bold">CREATE</span>
+                <li class="create-btn rounded d-flex align-items-center  mt-2 ms-3 me-5">
+                    <a href="" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-grid-1x2-fill"></i>Pen
+                    </a>
+                </li>
+                </span>
+            </ul>
+            <ul class="p-0 mt-3">
+                <span class="text-secondary item-menu-heading ps-3 fw-bold">SHOW</span>
+                <li>
+                    <a href=""
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-bar-chart-line-fill"></i>Trending
+                    </a>
+                </li>
+                <li>
+                    <a href=""
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-pin-fill"></i>Pinned Items
+                    </a>
+                </li>
+                <li>
+                    <a href=""
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-chat-left-fill"></i>Messages
+                    </a>
+                </li>
+                <li>
+                    <a href=""
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-people-fill"></i>Following
+                    </a>
+                </li>
+                <li>
+                    <a href=""
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-grid-fill"></i>Your Work
+                    </a>
+                </li>
+            </ul>
+            <ul class="p-0 mt-3">
+                <span class="text-secondary item-menu-heading ps-3 fw-bold">VISIT</span>
+                <li>
+                    <a href=""
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="fa-brands fa-codepen"></i>CodePen
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
     </div>
 
 
