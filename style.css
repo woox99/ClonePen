@@ -1,34 +1,46 @@
-*{
-    /* border: 1px solid red; */
-}
 /* Global */
-.logo{
+.logo {
     font-size: 24px;
     letter-spacing: 3px;
 }
-li{
+
+li {
     list-style: none;
 }
 
+button {
+    transition: ease 0.1s !important;
+}
+
 /* Sidebar */
-.sidebar{
+.sidebar {
+    z-index: 1;
+    box-shadow: 0 10px 10px black !important;
     background-color: #1e1f26;
     width: 185px !important;
 }
-.sidebar-heading{
+
+.sidebar-heading {
     letter-spacing: 1.5px;
     font-size: 10px;
 }
-.sidebar li i{
+
+.sidebar li i {
     color: #6c6e75;
 }
-.sidebar .create-btn{
+
+.sidebar .active i {
+    color: #76daff;
+}
+
+.sidebar .create-btn {
     position: relative;
     background-color: #31353f;
     height: 45px;
     transition: ease .1s;
 }
-.sidebar .create-btn::after{
+
+.sidebar .create-btn::after {
     content: "";
     position: absolute;
     top: 0px;
@@ -37,81 +49,98 @@ li{
     height: 3px;
     width: 100%;
     z-index: 1;
-    background: linear-gradient(70deg,#0ebeff, #ffdd40, #ae63e4, #47cf73);
+    background: linear-gradient(70deg, #0ebeff, #ffdd40, #ae63e4, #47cf73);
     border-radius: 5px 5px 0px 0px;
 }
-.sidebar .create-btn:hover{
+
+.sidebar .create-btn:hover {
     background-color: #000000;
 }
-.sidebar .create-btn:hover i{
+
+.sidebar .create-btn:hover i {
     color: #76daff;
 }
-.sidebar .create-link{
+
+.sidebar .create-link {
     height: 100%;
     width: 100%;
 }
-.sidebar .link{
+
+.sidebar .link {
     width: 100%;
     height: 38px;
     transition: ease .1s;
 }
-.sidebar .link:hover{
+
+.sidebar .link:hover {
     background-color: #131417;
 }
 
 /* Navbar */
-.navbar{
+.navbar {
     background-color: #000000;
     height: 75px;
     border-bottom: 1px solid #1e1f26;
 }
-.navbar .btn-group{
+
+.navbar .btn-group {
     gap: 2px;
 }
-.navbar .btn-group button{
+
+.navbar .btn-group button {
     background-color: #282b33;
     border: none;
     height: 45px;
     border-bottom: 2px solid #282b33;
 }
-.navbar .offcanvas-btn{
+
+.navbar .offcanvas-btn {
     background-color: #282b33;
     border: none;
     height: 45px;
     width: 45px;
 }
-.navbar .offcanvas-btn:hover{
+
+.navbar .offcanvas-btn:hover {
     background-color: #444857;
     border: none;
 }
-.navbar .btn-group a{
+
+.navbar .btn-group a {
     color: #b7bbc8 !important;
 }
-.navbar .btn-group button:hover{
+
+.navbar .btn-group button:hover {
     box-sizing: border-box;
     background-color: #282b3390;
     border-bottom: 2px solid #b7bbc8;
 }
-.navbar .btn-group button:hover a{
+
+.navbar .btn-group button:hover a {
     color: #ffffff !important;
 }
-.navbar .selected{
+
+.navbar .selected {
     background-color: #444857 !important;
     border-bottom: 2px solid #47cf73 !important;
 }
-.navbar .selected:hover{
+
+.navbar .selected:hover {
     background-color: #444857 !important;
     border-bottom: 2px solid #47cf73 !important;
 }
-.navbar .selected a{
+
+.navbar .selected a {
     color: #ffffff !important;
 }
-.navbar .input-group-text{
+
+.navbar .input-group-text {
     background-color: #282b33;
     color: #b7bbc8;
     border: none;
 }
-.navbar input{
+
+.navbar input {
     width: unset;
     border: none;
     background-color: #282b33;
@@ -120,69 +149,116 @@ li{
     border-radius: 0 5px 5px 0;
     text-overflow: ellipsis;
 }
-.navbar input:focus{
+
+.navbar input:focus {
     border: none;
     outline: none;
     background-color: #282b33;
     color: #b7bbc8;
 }
-.navbar .menus button{
+
+.navbar .menus button {
     background-color: #282b33;
     border: none;
     height: 45px;
 }
-.navbar .menus button:hover{
+
+.navbar .menus button:hover {
     background-color: #444857;
     border: none;
 }
-.navbar .dropdown img{
+
+.navbar .dropdown img {
     height: 45px;
     width: 45px;
     border-radius: 5px;
 }
-.navbar .dropdown img:hover{
+
+.navbar .dropdown img:hover {
     cursor: pointer;
 }
-.navbar .dropdown-menu{
+
+.navbar .dropdown-menu {
     background-color: #282b33;
 }
-.navbar .dropdown ul{
+
+.navbar .dropdown ul {
     margin-top: 5px;
     width: 175px;
     left: -130px !important;
 }
 
+/* Main Content */
+.main-content {
+    background-color: #131417;
+    min-height: 100vh;
+    width: 100%;
+}
+
 /* Footer */
-footer{
+footer {
     background-color: #000000;
     min-height: 150px;
 }
-footer a:hover .label{
-    color: #00a4ed;
+
+footer a:hover .label {
+    color: #0ebeff;
 }
-footer .copyright{
+
+footer .copyright {
     font-size: 13px;
 }
 
+/* Model -- Pinned Items */
+.modal-content {
+    background-color: #131417 !important;
+    border: 3px solid #262830 !important;
+}
+
+.modal-header {
+    border-bottom: 3px solid #262830 !important;
+}
+
+.modal-header i {
+    color: #76daff !important;
+}
+
+.modal-body {
+    /* border-bottom: none !important; */
+}
+
+.modal-footer {
+    border-top: none !important;
+    background-color: #0a0a0c !important;
+}
+
 /* Offcanvas */
-.offcanvas{
+.offcanvas {
     background-color: #1e1f26 !important;
     width: 250px !important;
 }
-.offcanvas .item-menu-heading{
+
+.offcanvas-header button i:hover {
+    color: #9599a1 !important;
+}
+
+.offcanvas .item-menu-heading {
     letter-spacing: 1.5px;
     font-size: 10px;
 }
-.offcanvas li i{
+
+.offcanvas li i {
     color: #6c6e75;
 }
-.offcanvas .create-btn{
+
+.offcanvas .create-btn {
     position: relative;
     background-color: #31353f;
     height: 45px;
     transition: ease .1s;
 }
-.offcanvas .create-btn::after{
+
+.offcanvas .create-btn::after {
     content: "";
     position: absolute;
     top: 0px;
@@ -191,27 +267,34 @@ footer .copyright{
     height: 3px;
     width: 100%;
     z-index: 1;
-    background: linear-gradient(70deg,#0ebeff, #ffdd40, #ae63e4, #47cf73);
+    background: linear-gradient(70deg, #0ebeff, #ffdd40, #ae63e4, #47cf73);
     border-radius: 5px 5px 0px 0px;
 }
-.offcanvas .create-btn:hover{
+
+.offcanvas .create-btn:hover {
     background-color: #000000;
 }
-.offcanvas .create-btn:hover i{
+
+.offcanvas .create-btn:hover i {
     color: #76daff;
 }
-.offcanvas .create-link{
+
+.offcanvas .create-link {
     height: 100%;
     width: 100%;
 }
-.offcanvas .link{
+
+.offcanvas .link {
     width: 100%;
     height: 38px;
     transition: ease .1s;
 }
-.offcanvas .link:hover{
+
+.offcanvas .link:hover {
     background-color: #131417;
 }
+
+
 
 
 /* Media Queries */
@@ -221,8 +304,8 @@ footer .copyright{
         height: 64px;
     }
 
-    .navbar input{
+    .navbar input {
         width: 100px;
     }
-    
+
 }

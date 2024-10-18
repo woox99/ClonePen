@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClonePen</title>
+    <link rel="icon" href="assets/codepen_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -31,13 +32,14 @@
             </ul>
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">SHOW</span>
-                <li>
+                <li class="active">
                     <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-bar-chart-line-fill"></i>Trending
                     </a>
                 </li>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <i class="bi bi-pin-fill"></i>Pinned Items
                     </a>
                 </li>
@@ -68,6 +70,7 @@
         </div>
 
         <div class="col p-0">
+
             <!-- Navbar -->
             <nav class="navbar">
                 <div class="container-fluid d-flex">
@@ -87,7 +90,7 @@
                             <i class="fa-brands fa-codepen text-white fs-1"></i>
                         </a>
                         <!-- Button trigger offcanvas -->
-                        <button class="offcanvas-btn btn btn-primary py-0 px-2" type="button" data-bs-toggle="offcanvas"
+                        <button class="offcanvas-btn btn py-0 px-2" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                             <i class="bi bi-layout-sidebar-inset text-white fs-2"></i>
                         </button>
@@ -132,26 +135,10 @@
                 </div>
             </nav>
 
-            <!-- Main content -->
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
-            <p>content</p>
+            <!-- Main Content -->
+            <div class="main-content container-fluid">
+
+            </div>
 
             <!-- Footer -->
             <footer class="">
@@ -187,30 +174,27 @@
         </div>
     </div>
 
-    <!-- Scrollable modal -->
-    <!-- Pinned Items Modal -->
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
+    <!-- Modal -- Pinned Items -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-6 text-white" id="staticBackdropLabel"><i
+                            class="bi bi-pin-fill text-secondary me-2"></i>Pinned Items</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-white">carousel component here</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="text-white">pagination component here</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Offcanvas -->
+    <!-- Offcanvas -- Mobile Links Menu -->
     <div class="offcanvas offcanvas-start pt-3" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header justify-content-between p-0">
@@ -218,7 +202,7 @@
                 <span>CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
             </a>
             <button class="btn me-2" data-bs-dismiss="offcanvas">
-                <i class="bi bi-x-lg text-secondary fs-2"></i>
+                <i class="bi bi-x-lg text-secondary fs-3"></i>
             </button>
         </div>
         <div class="offcanvas-body p-0">
@@ -234,32 +218,27 @@
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">SHOW</span>
                 <li>
-                    <a href=""
-                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-bar-chart-line-fill"></i>Trending
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-pin-fill"></i>Pinned Items
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-chat-left-fill"></i>Messages
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-people-fill"></i>Following
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-fill"></i>Your Work
                     </a>
                 </li>
@@ -267,14 +246,13 @@
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">VISIT</span>
                 <li>
-                    <a href=""
-                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="fa-brands fa-codepen"></i>CodePen
                     </a>
                 </li>
             </ul>
         </div>
-        
+
     </div>
 
 
