@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block head_title %}
+<title>ClonePen Login</title>
+{% endblock %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+{% endblock %}
+
+{% block main-content %}
+<div class="main-content container-fluid d-flex justify-content-center align-items-center">
+    <div class="auth-form col-10 col-lg-5">
+        <form data-bs-theme="dark" method="POST">
+            {% csrf_token %}
+
+            
+            <span class="form-logo text-secondary fw-medium fs-6">CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
+            <h1 class="h1 mb-3 text-white fw-bold">Log In</h1>
+            
+            {% if form.non_field_errors %}
+                <p class="text-danger-emphasis">Incorrect username or password</p>
+            {% endif %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-person"></i></span>
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="username" id="" placeholder="">
+                    <label class="text-secondary" for="floatingInput">Username</label>
+                </div>
+            </div>
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-lock"></i></span>
+                <div class="form-floating">
+                    <input type="password" class="form-control" name="password" id="" placeholder="">
+                    <label class="text-secondary" for="floatingInput">Password</label>
+                </div>
+            </div>
+            <button class="btn w-100 py-2 my-3 text-white" type="submit">Sign in</button>
+            <span class="text-secondary">Not a member? <a href="" class="text-decoration-none">Sign
+                    Up</a></span>
+        </form>
+    </div>
+</div>
+{% endblock %}
