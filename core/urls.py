@@ -5,5 +5,5 @@ app_name='core'
 
 urlpatterns=[
     path('', landing, name='landing-page' ),
-    path('trending/', index, name='index' ),
+    path('trending/', index, name='trending' ),
 ]

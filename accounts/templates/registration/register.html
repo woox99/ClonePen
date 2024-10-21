@@ -1,0 +1,118 @@
+{% extends 'core/base.html' %}
+
+{% block head_title %}
+<title>ClonePen Sign Up</title>
+{% endblock %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+{% endblock %}
+
+{% block main-content %}
+<div class="main-content container-fluid d-flex justify-content-center align-items-center">
+    <div class="auth-form col-10 col-lg-5" novalidate>
+        <form action="{% url 'accounts:register' %}" data-bs-theme="dark" method="POST">
+            {% csrf_token %}
+
+            <span class="form-logo text-secondary fw-medium fs-6">CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
+            <h1 class="h1 mb-3 text-white fw-bold">Sign Up</h1>
+
+            {% if form.errors %}
+            <span class="text-danger-emphasis">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                    <p>{{error}}</p>
+                    {% endfor %}
+                {% endfor %}
+            </span>
+            {% endif %}
+
+            {% if form.errors.username %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-person"></i></span>
+                <div class="form-floating">
+                    <input type="text" class="form-control is-invalid" name="username" id=""
+                    value="{{ form.username.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Choose Username</label>
+                </div>
+            </div>
+            {% else %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-person"></i></span>
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="username" id=""
+                        value="{{ form.username.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Choose Username</label>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if form.errors.email %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-envelope"></i></span>
+                <div class="form-floating">
+                    <input type="email" class="form-control is-invalid" name="email" id=""
+                        value="{{ form.email.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Email</label>
+                </div>
+            </div>
+            {% else %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-envelope"></i></span>
+                <div class="form-floating">
+                    <input type="email" class="form-control" name="email" id=""
+                        value="{{ form.email.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Email</label>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if form.errors.password2 %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-lock"></i></span>
+                <div class="form-floating">
+                    <input type="password" class="form-control is-invalid" name="password1" id=""
+                        value="{{ form.password1.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Create Password</label>
+                </div>
+            </div>
+            {% else %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-lock"></i></span>
+                <div class="form-floating">
+                    <input type="password" class="form-control" name="password1" id=""
+                        value="{{ form.password1.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Create Password</label>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if form.errors.password2 %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-lock-fill"></i></span>
+                <div class="form-floating">
+                    <input type="password" class="form-control is-invalid" name="password2" id=""
+                        value="{{ form.password2.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Confirm Password</label>
+                </div>
+            </div>
+            {% else %}
+            <div class="input-group mb-1">
+                <span class="input-group-text px-4" id=""><i class="bi bi-lock-fill"></i></span>
+                <div class="form-floating">
+                    <input type="password" class="form-control" name="password2" id=""
+                        value="{{ form.password2.value|default:'' }}">
+                    <label class="text-secondary" for="floatingInput">Confirm Password</label>
+                </div>
+            </div>
+            {% endif %}
+
+            <button class="btn w-100 py-2 my-3 text-white" type="submit">Create Account</button>
+            <span class="text-secondary">Already a member? <a href="{% url 'accounts:login' %}"
+                    class="text-decoration-none">Log In</a></span>
+        </form>
+    </div>
+</div>
+{% endblock %}
