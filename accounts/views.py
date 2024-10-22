@@ -31,7 +31,4 @@ class UserRegister(FormView):
         user = form.save()
         login(self.request, user)
         return super().form_valid(form)
-    
-    # add email validation to check for exisiting email
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
+

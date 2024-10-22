@@ -39,7 +39,8 @@
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">SHOW</span>
                 <li class="">
-                    <a href="{% url 'core:trending' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:trending' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block trending-link %}
                         <i class="bi bi-bar-chart-line-fill"></i>Trending
                         {% endblock %}
@@ -97,10 +98,11 @@
                         <a href="">
                             <i class="fa-brands fa-codepen text-white fs-1"></i>
                         </a>
-                        <!-- Button trigger offcanvas -->
-                        <button class="offcanvas-btn btn py-0 px-2" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                            <i class="bi bi-layout-sidebar-inset text-white fs-2"></i>
+                        <!-- Offcanvas Trigger -- Mobile Links Menu -->
+                        <button class="offcanvas-btn btn d-flex align-items-center justify-content-center" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                            aria-controls="offcanvasWithBothOptions">
+                            <i class="bi bi-list text-white fs-2"></i>
                         </button>
                     </div>
                     <!-- Searchbar -->
@@ -113,16 +115,14 @@
                         </div>
                     </form>
                     <div class="d-flex menus gap-2">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <!-- Modal Trigger -- Pinned Items -->
+                        <button type="button" class="btn btn-primary px-3" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                             <i class="bi bi-pin-fill fs-5"></i><i class="bi bi-chevron-down"></i>
                         </button>
-                        <!-- Dropdown -->
+                        <!-- Dropdown Trigger -- User Menu -->
                         <div class="dropdown">
-                            <img data-bs-toggle="dropdown"
-                                src="{% static 'core/assets/profile_codepen.png' %}"
-                                alt="">
+                            <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                             <ul class="dropdown-menu dropdown-menu-dark text-white">
                                 <li>
                                     <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
@@ -134,7 +134,8 @@
                                 <li>
                                     <form action="{% url 'accounts:logout' %}" method="POST">
                                         {% csrf_token %}
-                                        <button type="submit" class="dropdown-item text-white fw-medium"><i class="bi bi-box-arrow-right text-white"></i> Logout</button>
+                                        <button type="submit" class="dropdown-item text-white fw-medium"><i
+                                                class="bi bi-box-arrow-right text-white"></i> Logout</button>
                                     </form>
                                 </li>
                             </ul>
@@ -227,7 +228,8 @@
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">SHOW</span>
                 <li>
-                    <a href="{% url 'core:trending' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:trending' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block trending-link-offcanvas %}
                         <i class="bi bi-bar-chart-line-fill"></i>Trending
                         {% endblock %}

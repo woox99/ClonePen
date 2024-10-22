@@ -1,0 +1,64 @@
+*{
+    /* border: 1px solid red; */
+}
+.navbar{
+    height: unset;
+}
+
+/* Main Content */
+.main-content{
+    background-color: black !important;
+}
+.editor-wrapper{
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #1e1f26;
+    border-right: 1px solid #1e1f26;
+}
+.v-scroll-hidder{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background-color: black;
+    height: 100%;
+    width: 20px;
+    border-left: 1px solid #1e1f26;
+}
+.editor{
+}
+
+.editor-title{
+    width: 100px;
+    border-left: 1px solid #1e1f26;
+    border-right: 1px solid #1e1f26;
+    border-top: 3px solid #3d3f4d;
+    background-color: #1e1f26;
+}
+.screen iframe{
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+/* Footer */
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    background-color: #2b2c36;
+    font-size: 12px;
+}
+
+
+/* Modal -- Save Form */
+.modal .form-check-input, .form-check-label{
+    cursor: pointer;
+}
+.modal .save-btn{
+    background-color: #47cf73 !important;
+}
+.modal .save-btn:hover{
+    background-color: #2c8147 !important;
+}
+
