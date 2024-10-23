@@ -82,7 +82,7 @@
         </div>
     </nav>
 
-    <form action="{% url 'core:create' %}" method="POST">
+    <form method="POST">
         {% csrf_token %}
         <!-- Main Content -->
         <div class="main-content container-fluid p-0">
@@ -158,14 +158,14 @@
                     <div class="modal-body">
                         <!-- Title Input -->
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="title" placeholder="">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="">
                             <label class="text-secondary" for="title">Project Title</label>
                         </div>
 
                         <!-- Description Input -->
                         <div class="mb-3">
                             <label for="description" class="form-label text-secondary">Description</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
 
                         <!-- Radio Buttons -->
@@ -173,21 +173,21 @@
                             <span data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="This Pen will only be visible by you. Visit the Your Work page to view.">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1" checked>
+                                    <input class="form-check-input" type="radio" name="public"
+                                        id="inlineRadio1" value="False" checked>
                                     <label class="form-check-label" for="inlineRadio1">Private</label>
                                 </div>
                             </span>
                             <div class="form-check form-check-inline enabled-radio">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                    value="option2">
+                                <input class="form-check-input" type="radio" name="public" id="inlineRadio2"
+                                    value="True">
                                 <label class="form-check-label" for="inlineRadio2">Public</label>
                             </div>
                             <span data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="This feature is temporarily unavailable.">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio3" value="option3" disabled>
+                                    <input class="form-check-input" type="radio" name="public"
+                                        id="inlineRadio3" value="public" disabled>
                                     <label class="form-check-label" for="inlineRadio3">
                                         <i class="bi bi-lock me-1"></i>Public
                                     </label>
@@ -196,8 +196,8 @@
                             <span data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="You are currently using a Demo Account.">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio3" value="option3" disabled>
+                                    <input class="form-check-input" type="radio" name="public"
+                                        id="inlineRadio3" value="public" disabled>
                                     <label class="form-check-label" for="inlineRadio3">
                                         <i class="bi bi-lock me-1"></i>Public
                                     </label>

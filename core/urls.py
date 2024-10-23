@@ -5,7 +5,10 @@ from . import views
 app_name='core'
 
 urlpatterns=[
+    # Menu
     path('', views.landing, name='landing-page' ),
     path('trending/', views.index, name='trending' ),
-    path('create/', views.create, name='create' ),
+
+    # Pen
+    path('pen/', PenCreateView.as_view(), name='pen-create' ),
 ]
