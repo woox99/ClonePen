@@ -7,6 +7,12 @@
 .auth-form .form-logo{
     letter-spacing: 1.5px;
 }
+.auth-form .error-message{
+    font-size: 13px;
+}
+.auth-form .error-message ul{
+    padding: 0;
+}
 .auth-form button{
     background-color: #47cf73;
     border: none;

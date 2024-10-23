@@ -20,13 +20,13 @@
             <h1 class="h1 mb-3 text-white fw-bold">Sign Up</h1>
 
             {% if form.errors %}
-            <span class="text-danger-emphasis">
+            <!-- <span class="text-danger-emphasis"> -->
                 {% for field, errors in form.errors.items %}
                     {% for error in errors %}
-                    <p>{{error}}</p>
+                    <!-- <p>{{error}}</p> -->
                     {% endfor %}
                 {% endfor %}
-            </span>
+            <!-- </span> -->
             {% endif %}
 
             {% if form.errors.username %}
@@ -38,6 +38,9 @@
                     <label class="text-secondary" for="floatingInput">Choose Username</label>
                 </div>
             </div>
+            <span class="text-danger-emphasis error-message">
+                {{form.errors.username}}
+            </span>
             {% else %}
             <div class="input-group mb-1">
                 <span class="input-group-text px-4" id=""><i class="bi bi-person"></i></span>
@@ -58,6 +61,9 @@
                     <label class="text-secondary" for="floatingInput">Email</label>
                 </div>
             </div>
+            <span class="text-danger-emphasis error-message">
+                {{form.errors.email}}
+            </span>
             {% else %}
             <div class="input-group mb-1">
                 <span class="input-group-text px-4" id=""><i class="bi bi-envelope"></i></span>
@@ -98,6 +104,9 @@
                     <label class="text-secondary" for="floatingInput">Confirm Password</label>
                 </div>
             </div>
+            <span class="text-danger-emphasis error-message">
+                {{form.errors.password2}}
+            </span>
             {% else %}
             <div class="input-group mb-1">
                 <span class="input-group-text px-4" id=""><i class="bi bi-lock-fill"></i></span>
