@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Pen(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pens')
-    title = models.CharField(max_length=30) #change
+    title = models.CharField(max_length=30, blank=False) #change
     description = models.CharField(max_length=250, blank=True, null=True) #change
     public = models.BooleanField(default=False)
     html = models.TextField(blank=True, null=True)

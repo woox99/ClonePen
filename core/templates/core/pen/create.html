@@ -93,21 +93,24 @@
                     <div class="editor-title text-secondary fw-bolder py-1 ps-2">
                         <i class="fa-brands fa-html5 text-danger me-2"></i>HTML
                     </div>
-                    <textarea class="editor" id="html-editor" name="html" oninput="updatePreview()"></textarea>
+                    <textarea class="editor" id="html-editor" name="html"
+                        oninput="updatePreview()">{{form.html.value|default_if_none:''}}</textarea>
                 </div>
                 <div class="col p-0 editor-wrapper">
                     <div class="v-scroll-hidder"></div>
                     <div class="editor-title text-secondary fw-bolder py-1 ps-2">
                         <i class="fa-brands fa-css3-alt me-2 text-info"></i>CSS
                     </div>
-                    <textarea class="editor" id="css-editor" name="css" oninput="updatePreview()"></textarea>
+                    <textarea class="editor" id="css-editor" name="css"
+                        oninput="updatePreview()">{{form.css.value|default_if_none:''}}</textarea>
                 </div>
                 <div class="col p-0 editor-wrapper">
                     <div class="v-scroll-hidder"></div>
                     <div class="editor-title text-secondary fw-bolder py-1 ps-2">
                         <i class="fa-brands fa-square-js me-2 text-warning"></i>JS
                     </div>
-                    <textarea class="editor" id="js-editor" name="js" oninput="updatePreview()"></textarea>
+                    <textarea class="editor" id="js-editor" name="js"
+                        oninput="updatePreview()">{{form.js.value|default_if_none:''}}</textarea>
                 </div>
             </div>
 
@@ -144,76 +147,94 @@
         </div>
 
         <!-- Modal -- Save Form -->
-        <div class="modal fade" id="save-form-modal" data-bs-backdrop="static" data-bs-theme="dark"
-            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                <div class="modal-content text-white">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-6 text-white" id="staticBackdropLabel">
-                            Creating New Pen..
-                        </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <!-- Title Input -->
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="title" name="title" placeholder="">
-                            <label class="text-secondary" for="title">Project Title</label>
+        {% if form.errors %}
+        <div class="modal-backdrop fade show"></div>
+        <div class="modal fade show" id="save-form-modal" data-bs-backdrop="static" data-bs-theme="dark"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: block;"
+            aria-modal="true" role="dialog">
+            {% else %}
+            <div class="modal fade" id="save-form-modal" data-bs-backdrop="static" data-bs-theme="dark"
+                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                {% endif %}
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content text-white">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-6 text-white" id="staticBackdropLabel">
+                                Creating New Pen..
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
-                        <!-- Description Input -->
-                        <div class="mb-3">
-                            <label for="description" class="form-label text-secondary">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                        </div>
-
-                        <!-- Radio Buttons -->
-                        <div>
-                            <span data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="This Pen will only be visible by you. Visit the Your Work page to view.">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="public"
-                                        id="inlineRadio1" value="False" checked>
-                                    <label class="form-check-label" for="inlineRadio1">Private</label>
+                        <div class="modal-body">
+                            <!-- Title Input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="title" name="title" placeholder=""
+                                    value="{{form.title.value|default_if_none:''}}">
+                                <label class="text-secondary" for="title">Project Title</label>
+                                {% if form.title.errors %}
+                                <div class="error text-danger-emphasis p-1">
+                                    {{ form.title.errors }}
                                 </div>
-                            </span>
-                            <div class="form-check form-check-inline enabled-radio">
-                                <input class="form-check-input" type="radio" name="public" id="inlineRadio2"
-                                    value="True">
-                                <label class="form-check-label" for="inlineRadio2">Public</label>
+                                {% endif %}
                             </div>
-                            <span data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="This feature is temporarily unavailable.">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="public"
-                                        id="inlineRadio3" value="public" disabled>
-                                    <label class="form-check-label" for="inlineRadio3">
-                                        <i class="bi bi-lock me-1"></i>Public
-                                    </label>
+
+                            <!-- Description Input -->
+                            <div class="mb-3">
+                                <label for="description" class="form-label text-secondary">Description</label>
+                                <textarea class="form-control" id="description" name="description"
+                                    rows="3" maxlength="250">{{form.description.value|default_if_none:''}}</textarea>
+                            </div>
+
+                            <!-- Radio Buttons -->
+                            <div>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="This Pen will only be visible by you. Visit the Your Work page to view.">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="public" id="inlineRadio1"
+                                            value="False" checked>
+                                        <label class="form-check-label" for="inlineRadio1">Private</label>
+                                    </div>
+                                </span>
+                                <div class="form-check form-check-inline enabled-radio">
+                                    <input class="form-check-input" type="radio" name="public" id="inlineRadio2"
+                                        value="True">
+                                    <label class="form-check-label" for="inlineRadio2">Public</label>
                                 </div>
-                            </span>
-                            <span data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="You are currently using a Demo Account.">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="public"
-                                        id="inlineRadio3" value="public" disabled>
-                                    <label class="form-check-label" for="inlineRadio3">
-                                        <i class="bi bi-lock me-1"></i>Public
-                                    </label>
-                                </div>
-                            </span>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="This feature is temporarily unavailable.">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="public" id="inlineRadio3"
+                                            value="public" disabled>
+                                        <label class="form-check-label" for="inlineRadio3">
+                                            <i class="bi bi-lock me-1"></i>Public
+                                        </label>
+                                    </div>
+                                </span>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="You are currently using a Demo Account.">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="public" id="inlineRadio3"
+                                            value="public" disabled>
+                                        <label class="form-check-label" for="inlineRadio3">
+                                            <i class="bi bi-lock me-1"></i>Public
+                                        </label>
+                                    </div>
+                                </span>
+                            </div>
+
+                            <p>Put preview here?</p>
                         </div>
 
-                        <p>Put preview here?</p>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn text-black save-btn">Save</button>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn text-black save-btn">Save</button>
+                        </div>
                     </div>
                 </div>
+                {% if form.errors %}
             </div>
+            {% else %}
         </div>
+        {% endif %}
     </form>
 
     <!-- Offcanvas -- Links Menu -->
@@ -277,6 +298,7 @@
         </div>
 
     </div>
+
 
 
     <script src="{% static './core/js/create.js' %}"></script>
