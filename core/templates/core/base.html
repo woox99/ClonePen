@@ -24,13 +24,13 @@
 
         <!-- Sidebar -->
         <div class="sidebar d-none d-md-block p-0">
-            <a href="/" class="logo d-flex align-items-center text-white text-decoration-none ps-3 pt-3">
+            <a href="{% url 'core:trending' %}" class="logo d-flex align-items-center text-white text-decoration-none ps-3 pt-3">
                 <span>CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
             </a>
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">CREATE</span>
                 <li class="create-btn rounded d-flex align-items-center  mt-2 ms-3 me-5">
-                    <a href="" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:pen-create' %}" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-1x2-fill"></i>Pen
                     </a>
                 </li>
@@ -95,7 +95,7 @@
                         </button>
                     </div>
                     <div class="d-md-none d-flex align-items-center gap-2">
-                        <a href="">
+                        <a href="{% url 'core:trending' %}">
                             <i class="fa-brands fa-codepen text-white fs-1"></i>
                         </a>
                         <!-- Offcanvas Trigger -- Mobile Links Menu -->
@@ -208,7 +208,7 @@
     <div class="offcanvas offcanvas-start pt-3" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header justify-content-between p-0">
-            <a href="/" class="logo d-flex align-items-center text-white text-decoration-none ps-3">
+            <a href="{% url 'core:trending' %}" class="logo d-flex align-items-center text-white text-decoration-none ps-3">
                 <span>CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
             </a>
             <button class="btn me-2" data-bs-dismiss="offcanvas">
@@ -219,7 +219,7 @@
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">CREATE</span>
                 <li class="create-btn rounded d-flex align-items-center  mt-2 ms-3 me-5">
-                    <a href="" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:pen-create' %}" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-1x2-fill"></i>Pen
                     </a>
                 </li>
