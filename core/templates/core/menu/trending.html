@@ -4,7 +4,13 @@
 <title>Trending - ClonePen</title>
 {% endblock %}
 
-<!-- Make link icon active page color -->
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/menu/trending.css' %}">
+{% endblock %}
+
+<!-- makes menu link icon active color -->
 {% block trending-link %}
 <i class="bi bi-bar-chart-line-fill active"></i>Trending
 {% endblock %}
@@ -12,8 +18,63 @@
 <i class="bi bi-bar-chart-line-fill active"></i>Trending
 {% endblock %}
 
+<!-- main content -->
 {% block main-content %}
 <div class="main-content container-fluid">
-    <p class="text-white">trending</p>
+    <div class="pages d-flex">
+        <div class="page">
+            {% for pen in page_object %}
+            <div class="card" data-bs-theme="dark">
+                <div class="viewport">
+                    <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="card-body">
+                    {{pen.title}}
+                </div>
+                <div class="card-footer">
+                    <button>Views</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if page_object.has_next %}
+        <div class="page">
+            {% for pen in next_page_object %}
+            <div class="card" data-bs-theme="dark">
+                <div class="viewport">
+                    <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="card-body">
+                    {{pen.title}}
+                </div>
+                <div class="card-footer">
+                    <button>Views</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- pagination -->
+    <div class="pagination">
+        {% if page_object.has_previous %}
+        <a href="?page=1">First</a> | 
+        <a href="?page={{ page_object.previous_page_number }}">Last</a> 
+        {% endif %}
+
+        <span class="step-links">
+            <span class="current">
+                Page {{page_object.number}} of {{page_object.paginator.num_pages}}.
+            </span>
+        </span>
+
+        {% if page_object.has_next %}
+        <a href="?page={{ page_object.next_page_number }}">Next</a> | 
+        <a href="?page={{ page_object.paginator.num_pages }}">Last</a> 
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

@@ -1,0 +1,35 @@
+*{
+    /* border: 1px solid red; */
+}
+
+.main-content{
+    display: flex;
+    align-items: end;
+    height: 720px;
+}
+
+.pages{
+    position: absolute;
+    top: 80px;
+    left: 200px;
+    overflow: hidden;
+    max-width: 80vw;
+    height: 700px;
+}
+.page{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 60vw;
+    
+    overflow: hidden;
+    border: 1px solid red !important;
+}
+.card{
+    width: 30vw;
+}
+iframe{
+    width: 100vw;
+    aspect-ratio: 16/9;
+    zoom: 0.25;
+}

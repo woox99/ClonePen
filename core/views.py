@@ -4,15 +4,38 @@ from django.views import View, generic
 from .models import Pen
 from .forms import PenForm
 
+from django.core.paginator import Paginator
+
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-def index(request):
-    return render(request, 'core/menu/trending.html')
+
+class TrendingView(generic.ListView):
+    template_name = 'core/menu/trending.html'
+    model = Pen
+    # context_object_name = 'pens'
+
+    def get_context_data(self):
+        pens = Pen.objects.all()
+        paginator = Paginator(pens, 4)
+        page_number = self.request.GET.get('page')
+        if not page_number:
+            next_page_number = 2
+        else:
+            next_page_number = str(int(page_number) + 1)
+        page_object = paginator.get_page(page_number)
+        next_page_object = paginator.get_page(next_page_number)
+        context = {
+            'page_object':page_object,
+            'next_page_object':next_page_object,
+            }
+        print(paginator.get_page(page_number))
+        print(next_page_object)
+        return context
 
 
 def landing(request):
-    return render(request, 'core/landing.html')
+    return render(request, 'core/menu/landing.html')
 
 
 class PenCreateView(View):
@@ -42,8 +65,8 @@ class PenCreateView(View):
             return redirect(f"{login_url}?next={next_url}")
         else:
             form = PenForm(data=request.POST)
-            if request.session.get('pen_form'):
-                del request.session['pen_form']
+            # if request.session.get('pen_form'):
+            #     del request.session['pen_form']
             if form.is_valid():
                 pen = form.save(commit=False)
                 pen.owner = request.user
