@@ -21,19 +21,15 @@
 <!-- main content -->
 {% block main-content %}
 <div class="main-content container-fluid">
-    <div class="pages d-flex">
+    <!-- <div class="measure" style="width: 170px; height: 10px; background-color: red; position: fixed; top: 400px; right: 0;"></div> -->
+    <div class="pages d-flex pt-5">
         <div class="page">
             {% for pen in page_object %}
-            <div class="card" data-bs-theme="dark">
+            <div class="pen-card" data-bs-theme="dark">
+                <div class="card-background"></div>
                 <div class="viewport">
                     <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
                         frameborder="0"></iframe>
-                </div>
-                <div class="card-body">
-                    {{pen.title}}
-                </div>
-                <div class="card-footer">
-                    <button>Views</button>
                 </div>
             </div>
             {% endfor %}
@@ -41,16 +37,11 @@
         {% if page_object.has_next %}
         <div class="page">
             {% for pen in next_page_object %}
-            <div class="card" data-bs-theme="dark">
+            <div class="pen-card" data-bs-theme="dark">
+                <div class="card-background"></div>
                 <div class="viewport">
                     <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
                         frameborder="0"></iframe>
-                </div>
-                <div class="card-body">
-                    {{pen.title}}
-                </div>
-                <div class="card-footer">
-                    <button>Views</button>
                 </div>
             </div>
             {% endfor %}
@@ -61,8 +52,8 @@
     <!-- pagination -->
     <div class="pagination">
         {% if page_object.has_previous %}
-        <a href="?page=1">First</a> | 
-        <a href="?page={{ page_object.previous_page_number }}">Last</a> 
+        <a href="?page=1">First</a> |
+        <a href="?page={{ page_object.previous_page_number }}">Last</a>
         {% endif %}
 
         <span class="step-links">
@@ -72,8 +63,8 @@
         </span>
 
         {% if page_object.has_next %}
-        <a href="?page={{ page_object.next_page_number }}">Next</a> | 
-        <a href="?page={{ page_object.paginator.num_pages }}">Last</a> 
+        <a href="?page={{ page_object.next_page_number }}">Next</a> |
+        <a href="?page={{ page_object.paginator.num_pages }}">Last</a>
         {% endif %}
     </div>
 </div>

@@ -13,7 +13,6 @@ from django.utils.decorators import method_decorator
 class TrendingView(generic.ListView):
     template_name = 'core/menu/trending.html'
     model = Pen
-    # context_object_name = 'pens'
 
     def get_context_data(self):
         pens = Pen.objects.all()
@@ -73,6 +72,12 @@ class PenCreateView(View):
                 pen.save()
                 return redirect('core:trending') #change to pen-detail-view
         return render(request, 'core/pen/create.html', {'form':form})
+
+
+class PenURLView(generic.DeleteView):
+    template_name = 'core/pen/url_view.html'
+    model = Pen
+
 
 
 

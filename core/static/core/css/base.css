@@ -21,7 +21,7 @@ button {
     z-index: 1;
     box-shadow: 0 10px 10px black !important;
     background-color: #1e1f26;
-    width: 185px !important;
+    width: 185px !important; /* dependant variable! 185px */
 }
 
 .sidebar-heading {
