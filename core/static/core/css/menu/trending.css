@@ -22,36 +22,39 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
+    overflow: hidden;
+    
     /* 
     Width of page = width(pen-card)*2 + width(pen-card margin)*2
-     */
+    */
     min-width: calc(100vw - 372px); 
-    
-    overflow: hidden;
-    border: 1px solid red;
+    margin-top: 20px;
+    /* border: 1px solid red; */
 }
 
 .pen-card {
     position: relative;
     /* 
-    Width of pen-card = [ width(sidebar 185px) + width(pen-card margin left 31px)*2 + width(scroll bar 17px) + width(next page overflow 170 px) ] / 2 (divided by two cards)
+    Width of pen-card = [ width(sidebar 185px) + width(pen-card margin left 20px)*2 + width(scroll bar 17px) + width(next page overflow 170 px) ] / 2 (divided by two cards)
      */
-    width: calc(50vw - 217px);
-    height: 350px !important;
+    width: calc(50vw - 206px);
+    /* height: 350px !important; */
     
-    border: 1px solid white;
-
-    margin-left: 31px; /* dependant variable! 31px */
+    /* border: 1px solid white; */
+    margin-top: 30px;
+    margin-left: 20px; /* dependant variable! 20px */
+    padding: 10px /* left & right padding dependant variable! 10px */
 }
 
 .card-background{
     position: absolute;
-    top: 30px;
+    top: 35px;
     right: 0px;
-    height: 300px;
+    height: calc( 100% - 70px );
     width: 90%;
-    background-color: black;
+    background-color: #1e1f26;
+    border-radius: 10px;
+    transition: ease 0.3s;
 }
 
 .pen-card:hover .card-background{
@@ -60,13 +63,66 @@
     height: 100%;
 }
 
+.pen-card:hover .card-footer{
+    opacity: 1;
+}
+
 iframe {
+    position: relative;
+    z-index: 1;
     width: 100vw;
     aspect-ratio: 16/9;
-    
-    /* width of iframe = scale * 100vw */
-    transform: scale(0.3);
     transform-origin: top left;
 }
 
+.card-body{
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
 
+.card-body img{
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.card-title{
+    /* include max-width */
+    font-size: 17px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-owner{
+    font-size: 13px;
+    line-height: 1.2;
+    letter-spacing: -0.15px;
+    /* include max with */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: ease .2s ease !important;
+}
+.card-owner:hover{
+    color: #ffffff !important;
+}
+
+.card-footer{
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: ease 0.2s !important;
+}
+.card-footer button{
+    background-color: #444857;
+    font-size: 12px;
+    border-radius: 4px;
+}
+.card-footer button:hover{
+    background-color: #61677b;
+    color: white;
+}

@@ -16,6 +16,10 @@ button {
     transition: ease 0.1s !important;
 }
 
+a{
+    text-decoration: none !important;
+}
+
 /* Sidebar */
 .sidebar {
     z-index: 1;

@@ -20,16 +20,37 @@
 
 <!-- main content -->
 {% block main-content %}
-<div class="main-content container-fluid">
+<div class="main-content container-fluid" onload="scaleIframes();">
     <!-- <div class="measure" style="width: 170px; height: 10px; background-color: red; position: fixed; top: 400px; right: 0;"></div> -->
-    <div class="pages d-flex pt-5">
+    <div class="pages d-flex">
         <div class="page">
             {% for pen in page_object %}
             <div class="pen-card" data-bs-theme="dark">
                 <div class="card-background"></div>
-                <div class="viewport">
-                    <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
-                        frameborder="0"></iframe>
+                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                    frameborder="0" class="rounded-4"></iframe>
+                <div class="card-body d-flex gap-2">
+                    <a href="">
+                        <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                    </a>
+                    <div class="card-info">
+                        <a href="">
+                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        </a>
+                        <a class="card-owner text-secondary" href="">{{pen.owner}}</a>
+                    </div>
+                </div>
+                <div class="card-footer p-0">
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-pin"></i> 86</button>
+                        <!-- <button class="btn btn-primary"><i class="bi bi-pin-fill"></i> 86</button> -->
+                    </a>
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-chat-left"></i> 8</button>
+                    </a>
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-eye"></i> 406</button>
+                    </a>
                 </div>
             </div>
             {% endfor %}
@@ -39,9 +60,14 @@
             {% for pen in next_page_object %}
             <div class="pen-card" data-bs-theme="dark">
                 <div class="card-background"></div>
-                <div class="viewport">
-                    <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
-                        frameborder="0"></iframe>
+                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                    frameborder="0" class="rounded-4"></iframe>
+                <div class="card-body d-flex gap-2">
+                        <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                    <div class="card-info">
+                        <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        <span class="card-owner text-secondary" href="">{{pen.owner}}</span>
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -68,4 +94,8 @@
         {% endif %}
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static './core/js/menu/trending.js' %}"></script>
 {% endblock %}
