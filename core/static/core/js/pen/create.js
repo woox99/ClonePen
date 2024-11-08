@@ -31,6 +31,7 @@ cssEditor.on("change", updatePreview);
 jsEditor.on("change", updatePreview);
 
 const iframe = document.getElementById('iframe');
+
 function updatePreview() {
     const htmlCode = htmlEditor.getValue();
     const cssCode = cssEditor.getValue();

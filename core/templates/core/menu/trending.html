@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_site.html' %}
 
 {% block head_title %}
 <title>Trending - ClonePen</title>
@@ -6,7 +6,7 @@
 
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/menu/trending.css' %}">
 {% endblock %}
 
@@ -21,7 +21,6 @@
 <!-- main content -->
 {% block main-content %}
 <div class="main-content container-fluid" onload="scaleIframes();">
-    <!-- <div class="measure" style="width: 170px; height: 10px; background-color: red; position: fixed; top: 400px; right: 0;"></div> -->
     <div class="pages d-flex">
         <div class="page">
             {% for pen in page_object %}
@@ -37,13 +36,12 @@
                         <a href="">
                             <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
                         </a>
-                        <a class="card-owner text-secondary" href="">{{pen.owner}}</a>
+                        <a class="card-owner" href="">{{pen.owner}}</a>
                     </div>
                 </div>
                 <div class="card-footer p-0">
                     <a href="">
                         <button class="btn px-2 py-1"><i class="bi bi-pin"></i> 86</button>
-                        <!-- <button class="btn btn-primary"><i class="bi bi-pin-fill"></i> 86</button> -->
                     </a>
                     <a href="">
                         <button class="btn px-2 py-1"><i class="bi bi-chat-left"></i> 8</button>
@@ -56,22 +54,26 @@
             {% endfor %}
         </div>
         {% if page_object.has_next %}
-        <div class="page">
-            {% for pen in next_page_object %}
-            <div class="pen-card" data-bs-theme="dark">
-                <div class="card-background"></div>
-                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
-                    frameborder="0" class="rounded-4"></iframe>
-                <div class="card-body d-flex gap-2">
+        <a href="" style="border: 1px solid red;">
+            <div class="page next-page">
+                {% for pen in next_page_object %}
+                <div class="pen-card" data-bs-theme="dark">
+                    <div class="card-background"></div>
+                    <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                        frameborder="0" class="rounded-4"></iframe>
+                    <div class="card-body d-flex gap-2">
                         <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-                    <div class="card-info">
-                        <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
-                        <span class="card-owner text-secondary" href="">{{pen.owner}}</span>
+                        <div class="card-info">
+                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                            <a class="card-owner text-secondary" href="">{{pen.owner}}</a>
+                        </div>
+                    </div>
+                    <div class="card-footer p-0">
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
+        </a>
         {% endif %}
     </div>
 
