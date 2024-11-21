@@ -30,24 +30,28 @@ htmlEditor.on("change", updatePreview);
 cssEditor.on("change", updatePreview);
 jsEditor.on("change", updatePreview);
 
-const iframe = document.getElementById('iframe');
+// const iframe = document.getElementById('iframe');
+const iframes = document.querySelectorAll('iframe')
 
 function updatePreview() {
     const htmlCode = htmlEditor.getValue();
     const cssCode = cssEditor.getValue();
     const jsCode = jsEditor.getValue();
     
-    // Clear existing content
-    iframe.innerHTML = "";
+    for(const iframe of iframes){
+        // Clear existing content
+        iframe.innerHTML = "";
+
+        // Write HTML and CSS to the iframe document
+        var doc = iframe.contentDocument || iframe.contentWindow.document;
+        doc.open();
+        doc.write(htmlCode);
+        doc.write(`<style>${cssCode} </style>`)
+        doc.write("<script>" + jsCode + "</script>");
+        doc.close();
+        // console.log(doc)
+    }
     
-    // Write HTML and CSS to the iframe document
-    var doc = iframe.contentDocument || iframe.contentWindow.document;
-    doc.open();
-    doc.write(htmlCode);
-    doc.write(`<style>${cssCode} </style>`)
-    doc.write("<script>" + jsCode + "</script>");
-    doc.close();
-    // console.log(doc)
 
     return null;
 }

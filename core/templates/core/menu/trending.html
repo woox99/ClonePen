@@ -54,26 +54,38 @@
             {% endfor %}
         </div>
         {% if page_object.has_next %}
-        <a href="" style="border: 1px solid red;">
-            <div class="page next-page">
-                {% for pen in next_page_object %}
-                <div class="pen-card" data-bs-theme="dark">
-                    <div class="card-background"></div>
-                    <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
-                        frameborder="0" class="rounded-4"></iframe>
-                    <div class="card-body d-flex gap-2">
+        <div class="page next-page">
+            <a href="?page={{ page_object.next_page_number }}" class="next-page-link"></a>
+            {% for pen in page_object %}
+            <div class="pen-card" data-bs-theme="dark">
+                <div class="card-background"></div>
+                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                    frameborder="0" class="rounded-4"></iframe>
+                <div class="card-body d-flex gap-2">
+                    <a href="">
                         <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-                        <div class="card-info">
+                    </a>
+                    <div class="card-info">
+                        <a href="">
                             <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
-                            <a class="card-owner text-secondary" href="">{{pen.owner}}</a>
-                        </div>
-                    </div>
-                    <div class="card-footer p-0">
+                        </a>
+                        <a class="card-owner" href="">{{pen.owner}}</a>
                     </div>
                 </div>
-                {% endfor %}
+                <div class="card-footer p-0">
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-pin"></i> 86</button>
+                    </a>
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-chat-left"></i> 8</button>
+                    </a>
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-eye"></i> 406</button>
+                    </a>
+                </div>
             </div>
-        </a>
+            {% endfor %}
+        </div>
         {% endif %}
     </div>
 

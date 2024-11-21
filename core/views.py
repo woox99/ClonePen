@@ -64,8 +64,8 @@ class PenCreateView(View):
             return redirect(f"{login_url}?next={next_url}")
         else:
             form = PenForm(data=request.POST)
-            # if request.session.get('pen_form'):
-            #     del request.session['pen_form']
+            if request.session.get('pen_form'):
+                del request.session['pen_form']
             if form.is_valid():
                 pen = form.save(commit=False)
                 pen.owner = request.user
