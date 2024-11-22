@@ -70,6 +70,7 @@ iframe {
     width: 100vw;
     aspect-ratio: 16/9;
     transform-origin: top left;
+    overflow-y: hidden !important;
 }
 
 .card-body{
@@ -112,11 +113,11 @@ iframe {
     position: relative;
     z-index: 1;
     opacity: 0;
-    transition: ease 0.2s !important;
+    transition: ease 0.3s !important;
 }
 .card-footer button{
     background-color: #444857;
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 4px;
 }
 .card-footer button:hover{
@@ -125,19 +126,50 @@ iframe {
 }
 
 
+.previous-page{
+    min-width: 60px;
+}
 .next-page{
     opacity: 0.2;
     transition: ease 0.6s;
 }
+.previous-page-link,
 .next-page-link{
     position: absolute;
     height: 100%;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
 }
-.next-page:hover{
-    opacity: 1.0 !important;
+.previous-page-btn{
+    position: absolute;
+    top: 40%;
+    left: 15px;
+    height: 70px;
+    width: 45px;
+    background-color: #444857;
+    color: #b7bbc8;
+    transition: ease .3s;
 }
+.next-page-btn{
+    position: absolute;
+    z-index: 3;
+    top: 40%;
+    right: 15px;
+    height: 70px;
+    width: 45px;
+    background-color: #444857;
+    color: #b7bbc8;
+    transition: ease .3s;
+}
+.previous-page-btn:hover{
+    background-color: #47cf73 !important;
+    color: black;
+}
+.next-page-btn:hover{
+    background-color: #47cf73 !important;
+    color: black;
+}
+
 
 /* Media Queries */
 @media (max-width: 1700px) {

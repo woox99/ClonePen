@@ -22,14 +22,17 @@ class TrendingView(generic.ListView):
             next_page_number = 2
         else:
             next_page_number = str(int(page_number) + 1)
+            # previous_page_number = str(int(page_number) - 1)
         page_object = paginator.get_page(page_number)
         next_page_object = paginator.get_page(next_page_number)
+        # previous_page_object = paginator.get_page(previous_page_number)
         context = {
             'page_object':page_object,
             'next_page_object':next_page_object,
+            # 'previous_page_object': previous_page_object,
             }
-        print(paginator.get_page(page_number))
-        print(next_page_object)
+        # print(paginator.get_page(page_number))
+        # print(next_page_object)
         return context
 
 
