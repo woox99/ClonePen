@@ -5,7 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scale iframes based on window width
     function scaleIframes() {
         let windowWidth = window.innerWidth;
-        let scale = 0.5 - (212 / windowWidth);
+        let scale;
+        if(windowWidth > 768){
+            scale = 0.5 - (212 / windowWidth);
+        }
+        else{
+            scale = 1.0 - (136 / windowWidth) ;
+        }
         
         for (const iframe of iframes) {
             // iframe.style.transform = `scale(${scale})`;

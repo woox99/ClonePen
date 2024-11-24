@@ -5,7 +5,7 @@
 .main-content {
     display: flex;
     align-items: end;
-    height: 900px;
+    /* height is defined by media queries */
 }
 
 .pages {
@@ -87,7 +87,6 @@ iframe {
 }
 
 .card-title{
-    /* include max-width */
     font-size: 17px;
     line-height: 1.2;
     overflow: hidden;
@@ -96,7 +95,6 @@ iframe {
 }
 
 .card-owner{
-    /* include max width */
     font-size: 13px;
     line-height: 1.2;
     letter-spacing: -0.15px;
@@ -197,5 +195,42 @@ iframe {
     .main-content,
     .pages {
         height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content{
+        height: 2000px;
+    }
+    .pages {
+        height: unset;
+        max-width: calc(100vw - 17px);
+        left: 0;
+    }
+    .page{
+        min-width: calc(100vw - 100px); 
+    }
+    .pen-card{
+        width: calc(100vw - 112px);
+    }
+    
+    .previous-page-btn{
+        position: fixed;
+        top: 55%;
+        right: 10px;
+        left: unset;
+    }
+    .next-page-btn{
+        position: fixed;
+        top: 35%;
+        right: 10px;
+        left: unset;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content,
+    .pages {
+        height: 1500px;
     }
 }

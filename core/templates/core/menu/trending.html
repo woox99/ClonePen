@@ -23,7 +23,7 @@
 <div class="main-content container-fluid" onload="scaleIframes();">
     <div class="pages d-flex">
         {% if page_object.has_previous %}
-        <div class="page previous-page"></div>
+        <div class="page previous-page d-none d-md-block"></div>
         {% endif %}
         <div class="page">
             {% for pen in page_object %}
@@ -58,7 +58,7 @@
         </div>
         {% if page_object.has_next %}
         <div class="page next-page">
-            <a href="?page={{ page_object.next_page_number }}" class="next-page-link"></a>
+            <a href="?page={{ page_object.next_page_number }}" class="next-page-link d-none d-md-block"></a>
             {% for pen in next_page_object %}
             <div class="pen-card" data-bs-theme="dark">
                 <div class="card-background"></div>
