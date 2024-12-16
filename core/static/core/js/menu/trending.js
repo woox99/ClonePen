@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const iframes = document.querySelectorAll('iframe');
-
+    const penLinks = document.querySelectorAll('.pen-link');
     
-    // Scale iframes based on window width
+    // Scale iframes and pen links based on window width
     function scaleIframes() {
         let windowWidth = window.innerWidth;
         let scale;
@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         for (const iframe of iframes) {
-            // iframe.style.transform = `scale(${scale})`;
             iframe.style.zoom = scale;
+        }
+        for ( const penLink of penLinks) {
+            penLink.style.zoom = scale;
         }
     }
 

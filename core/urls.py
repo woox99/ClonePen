@@ -13,4 +13,5 @@ urlpatterns=[
     # Pen
     path('pen/', PenCreateView.as_view(), name='pen-create' ),
     path('pen-url/<int:pk>/', PenURLView.as_view(), name='pen-url' ),
+    path('pen/<slug:slug>/', PenDetailView.as_view(), name='pen-detail' ),
 ]

@@ -29,7 +29,7 @@
             </a>
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">CREATE</span>
-                <li class="create-btn rounded d-flex align-items-center  mt-2 ms-3 me-4">
+                <li class="create-btn rounded-1 d-flex align-items-center  mt-2 ms-3 me-4">
                     <a href="{% url 'core:pen-create' %}" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-1x2-fill"></i>Pen
                     </a>
@@ -84,13 +84,13 @@
             <nav class="navbar">
                 <div class="container-fluid d-flex">
                     <div class="btn-group d-none d-lg-block" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary px-4 selected">
+                        <button type="button" class="btn btn-primary px-4 selected rounded-start-1">
                             <a href="{% url 'core:trending' %}" class="text-white text-decoration-none">Trending</a>
                         </button>
                         <button type="button" class="btn btn-primary px-4">
                             <a href="" class="text-white text-decoration-none">Following</a>
                         </button>
-                        <button type="button" class="btn btn-primary px-4">
+                        <button type="button" class="btn btn-primary px-4 rounded-end-1">
                             <a href="" class="text-white text-decoration-none">Your Work</a>
                         </button>
                     </div>
@@ -99,7 +99,7 @@
                             <i class="fa-brands fa-codepen text-white fs-1"></i>
                         </a>
                         <!-- Offcanvas Trigger -- Mobile Links Menu -->
-                        <button class="offcanvas-btn btn d-flex align-items-center justify-content-center" type="button"
+                        <button class="offcanvas-btn btn d-flex align-items-center justify-content-center rounded-1" type="button"
                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                             aria-controls="offcanvasWithBothOptions">
                             <i class="bi bi-list text-white fs-2"></i>
@@ -111,18 +111,18 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-search"></i>
                             </span>
-                            <input type="search" placeholder="Search ClonePen">
+                            <input type="search " class="fw-bolder rounded-1" placeholder="Search ClonePen">
                         </div>
                     </form>
                     <div class="d-flex menus gap-2">
                         <!-- Modal Trigger -- Pinned Items -->
-                        <button type="button" class="btn btn-primary px-3" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary px-2 rounded-1" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                             <i class="bi bi-pin-fill fs-5"></i><i class="bi bi-chevron-down"></i>
                         </button>
                         <!-- Dropdown Trigger -- User Menu -->
                         <div class="dropdown">
-                            <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                            <img data-bs-toggle="dropdown" class="rounded-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                             <ul class="dropdown-menu dropdown-menu-dark text-white">
                                 <li>
                                     <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
@@ -218,7 +218,7 @@
         <div class="offcanvas-body p-0">
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">CREATE</span>
-                <li class="create-btn rounded d-flex align-items-center  mt-2 ms-3 me-5">
+                <li class="create-btn rounded-1 d-flex align-items-center  mt-2 ms-3 me-5">
                     <a href="{% url 'core:pen-create' %}" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-1x2-fill"></i>Pen
                     </a>

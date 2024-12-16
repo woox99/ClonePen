@@ -1,0 +1,29 @@
+.pen-info{
+    height: 45px;
+}
+.pen-title{
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0 !important;
+}
+
+.pen-owner{
+    font-size: 14px;
+    letter-spacing: -0.15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: rgb(150, 148, 148);
+    margin-top: -5px !important;
+}
+
+/* Media Queries */
+@media (max-width: 576px) {
+
+    .pen-info{
+        width: 200px;
+    }
+
+}

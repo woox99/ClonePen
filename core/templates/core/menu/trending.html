@@ -29,6 +29,7 @@
             {% for pen in page_object %}
             <div class="pen-card" data-bs-theme="dark">
                 <div class="card-background"></div>
+                <a href="{{pen.get_absolute_url}}" class="pen-link"></a>
                 <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
                     frameborder="0" class="rounded-4" scrolling="no"></iframe>
                 <div class="card-body d-flex gap-2">

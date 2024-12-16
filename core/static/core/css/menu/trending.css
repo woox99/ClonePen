@@ -64,6 +64,13 @@
     opacity: 1;
 }
 
+.pen-link{
+    position: absolute;
+    z-index: 2;
+    width: 100vw;
+    aspect-ratio: 16/9;
+    transform-origin: top left;
+}
 iframe {
     position: relative;
     z-index: 1;

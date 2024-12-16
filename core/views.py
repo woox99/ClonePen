@@ -75,6 +75,10 @@ class PenCreateView(View):
                 pen.save()
                 return redirect('core:trending') #change to pen-detail-view
         return render(request, 'core/pen/create.html', {'form':form})
+    
+class PenDetailView(generic.DetailView):
+    template_name = 'core/pen/detail.html'
+    model = Pen
 
 
 class PenURLView(generic.DeleteView):
