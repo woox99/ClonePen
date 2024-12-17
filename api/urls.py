@@ -4,5 +4,6 @@ from .views import *
 app_name='api'
 
 urlpatterns=[
-    path('toggle-pin/<int:pk>/', TogglePin.as_view())
+    path('toggle-pin/<int:pk>/', TogglePin.as_view()),
+    path('get-pinned-items/', GetPinnedItemsByActiveUser.as_view()),
 ]
