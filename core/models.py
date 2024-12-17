@@ -24,6 +24,7 @@ class Pen(models.Model):
     def __str__(self):
         return self.title
     
+# Create slug field for any model that has slug attribute upon save()
 @receiver(pre_save)
 def generate_slug(sender, instance, **kwargs):
     if hasattr(instance, 'slug') and hasattr(instance, '__str__'):

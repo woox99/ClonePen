@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View, generic
+from django.db.models import F
 from .models import Pen
 from .forms import PenForm
 
@@ -75,10 +76,19 @@ class PenCreateView(View):
                 pen.save()
                 return redirect('core:trending') #change to pen-detail-view
         return render(request, 'core/pen/create.html', {'form':form})
-    
+
+
 class PenDetailView(generic.DetailView):
     template_name = 'core/pen/detail.html'
     model = Pen
+
+    def get_object(self):
+        pen = super().get_object()
+        # Increment the view count atomically
+        Pen.objects.filter(pk=pen.pk).update(views=F('views') + 1)
+        # Refresh the pen instance to reflect updated view count
+        pen.refresh_from_db()
+        return pen
 
 
 class PenURLView(generic.DeleteView):

@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block head_title %}
+<title>ClonePen | {{pen.title}}</title>
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'core/css/pen/detail.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
