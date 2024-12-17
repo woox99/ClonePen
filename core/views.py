@@ -72,7 +72,7 @@ class PenCreateView(View):
                 del request.session['pen_form']
             if form.is_valid():
                 pen = form.save(commit=False)
-                pen.owner = request.user
+                pen.owner = request.user.profile
                 pen.save()
                 return redirect('core:trending') #change to pen-detail-view
         return render(request, 'core/pen/create.html', {'form':form})

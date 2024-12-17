@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from accounts.models import Profile
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 class Pen(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pens')
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='pens')
     title = models.CharField(max_length=30, blank=False) #change
     description = models.CharField(max_length=250, blank=True, null=True) #change
     public = models.BooleanField(default=False)
