@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// Pinned Item AJAX
+// Toggle Pin Item AJAX
 const togglePin = (button, penId) => {
     const csrfToken = document.querySelector('[name=csrf-token]').content;
     const icon = button.querySelector('i')

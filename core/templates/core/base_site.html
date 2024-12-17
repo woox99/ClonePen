@@ -190,16 +190,48 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-6 text-white" id="staticBackdropLabel"><i
-                            class="bi bi-pin-fill text-secondary me-2"></i>Pinned Items</h1>
+                    <p class="mb-0 fs-6 text-white" id="staticBackdropLabel"><i
+                            class="bi bi-pin-fill text-secondary me-2"></i>Pinned Items</p>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-white">carousel component here</p>
+                    {% if user.profile.pinned_items.all %}
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="text-white fw-bolder mb-0">Title</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-white fw-bolder mb-0">Created</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="text-white fw-bolder mb-0">Last Updated</p>
+                        </div>
+                        <div class="col">
+                            <p class="text-white fw-bolder mb-0">Pinned</p>
+                        </div>
+                    </div>
+                    {% for pen in user.profile.pinned_items.all %}
+                    <div class="row">
+                        <div class="col-4 cell">
+                            <a href="{{pen.get_absolute_url}}" class="title">{{pen.title}}</a>
+                        </div>
+                        <div class="col-3 cell">
+                            <p class="table-data text-secondary">{{pen.created}}</p>
+                        </div>
+                        <div class="col-3 cell">
+                            <p class="table-data text-secondary">{{pen.modified}}</p>
+                        </div>
+                        <div class="col cell">
+                            <p class="table-data">Action</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <p class="d-flex justify-content-center text-secondary mt-4">Pin items to add them here!</p>
                 </div>
-                <div class="modal-footer justify-content-center">
+                <!-- <div class="modal-footer justify-content-center">
                     <p class="text-white">pagination component here</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

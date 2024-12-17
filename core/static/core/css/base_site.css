@@ -234,6 +234,22 @@ footer .copyright {
 .modal-body {
     /* border-bottom: none !important; */
 }
+.cell{
+    background-color: #0e0e10;
+    border: 1px solid #131417;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+.modal-body .title{
+    color: #76daff;
+}
+.table-data{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin: 0;
+}
 
 .modal-footer {
     border-top: none !important;
