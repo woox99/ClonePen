@@ -41,13 +41,38 @@
         <div class="col-2 d-none d-lg-block">
             <p class="text-white fw-medium mb-0">Last Updated</p>
         </div>
-        <div class="col-3 d-none d-lg-block">
+        <div class="col-3 d-none d-lg-flex justify-content-center">
             <p class="text-white fw-medium mb-0">Stats</p>
         </div>
         <div class="col-1 d-none d-lg-block">
             <p class="text-white fw-medium mb-0">Status</p>
         </div>
     </div>
+    {% for pen in pens %}
+    <div class="row your-work">
+        <div class="col-10 col-lg-4 cell title">
+            <a href="{{pen.get_absolute_url}}">{{pen.title}}</a>
+        </div>
+        <div class="col-2 d-none d-lg-flex align-items-center cell table-data">
+            <p class="text-secondary fw-medium mb-0">{{pen.created}}</p>
+        </div>
+        <div class="col-2 d-none d-lg-flex align-items-center cell table-data">
+            <p class="text-secondary fw-medium mb-0">{{pen.modified}}</p>
+        </div>
+        <div class="col-3 d-none d-lg-flex cell table-data align-items-center justify-content-around text-secondary">
+                <span><i class="bi bi-pin-fill"></i> {{pen.pinned_profiles.count}}</span>
+                <span><i class="bi bi-chat-left-fill"></i> 28</span>
+                <span><i class="bi bi-eye-fill"></i> {{pen.views}}</span>
+        </div>
+        <div class="col-1 d-none d-lg-flex align-items-center cell table-data">
+            {% if pen.public %}
+            <p class="text-secondary fw-medium mb-0">Public</p>
+            {% else %}
+            <p class="text-secondary fw-medium mb-0">Private</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
 

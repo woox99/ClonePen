@@ -41,6 +41,10 @@ class YourWork(generic.ListView):
     template_name = 'core/menu/your_work.html'
     model = Pen
 
+    def get_context_data(self):
+        pens = Pen.objects.filter(owner=self.request.user.profile)
+        return {'pens':pens}
+
 
 
 def landing(request):
