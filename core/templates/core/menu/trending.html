@@ -17,10 +17,15 @@
 {% block trending-link-offcanvas %}
 <i class="bi bi-bar-chart-line-fill active"></i>Trending
 {% endblock %}
+{% block tending-link-navbar %}
+<button type="button" class="btn btn-primary px-4 selected rounded-start-1">
+    <a href="{% url 'core:trending' %}" class="text-white text-decoration-none">Trending</a>
+</button>
+{% endblock %}
 
 <!-- main content -->
 {% block main-content %}
-<div class="main-content container-fluid" onload="scaleIframes();">
+<div id="main-content" class="main-content container-fluid" onload="scaleIframes();">
     <div class="pages d-flex">
         {% if page_object.has_previous %}
         <div class="page previous-page d-none d-md-block"></div>
@@ -44,11 +49,12 @@
                     </div>
                 </div>
                 <div class="card-footer p-0">
-                    <meta name="csrf-token" content="{{ csrf_token }}">
                     {% if pen in user.profile.pinned_items.all %}
-                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i class="bi bi-pin-fill"></i></button>
+                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
+                            class="bi bi-pin-fill"></i></button>
                     {% else %}
-                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i class="bi bi-pin"></i></button>
+                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
+                            class="bi bi-pin"></i></button>
                     {% endif %}
                     <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8</button>
                     <button class="btn px-2 py-1"><i class="bi bi-eye-fill"></i> {{pen.views}}</button>
@@ -93,14 +99,14 @@
 
         <!-- pagination -->
         {% if page_object.has_previous %}
-        <a href="?page={{ page_object.previous_page_number }}">
+        <a href="?page={{ page_object.previous_page_number }}#main-content">
             <div class="previous-page-btn d-flex justify-content-center align-items-center rounded-1">
                 <i class="bi bi-caret-left-fill fs-4"></i>
             </div>
         </a>
         {% endif %}
         {% if page_object.has_next %}
-        <a href="?page={{ page_object.next_page_number }}">
+        <a href="?page={{ page_object.next_page_number }}#main-content">
             <div class="next-page-btn d-flex justify-content-center align-items-center rounded-1">
                 <i class="bi bi-caret-right-fill fs-4"></i>
             </div>

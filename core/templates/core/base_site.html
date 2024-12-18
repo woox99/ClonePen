@@ -24,13 +24,15 @@
 
         <!-- Sidebar -->
         <div class="sidebar d-none d-md-block p-0">
-            <a href="{% url 'core:trending' %}" class="logo d-flex align-items-center text-white text-decoration-none ps-3 pt-3">
+            <a href="{% url 'core:trending' %}"
+                class="logo d-flex align-items-center text-white text-decoration-none ps-3 pt-3">
                 <span>CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
             </a>
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">CREATE</span>
                 <li class="create-btn rounded-1 d-flex align-items-center  mt-2 ms-3 me-4">
-                    <a href="{% url 'core:pen-create' %}" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:pen-create' %}"
+                        class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-1x2-fill"></i>Pen
                     </a>
                 </li>
@@ -63,8 +65,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:your-work' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        {% block your-work-link %}
                         <i class="bi bi-grid-fill"></i>Your Work
+                        {% endblock %}
                     </a>
                 </li>
             </ul>
@@ -84,23 +88,29 @@
             <nav class="navbar">
                 <div class="container-fluid d-flex">
                     <div class="btn-group d-none d-lg-block" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary px-4 selected rounded-start-1">
+                        {% block tending-link-navbar %}
+                        <button type="button" class="btn btn-primary px-4 rounded-start-1">
                             <a href="{% url 'core:trending' %}" class="text-white text-decoration-none">Trending</a>
                         </button>
+                        {% endblock %}
+                        {% block following-link-navbar %}
                         <button type="button" class="btn btn-primary px-4">
                             <a href="" class="text-white text-decoration-none">Following</a>
                         </button>
+                        {% endblock %}
+                        {% block your-work-link-navbar %}
                         <button type="button" class="btn btn-primary px-4 rounded-end-1">
-                            <a href="" class="text-white text-decoration-none">Your Work</a>
+                            <a href="{% url 'core:your-work' user.username %}" class="text-white text-decoration-none">Your Work</a>
                         </button>
+                        {% endblock %}
                     </div>
                     <div class="d-md-none d-flex align-items-center gap-2">
                         <a href="{% url 'core:trending' %}">
                             <i class="fa-brands fa-codepen text-white fs-1"></i>
                         </a>
                         <!-- Offcanvas Trigger -- Mobile Links Menu -->
-                        <button class="offcanvas-btn btn d-flex align-items-center justify-content-center rounded-1" type="button"
-                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                        <button class="offcanvas-btn btn d-flex align-items-center justify-content-center rounded-1"
+                            type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                             aria-controls="offcanvasWithBothOptions">
                             <i class="bi bi-list text-white fs-2"></i>
                         </button>
@@ -122,7 +132,8 @@
                         </button>
                         <!-- Dropdown Trigger -- User Menu -->
                         <div class="dropdown">
-                            <img data-bs-toggle="dropdown" class="rounded-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                            <img data-bs-toggle="dropdown" class="rounded-1"
+                                src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                             <ul class="dropdown-menu dropdown-menu-dark text-white">
                                 <li>
                                     <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
@@ -145,6 +156,7 @@
             </nav>
 
             <!-- Main Content -->
+            <meta name="csrf-token" content="{{ csrf_token }}">
             {% block main-content %}
             <div class="main-content container-fluid">
             </div>
@@ -195,20 +207,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {% if user.profile.pinned_items.all %}
                     <div class="row">
                         <div class="col-10 col-lg-5">
-                            <p class="text-white fw-bolder mb-0 fs-6">Title</p>
+                            <p class="text-white fw-semibold mb-0">Title</p>
                         </div>
                         <div class="col-3 d-none d-lg-block">
-                            <p class="text-white fw-bolder mb-0 fs-6">Created</p>
+                            <p class="text-white fw-semibold mb-0">Created</p>
                         </div>
                         <div class="col-3 d-none d-lg-block">
-                            <p class="text-white fw-bolder mb-0 fs-6">Last Updated</p>
+                            <p class="text-white fw-semibold mb-0">Last Updated</p>
                         </div>
                     </div>
                     <div class="pinned-items"></div>
-                    {% endif %}
                     <p class="d-flex justify-content-center text-secondary mt-4">Pin items to add them here!</p>
                 </div>
             </div>
@@ -219,7 +229,8 @@
     <div class="offcanvas offcanvas-start pt-3" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header justify-content-between p-0">
-            <a href="{% url 'core:trending' %}" class="mobile-logo d-flex align-items-center text-white text-decoration-none ps-3">
+            <a href="{% url 'core:trending' %}"
+                class="mobile-logo d-flex align-items-center text-white text-decoration-none ps-3">
                 <span>CL<i class="fa-brands fa-codepen"></i>NEPEN</span>
             </a>
             <button class="btn me-2" data-bs-dismiss="offcanvas">
@@ -230,7 +241,8 @@
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">CREATE</span>
                 <li class="create-btn rounded-1 d-flex align-items-center  mt-2 ms-3 me-5">
-                    <a href="{% url 'core:pen-create' %}" class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:pen-create' %}"
+                        class="create-link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-1x2-fill"></i>Pen
                     </a>
                 </li>
@@ -262,8 +274,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:your-work' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        {% block your-work-link-offcanvas %}
                         <i class="bi bi-grid-fill"></i>Your Work
+                        {% endblock %}
+                        
                     </a>
                 </li>
             </ul>

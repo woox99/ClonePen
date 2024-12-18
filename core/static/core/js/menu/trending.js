@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for ( const penLink of penLinks) {
             penLink.style.zoom = scale;
         }
+
     }
 
     // Set initial scale on load

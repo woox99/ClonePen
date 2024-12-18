@@ -16,7 +16,7 @@ class TrendingView(generic.ListView):
     model = Pen
 
     def get_context_data(self):
-        pens = Pen.objects.all()
+        pens = Pen.objects.filter(public=True)
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
@@ -35,6 +35,12 @@ class TrendingView(generic.ListView):
         # print(paginator.get_page(page_number))
         # print(next_page_object)
         return context
+
+
+class YourWork(generic.ListView):
+    template_name = 'core/menu/your_work.html'
+    model = Pen
+
 
 
 def landing(request):

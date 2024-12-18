@@ -23,11 +23,6 @@
                 data-bs-toggle="modal" data-bs-target="#save-form-modal">
                 <i class="bi bi-cloud-fill"></i>Save
             </button>
-            <!-- Modal Trigger -- Pinned Items Modal -->
-            <!-- <button type="button" class="btn text-white px-2 rounded-1" data-bs-toggle="modal"
-                data-bs-target="#pinned-items-modal">
-                <i class="bi bi-pin-fill fs-5"></i><i class="bi bi-chevron-down"></i>
-            </button> -->
             <!-- Dropdown Trigger -- User Menu Drodown -->
             <div class="dropdown">
                 <img data-bs-toggle="dropdown" class="rounded-1"
@@ -99,25 +94,6 @@
         </div>
     </div>
 
-    <!-- Modal -- Pinned Items -->
-    <!-- <div class="modal fade" id="pinned-items-modal" data-bs-backdrop="static" data-bs-theme="dark"
-        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-6 text-white" id="staticBackdropLabel"><i
-                            class="bi bi-pin-fill text-secondary me-2"></i>Pinned Items</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-white">carousel component here</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <p class="text-white">pagination component here</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <!-- Modal -- Save Form -->
     {% if form.errors %}
@@ -142,7 +118,7 @@
                         <!-- Title Input -->
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="title" name="title" placeholder=""
-                                value="{{form.title.value|default_if_none:''}}">
+                                value="{{form.title.value|default_if_none:''}}" maxlength="30">
                             <label class="text-secondary" for="title">Project Title</label>
                             {% if form.title.errors %}
                             <div class="error text-danger-emphasis p-1">
@@ -206,7 +182,7 @@
                                     <img data-bs-toggle="dropdown"
                                         src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                                     <div class="card-info">
-                                        <h2 class="card-title text-white fw-bolder">Title</h2>
+                                        <h2 class="card-title text-white fw-bolder">Pen Title</h2>
                                         <p class="card-owner my-1" href="">{{user.username}}</p>
                                     </div>
                                 </div>

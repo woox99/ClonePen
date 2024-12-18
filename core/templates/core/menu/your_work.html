@@ -1,0 +1,55 @@
+{% extends 'core/base_site.html' %}
+
+{% load static %}
+
+{% block head_title %}
+<title>Your Work - ClonePen</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/menu/your_work.css' %}">
+{% endblock %}
+
+<!-- makes menu link icon active color -->
+{% block your-work-link %}
+<i class="bi bi-grid-fill active"></i>Your Work
+{% endblock %}
+{% block your-work-link-offcanvas %}
+<i class="bi bi-grid-fill active"></i>Your Work
+{% endblock %}
+{% block your-work-link-navbar %}
+<button type="button" class="btn btn-primary px-4 rounded-end-1 selected">
+    <a href="{% url 'core:your-work' user.username %}" class="text-white text-decoration-none">Your Work</a>
+</button>
+{% endblock %}
+
+<!-- main content -->
+{% block main-content %}
+<div id="main-content" class="main-content container-fluid p-4">
+    <div class="links d-flex gap-4 pb-2">
+        <h6><a href="" class="text-white">Your Work</a></h6>
+        <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Create New Pen</a></h6>
+    </div>
+    <div class="row mt-4">
+        <div class="col-10 col-lg-4">
+            <p class="text-white fw-medium mb-0">Title</p>
+        </div>
+        <div class="col-2 d-none d-lg-block">
+            <p class="text-white fw-medium mb-0">Created</p>
+        </div>
+        <div class="col-2 d-none d-lg-block">
+            <p class="text-white fw-medium mb-0">Last Updated</p>
+        </div>
+        <div class="col-3 d-none d-lg-block">
+            <p class="text-white fw-medium mb-0">Stats</p>
+        </div>
+        <div class="col-1 d-none d-lg-block">
+            <p class="text-white fw-medium mb-0">Status</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

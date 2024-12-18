@@ -1,0 +1,6 @@
+.main-content .links{
+    border-bottom: 2px solid #76daff;
+}
+.main-content .links a:hover{
+    color: #76daff !important;
+}

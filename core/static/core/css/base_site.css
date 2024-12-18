@@ -26,6 +26,7 @@ a{
 
 /* Sidebar */
 .sidebar {
+    /* position: fixed; */
     z-index: 1;
     box-shadow: 0 10px 10px black !important;
     background-color: #1e1f26;
@@ -243,6 +244,7 @@ footer .copyright {
 }
 .modal-body .title{
     color: #76daff;
+    font-size: 14px !important;
 }
 .table-data{
     display: flex;
