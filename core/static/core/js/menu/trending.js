@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const iframes = document.querySelectorAll('iframe');
     const penLinks = document.querySelectorAll('.pen-link');
     
+    
     function scaleIframes() {
         let windowWidth = window.innerWidth;
         let scale;

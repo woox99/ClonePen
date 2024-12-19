@@ -149,7 +149,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark text-white">
                                 {% if user.is_authenticated %}
                                 <li>
-                                    <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
+                                    <a class="dropdown-item text-white fw-medium" href="{% url 'core:profile' user.username %}">Profile</a>
                                 </li>
                                 {% else %}
                                 <li>

@@ -10,8 +10,8 @@
                 <i class="fa-brands fa-codepen text-white fs-1"></i>
             </a>
             <!-- Offcanvas Trigger -- Links Menu -->
-            <button class="offcanvas-btn btn d-flex align-items-center justify-content-center rounded-1"
-                type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+            <button class="offcanvas-btn btn d-flex align-items-center justify-content-center rounded-1" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                 aria-controls="offcanvasWithBothOptions">
                 <i class="bi bi-list text-white fs-1"></i>
             </button>
@@ -25,12 +25,19 @@
             </button>
             <!-- Dropdown Trigger -- User Menu Drodown -->
             <div class="dropdown">
-                <img data-bs-toggle="dropdown" class="rounded-1"
-                    src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <img data-bs-toggle="dropdown" class="rounded-1" src="{% static 'core/assets/profile_codepen.png' %}"
+                    alt="">
                 <ul class="dropdown-menu dropdown-menu-dark text-white">
+                    {% if user.is_authenticated %}
                     <li>
-                        <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
+                        <a class="dropdown-item text-white fw-medium"
+                            href="{% url 'core:profile' user.username %}">Profile</a>
                     </li>
+                    {% else %}
+                    <li>
+                        <a class="dropdown-item text-white fw-medium" href="{% url 'accounts:login' %}">Profile</a>
+                    </li>
+                    {% endif %}
                     <li>
                         <a class="dropdown-item text-white fw-medium" href="#">Support</a>
                     </li>
@@ -179,8 +186,8 @@
                                     srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
                                     frameborder="0" class="rounded-4" scrolling="no"></iframe>
                                 <div class="card-body d-flex gap-2">
-                                    <img data-bs-toggle="dropdown"
-                                        src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                                    <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}"
+                                        alt="">
                                     <div class="card-info">
                                         <h2 class="card-title text-white fw-bolder">Pen Title</h2>
                                         <p class="card-owner my-1" href="">{{user.username}}</p>

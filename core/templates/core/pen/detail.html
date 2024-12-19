@@ -28,19 +28,28 @@
         <div class="d-flex menus gap-2">
             <meta name="csrf-token" content="{{ csrf_token }}">
             {% if pen in user.profile.pinned_items.all %}
-            <button class="btn px-3 py-1 rounded-1" onclick="togglePin(this, {{pen.pk}})"><i class="bi bi-pin-fill text-white fs-5"></i></button>
+            <button class="btn px-3 py-1 rounded-1" onclick="togglePin(this, {{pen.pk}})"><i
+                    class="bi bi-pin-fill text-white fs-5"></i></button>
             {% else %}
-            <button class="btn px-3 py-1 rounded-1" onclick="togglePin(this, {{pen.pk}})"><i class="bi bi-pin text-white"></i></button>
+            <button class="btn px-3 py-1 rounded-1" onclick="togglePin(this, {{pen.pk}})"><i
+                    class="bi bi-pin text-white"></i></button>
             {% endif %}
-            
+
             <!-- Dropdown Trigger -- User Menu Drodown -->
             <div class="dropdown">
                 <img data-bs-toggle="dropdown" class="rounded-1" src="{% static 'core/assets/profile_codepen.png' %}"
                     alt="">
                 <ul class="dropdown-menu dropdown-menu-dark text-white">
+                    {% if user.is_authenticated %}
                     <li>
-                        <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
+                        <a class="dropdown-item text-white fw-medium"
+                            href="{% url 'core:profile' user.username %}">Profile</a>
                     </li>
+                    {% else %}
+                    <li>
+                        <a class="dropdown-item text-white fw-medium" href="{% url 'accounts:login' %}">Profile</a>
+                    </li>
+                    {% endif %}
                     <li>
                         <a class="dropdown-item text-white fw-medium" href="#">Support</a>
                     </li>

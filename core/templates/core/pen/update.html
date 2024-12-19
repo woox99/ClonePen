@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head_title %}
-<title>ClonePen | Editing</title>
+<title>Editing - {{pen}}</title>
 {% endblock %}
 
 {% block navbar %}
@@ -37,9 +37,16 @@
                 <img data-bs-toggle="dropdown" class="rounded-1" src="{% static 'core/assets/profile_codepen.png' %}"
                     alt="">
                 <ul class="dropdown-menu dropdown-menu-dark text-white">
+                    {% if user.is_authenticated %}
                     <li>
-                        <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
+                        <a class="dropdown-item text-white fw-medium"
+                            href="{% url 'core:profile' user.username %}">Profile</a>
                     </li>
+                    {% else %}
+                    <li>
+                        <a class="dropdown-item text-white fw-medium" href="{% url 'accounts:login' %}">Profile</a>
+                    </li>
+                    {% endif %}
                     <li>
                         <a class="dropdown-item text-white fw-medium" href="#">Support</a>
                     </li>

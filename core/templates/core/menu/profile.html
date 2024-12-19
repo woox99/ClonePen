@@ -1,0 +1,117 @@
+{% extends 'core/base_site.html' %}
+
+{% block head_title %}
+<title>Trending - ClonePen</title>
+{% endblock %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/menu/trending.css' %}">
+{% endblock %}
+
+
+<!-- main content -->
+{% block main-content %}
+<div id="main-content" class="main-content container-fluid" onload="scaleIframes();">
+    <div class="profile">
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+    </div>
+    <div class="pages d-flex">
+        {% if page_object.has_previous %}
+        <div class="page previous-page d-none d-md-block"></div>
+        {% endif %}
+        <div class="page">
+            {% for pen in page_object %}
+            <div class="pen-card" data-bs-theme="dark">
+                <div class="card-background"></div>
+                <a href="{{pen.get_absolute_url}}" class="pen-link"></a>
+                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                    frameborder="0" class="rounded-4" scrolling="no"></iframe>
+                <div class="card-body d-flex gap-2">
+                    <a href="">
+                        <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                    </a>
+                    <div class="card-info">
+                        <a href="">
+                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        </a>
+                        <a class="card-owner" href="">{{pen.owner}}</a>
+                    </div>
+                </div>
+                <div class="card-footer p-0">
+                    {% if pen in user.profile.pinned_items.all %}
+                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
+                            class="bi bi-pin-fill"></i></button>
+                    {% else %}
+                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
+                            class="bi bi-pin"></i></button>
+                    {% endif %}
+                    <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8</button>
+                    <button class="btn px-2 py-1"><i class="bi bi-eye-fill"></i> {{pen.views}}</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if page_object.has_next %}
+        <div class="page next-page">
+            <a href="?page={{ page_object.next_page_number }}" class="next-page-link d-none d-md-block"></a>
+            {% for pen in next_page_object %}
+            <div class="pen-card" data-bs-theme="dark">
+                <div class="card-background"></div>
+                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                    frameborder="0" class="rounded-4" scrolling="no"></iframe>
+                <div class="card-body d-flex gap-2">
+                    <a href="">
+                        <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                    </a>
+                    <div class="card-info">
+                        <a href="">
+                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        </a>
+                        <a class="card-owner" href="">{{pen.owner}}</a>
+                    </div>
+                </div>
+                <div class="card-footer p-0">
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-pin"></i> 86</button>
+                    </a>
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8</button>
+                    </a>
+                    <a href="">
+                        <button class="btn px-2 py-1"><i class="bi bi-eye-fill"></i> 406</button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- pagination -->
+        {% if page_object.has_previous %}
+        <a href="?page={{ page_object.previous_page_number }}#main-content">
+            <div class="previous-page-btn d-flex justify-content-center align-items-center rounded-1">
+                <i class="bi bi-caret-left-fill fs-4"></i>
+            </div>
+        </a>
+        {% endif %}
+        {% if page_object.has_next %}
+        <a href="?page={{ page_object.next_page_number }}#main-content">
+            <div class="next-page-btn d-flex justify-content-center align-items-center rounded-1">
+                <i class="bi bi-caret-right-fill fs-4"></i>
+            </div>
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static './core/js/menu/trending.js' %}"></script>
+{% endblock %}

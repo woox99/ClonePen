@@ -4,6 +4,8 @@ from django.views import View, generic
 from django.db.models import F
 from django.http import Http404
 from .models import Pen
+from accounts.models import Profile
+from django.contrib.auth.models import User
 from .forms import PenForm
 
 from django.core.paginator import Paginator
@@ -17,25 +19,42 @@ class TrendingView(generic.ListView):
     model = Pen
 
     def get_context_data(self):
-        pens = Pen.objects.filter(public=True)
+        pens = Pen.objects.filter(public=True).order_by('-created')
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
             next_page_number = 2
         else:
             next_page_number = str(int(page_number) + 1)
-            # previous_page_number = str(int(page_number) - 1)
         page_object = paginator.get_page(page_number)
         next_page_object = paginator.get_page(next_page_number)
-        # previous_page_object = paginator.get_page(previous_page_number)
         context = {
             'page_object':page_object,
             'next_page_object':next_page_object,
-            # 'previous_page_object': previous_page_object,
             }
-        # print(paginator.get_page(page_number))
-        # print(next_page_object)
         return context
+
+
+class ProfileView(View):
+    def get(self, request, username):
+        profile = get_object_or_404(Profile, user__username=username)
+
+        pens = Pen.objects.filter(owner=profile).order_by('-created')
+        paginator = Paginator(pens, 4)
+        page_number = self.request.GET.get('page')
+        if not page_number:
+            next_page_number = 2
+        else:
+            next_page_number = str(int(page_number) + 1)
+        page_object = paginator.get_page(page_number)
+        next_page_object = paginator.get_page(next_page_number)
+
+        context = {
+            'page_object':page_object,
+            'next_page_object':next_page_object,
+            'profile':profile,
+            }
+        return render(request, 'core/menu/profile.html', context=context)
 
 
 class YourWork(generic.ListView):
@@ -85,17 +104,8 @@ class PenCreateView(View):
                 pen = form.save(commit=False)
                 pen.owner = request.user.profile
                 pen.save()
-                return redirect('core:your-work', username=request.user.username) #change to pen-detail-view
+                return redirect('core:your-work', username=request.user.username)
         return render(request, 'core/pen/create.html', {'form':form})
-
-
-class PenUpdateView(generic.UpdateView):
-    model = Pen
-    fields = ['title', 'description', 'html', 'css', 'js', 'public']
-    template_name = 'core/pen/update.html'
-
-    def get_success_url(self):
-        return reverse_lazy('core:your-work', kwargs={'username':self.request.user.username})
 
 
 class PenDetailView(generic.DetailView):
@@ -109,7 +119,17 @@ class PenDetailView(generic.DetailView):
         # Refresh the pen instance to reflect updated view count
         pen.refresh_from_db()
         return pen
-    
+
+
+class PenUpdateView(generic.UpdateView):
+    model = Pen
+    fields = ['title', 'description', 'html', 'css', 'js', 'public']
+    template_name = 'core/pen/update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('core:your-work', kwargs={'username':self.request.user.username})
+
+
 class PenDeleteView(View):
     def post(self, request, pk):
         pen = get_object_or_404(Pen, pk=pk)
@@ -117,13 +137,8 @@ class PenDeleteView(View):
             pen.delete()
             return redirect('core:your-work', username=request.user.username)
         else:
-            print('test')
-            raise Http404()
+            raise Http404() # Create 404 view
 
-
-class PenURLView(generic.DeleteView):
-    template_name = 'core/pen/url_view.html'
-    model = Pen
 
 
 
