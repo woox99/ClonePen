@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View, generic
 from django.db.models import F
+from django.http import Http404
 from .models import Pen
 from .forms import PenForm
 
@@ -42,11 +43,11 @@ class YourWork(generic.ListView):
     model = Pen
 
     def get_context_data(self):
-        pens = Pen.objects.filter(owner=self.request.user.profile)
+        pens = Pen.objects.filter(owner=self.request.user.profile).order_by('-modified')
         return {'pens':pens}
 
 
-
+# change to cbf
 def landing(request):
     return render(request, 'core/menu/landing.html')
 
@@ -84,8 +85,17 @@ class PenCreateView(View):
                 pen = form.save(commit=False)
                 pen.owner = request.user.profile
                 pen.save()
-                return redirect('core:trending') #change to pen-detail-view
+                return redirect('core:your-work', username=request.user.username) #change to pen-detail-view
         return render(request, 'core/pen/create.html', {'form':form})
+
+
+class PenUpdateView(generic.UpdateView):
+    model = Pen
+    fields = ['title', 'description', 'html', 'css', 'js', 'public']
+    template_name = 'core/pen/update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('core:your-work', kwargs={'username':self.request.user.username})
 
 
 class PenDetailView(generic.DetailView):
@@ -99,6 +109,16 @@ class PenDetailView(generic.DetailView):
         # Refresh the pen instance to reflect updated view count
         pen.refresh_from_db()
         return pen
+    
+class PenDeleteView(View):
+    def post(self, request, pk):
+        pen = get_object_or_404(Pen, pk=pk)
+        if request.user.profile == pen.owner:
+            pen.delete()
+            return redirect('core:your-work', username=request.user.username)
+        else:
+            print('test')
+            raise Http404()
 
 
 class PenURLView(generic.DeleteView):

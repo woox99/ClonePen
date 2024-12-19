@@ -15,4 +15,6 @@ urlpatterns=[
     path('pen/', PenCreateView.as_view(), name='pen-create' ),
     path('pen-url/<int:pk>/', PenURLView.as_view(), name='pen-url' ),
     path('pen/<slug:slug>/', PenDetailView.as_view(), name='pen-detail' ),
+    path('edit-pen/<slug:slug>/', PenUpdateView.as_view(), name='pen-update' ),
+    path('delete-pen/<int:pk>/', PenDeleteView.as_view(), name='pen-delete' ),
 ]

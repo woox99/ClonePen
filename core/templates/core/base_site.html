@@ -65,17 +65,23 @@
                     </a>
                 </li>
                 <li>
+                    {% if user.is_authenticated %}
                     <a href="{% url 'core:your-work' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block your-work-link %}
                         <i class="bi bi-grid-fill"></i>Your Work
                         {% endblock %}
                     </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-grid-fill"></i>Your Work
+                    </a>
+                    {% endif %}
                 </li>
             </ul>
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">VISIT</span>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="https://codepen.io/" target="_blank" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="fa-brands fa-codepen"></i>CodePen
                     </a>
                 </li>
@@ -98,11 +104,17 @@
                             <a href="" class="text-white text-decoration-none">Following</a>
                         </button>
                         {% endblock %}
+                        {% if user.is_authenticated %}
                         {% block your-work-link-navbar %}
                         <button type="button" class="btn btn-primary px-4 rounded-end-1">
                             <a href="{% url 'core:your-work' user.username %}" class="text-white text-decoration-none">Your Work</a>
                         </button>
                         {% endblock %}
+                        {% else %}
+                        <button type="button" class="btn btn-primary px-4 rounded-end-1">
+                            <a href="{% url 'accounts:login' %}" class="text-white text-decoration-none">Your Work</a>
+                        </button>
+                        {% endif %}
                     </div>
                     <div class="d-md-none d-flex align-items-center gap-2">
                         <a href="{% url 'core:trending' %}">
@@ -135,9 +147,15 @@
                             <img data-bs-toggle="dropdown" class="rounded-1"
                                 src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                             <ul class="dropdown-menu dropdown-menu-dark text-white">
+                                {% if user.is_authenticated %}
                                 <li>
                                     <a class="dropdown-item text-white fw-medium" href="#">Profile</a>
                                 </li>
+                                {% else %}
+                                <li>
+                                    <a class="dropdown-item text-white fw-medium" href="{% url 'accounts:login' %}">Profile</a>
+                                </li>
+                                {% endif %}
                                 <li>
                                     <a class="dropdown-item text-white fw-medium" href="#">Support</a>
                                 </li>
@@ -274,18 +292,23 @@
                     </a>
                 </li>
                 <li>
+                    {% if user.is_authenticated %}
                     <a href="{% url 'core:your-work' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block your-work-link-offcanvas %}
                         <i class="bi bi-grid-fill"></i>Your Work
                         {% endblock %}
-                        
                     </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        <i class="bi bi-grid-fill"></i>Your Work
+                    </a>
+                    {% endif %}
                 </li>
             </ul>
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">VISIT</span>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="https://codepen.io/" target="_blank" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="fa-brands fa-codepen"></i>CodePen
                     </a>
                 </li>

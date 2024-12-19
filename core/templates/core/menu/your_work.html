@@ -28,7 +28,7 @@
 {% block main-content %}
 <div id="main-content" class="main-content container-fluid p-4">
     <div class="links d-flex gap-4 pb-2">
-        <h6><a href="" class="text-white">Your Work</a></h6>
+        <h6 class="text-white">Your Work</h6>
         <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Create New Pen</a></h6>
     </div>
     <div class="row mt-4">
@@ -51,7 +51,7 @@
     {% for pen in pens %}
     <div class="row your-work">
         <div class="col-10 col-lg-4 cell title">
-            <a href="{{pen.get_absolute_url}}">{{pen.title}}</a>
+            <a href="{% url 'core:pen-update' pen.slug %}">{{pen.title}}</a>
         </div>
         <div class="col-2 d-none d-lg-flex align-items-center cell table-data">
             <p class="text-secondary fw-medium mb-0">{{pen.created}}</p>
