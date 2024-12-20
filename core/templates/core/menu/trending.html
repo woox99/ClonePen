@@ -32,7 +32,7 @@
         {% endif %}
         <div class="page">
             {% for pen in page_object %}
-            <div class="pen-card" data-bs-theme="dark">
+            <div class="pen-card pb-0" data-bs-theme="dark">
                 <div class="card-background"></div>
                 <a href="{{pen.get_absolute_url}}" class="pen-link"></a>
                 <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
@@ -42,10 +42,8 @@
                         <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                     </a>
                     <div class="card-info">
-                        <a href="">
-                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
-                        </a>
-                        <a class="card-owner" href="">{{pen.owner}}</a>
+                        <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        <a class="card-owner" href="{% url 'core:profile' pen.owner %}">{{pen.owner}}</a>
                     </div>
                 </div>
                 <div class="card-footer p-0">

@@ -8,8 +8,6 @@
     /* height is defined by media queries */
 }
 
-
-
 .pages {
     position: absolute;
     top: 75px;
@@ -26,7 +24,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     overflow: hidden;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     
     /* Width of page = width(pen-card)*2 + width(pen-card margin)*2 */
     min-width: calc(100vw - 352px); 
@@ -45,7 +43,7 @@
     position: absolute;
     top: 35px;
     right: 0px;
-    height: calc( 100% - 75px );
+    height: calc( 100% - 65px );
     width: calc(100% - 24px);
     background-color: #1e1f26;
     border-radius: 10px;
@@ -94,10 +92,14 @@ iframe {
     height: 40px;
     border-radius: 4px;
 }
+.card-info{
+    display: flex;
+    flex-direction: column;
+}
 
 .card-title{
     font-size: 17px;
-    line-height: 1.2;
+    /* line-height: 1.2; */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -105,7 +107,7 @@ iframe {
 
 .card-owner{
     font-size: 13px;
-    line-height: 1.2;
+    /* line-height: 1.2; */
     letter-spacing: -0.15px;
     overflow: hidden;
     white-space: nowrap;
@@ -121,6 +123,7 @@ iframe {
     z-index: 1;
     opacity: 0;
     transition: ease 0.3s !important;
+    margin-bottom: 7px;
 }
 .card-footer button{
     background-color: #444857;
@@ -178,41 +181,8 @@ iframe {
 }
 
 
-/* Media Queries */
-@media (max-width: 1700px) {
-    .main-content,
-    .pages {
-        height: 1200px;
-    }
-}
-
-@media (max-width: 1400px) {
-    .main-content,
-    .pages {
-        height: 900px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .main-content,
-    .pages {
-        height: 700px;
-    }
-}
-
-@media (max-width: 992px) {
-    .main-content,
-    .pages {
-        height: 600px;
-    }
-}
-
 @media (max-width: 768px) {
-    .main-content{
-        height: 2000px;
-    }
     .pages {
-        height: unset;
         max-width: calc(100vw - 17px);
         left: 0;
     }
@@ -234,12 +204,5 @@ iframe {
         top: 35%;
         right: 10px;
         left: unset;
-    }
-}
-
-@media (max-width: 576px) {
-    .main-content,
-    .pages {
-        height: 1500px;
     }
 }
