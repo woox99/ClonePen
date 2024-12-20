@@ -54,7 +54,7 @@
                     <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
                             class="bi bi-pin"></i></button>
                     {% endif %}
-                    <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8</button>
+                    <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8000</button>
                     <button class="btn px-2 py-1"><i class="bi bi-eye-fill"></i> {{pen.views}}</button>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                         <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                     </a>
                     <div class="card-info">
-                        <a href="">
+                        <a href="{% url 'core:pen-detail' pen.slug %}">
                             <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
                         </a>
                         <a class="card-owner" href="">{{pen.owner}}</a>

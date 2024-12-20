@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let iframeHeight = iframes[0].offsetHeight * scale;
             iframeHeight = Math.ceil(iframeHeight);
             pages.style.height = `${ iframeHeight * 2  + 250 }px`;
-            mainContent.style.height = `${ iframeHeight * 2  + 250 }px`;
+            mainContent.style.height = `${ iframeHeight * 2  + 650 }px`;
         }
         else{
             scale = 1.0 - (136 / windowWidth) ;

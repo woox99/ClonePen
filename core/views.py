@@ -39,7 +39,7 @@ class ProfileView(View):
     def get(self, request, username):
         profile = get_object_or_404(Profile, user__username=username)
 
-        pens = Pen.objects.filter(owner=profile).order_by('-created')
+        pens = Pen.objects.filter(owner=profile).order_by('-modified')
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
@@ -104,7 +104,7 @@ class PenCreateView(View):
                 pen = form.save(commit=False)
                 pen.owner = request.user.profile
                 pen.save()
-                return redirect('core:your-work', username=request.user.username)
+                return redirect('core:profile', username=request.user.username)
         return render(request, 'core/pen/create.html', {'form':form})
 
 
@@ -127,7 +127,7 @@ class PenUpdateView(generic.UpdateView):
     template_name = 'core/pen/update.html'
 
     def get_success_url(self):
-        return reverse_lazy('core:your-work', kwargs={'username':self.request.user.username})
+        return reverse_lazy('core:profile', kwargs={'username':self.request.user.username})
 
 
 class PenDeleteView(View):
