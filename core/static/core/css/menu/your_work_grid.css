@@ -1,63 +1,30 @@
-* {
-    /* border: 1px solid red; */
+.list-btn{
+    background-color: #44485750 !important;
+}
+.grid-btn{
+    background-color: #444857 !important;
+}
+.bi-grid-3x2-gap-fill{
+    color: #76daff;
+}
+.main-content .links {
+    border-bottom: 2px solid #76daff;
 }
 
-.main-content {
-    /* display: flex; */
-    /* align-items: end; */
-    min-height: unset;
-    padding: 0 !important;
+.main-content .links a:hover {
+    color: white !important;
 }
 
-.profile{
-    width: 100%;
-    height: 290px;
-    background-color: black;
-    overflow: hidden !important;
-    margin: 0;
-}
-.profile .background{
-    background-image: url(https://cpwebassets.codepen.io/assets/packs/profile-bg-optimized-a5ca8f46aca292507f629c62b09630ad.svg);
-    height: 240px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.profile img{
-    height: 120px;
-    width: 120px;
-    border: 4px solid #2c2d38;
-}
-.profile .profile-header{
-    position: relative;
-    bottom: 125px;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.location{
-    display: flex;
-    justify-content: center;
-    font-size: 13px;
-    margin-top: 5px;
-}
-.bio{
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-    text-align: center;
-}
-hr{
-    margin-left: 100px !important;
-    margin-right: 100px !important;
+.your-work .title a {
+    color: #76daff;
+    font-size: 14px !important;
 }
 .pages {
     position: absolute;
+    /* top: 450px; */
     left: 165px;
     overflow: hidden;
-    margin-top: 20px !important;
+    
     /* max-width = 100vw - width(sidebar) - width(scrollbar 17px) */
     max-width: calc(100vw - 182px);
 }

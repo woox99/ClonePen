@@ -57,7 +57,29 @@ class ProfileView(View):
         return render(request, 'core/menu/profile.html', context=context)
 
 
-class YourWork(generic.ListView):
+class YourWorkGridView(View):
+    def get(self, request, username):
+        profile = get_object_or_404(Profile, user__username=username)
+
+        pens = Pen.objects.filter(owner=profile).order_by('-modified')
+        paginator = Paginator(pens, 4)
+        page_number = self.request.GET.get('page')
+        if not page_number:
+            next_page_number = 2
+        else:
+            next_page_number = str(int(page_number) + 1)
+        page_object = paginator.get_page(page_number)
+        next_page_object = paginator.get_page(next_page_number)
+
+        context = {
+            'page_object':page_object,
+            'next_page_object':next_page_object,
+            'profile':profile,
+            }
+        return render(request, 'core/menu/your_work_grid.html', context=context)
+
+
+class YourWorkView(generic.ListView):
     template_name = 'core/menu/your_work.html'
     model = Pen
 

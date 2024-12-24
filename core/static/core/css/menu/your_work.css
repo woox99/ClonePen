@@ -1,9 +1,18 @@
+.list-btn{
+    background-color: #444857 !important;
+}
+.grid-btn{
+    background-color: #44485750 !important;
+}
+.bi-list{
+    color: #76daff;
+}
 .main-content .links {
     border-bottom: 2px solid #76daff;
 }
 
 .main-content .links a:hover {
-    color: #76daff !important;
+    color: white !important;
 }
 
 .your-work .title a {

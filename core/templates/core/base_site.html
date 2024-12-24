@@ -50,7 +50,7 @@
                 </li>
                 <li>
                     <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3"
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="getPinnedItemsByActiveUser()">
                         <i class="bi bi-pin-fill"></i>Pinned Items
                     </a>
                 </li>
@@ -66,13 +66,15 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'core:your-work' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:your-work' user.username %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block your-work-link %}
                         <i class="bi bi-grid-fill"></i>Your Work
                         {% endblock %}
                     </a>
                     {% else %}
-                    <a href="{% url 'accounts:login' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'accounts:login' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-fill"></i>Your Work
                     </a>
                     {% endif %}
@@ -81,7 +83,8 @@
             <ul class="p-0 mt-5">
                 <span class="text-secondary sidebar-heading ps-3 fw-bold">VISIT</span>
                 <li>
-                    <a href="https://codepen.io/" target="_blank" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="https://codepen.io/" target="_blank"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="fa-brands fa-codepen"></i>CodePen
                     </a>
                 </li>
@@ -107,7 +110,8 @@
                         {% if user.is_authenticated %}
                         {% block your-work-link-navbar %}
                         <button type="button" class="btn btn-primary px-4 rounded-end-1">
-                            <a href="{% url 'core:your-work' user.username %}" class="text-white text-decoration-none">Your Work</a>
+                            <a href="{% url 'core:your-work' user.username %}"
+                                class="text-white text-decoration-none">Your Work</a>
                         </button>
                         {% endblock %}
                         {% else %}
@@ -149,13 +153,9 @@
                             <ul class="dropdown-menu dropdown-menu-dark text-white">
                                 {% if user.is_authenticated %}
                                 <li>
-                                    <a class="dropdown-item text-white fw-medium" href="{% url 'core:profile' user.username %}">Profile</a>
+                                    <a class="dropdown-item text-white fw-medium"
+                                        href="{% url 'core:profile' user.username %}">Profile</a>
                                 </li>
-                                {% else %}
-                                <li>
-                                    <a class="dropdown-item text-white fw-medium" href="{% url 'accounts:login' %}">Profile</a>
-                                </li>
-                                {% endif %}
                                 <li>
                                     <a class="dropdown-item text-white fw-medium" href="#">Support</a>
                                 </li>
@@ -167,6 +167,24 @@
                                                 class="bi bi-box-arrow-right text-white"></i> Logout</button>
                                     </form>
                                 </li>
+                                {% else %}
+                                <li>
+                                    <a class="dropdown-item text-white fw-medium"
+                                        href="{% url 'accounts:login' %}">Login</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white fw-medium"
+                                        href="{% url 'accounts:register' %}">Sign Up</a>
+                                </li>
+                                <hr class="mt-5 mb-1">
+                                <li>
+                                    <form action="{% url 'accounts:logout' %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="dropdown-item text-white fw-medium">Home
+                                            Page</button>
+                                    </form>
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
@@ -277,7 +295,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <i class="bi bi-pin-fill"></i>Pinned Items
                     </a>
                 </li>
@@ -293,13 +312,15 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'core:your-work' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:your-work' user.username %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block your-work-link-offcanvas %}
                         <i class="bi bi-grid-fill"></i>Your Work
                         {% endblock %}
                     </a>
                     {% else %}
-                    <a href="{% url 'accounts:login' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'accounts:login' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-fill"></i>Your Work
                     </a>
                     {% endif %}
@@ -308,7 +329,8 @@
             <ul class="p-0 mt-3">
                 <span class="text-secondary item-menu-heading ps-3 fw-bold">VISIT</span>
                 <li>
-                    <a href="https://codepen.io/" target="_blank" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="https://codepen.io/" target="_blank"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="fa-brands fa-codepen"></i>CodePen
                     </a>
                 </li>
