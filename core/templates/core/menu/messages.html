@@ -1,0 +1,215 @@
+{% extends 'core/base_site.html' %}
+
+{% load static %}
+
+{% block head_title %}
+<title>Your Work - ClonePen</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/menu/messages.css' %}">
+{% endblock %}
+
+<!-- makes menu link icon active color -->
+{% block messages-link %}
+<i class="bi bi-chat-left-fill active"></i>Messages
+{% endblock %}
+{% block your-work-link-offcanvas %}
+<i class="bi bi-grid-fill active"></i>Your Work
+{% endblock %}
+
+<!-- main content -->
+{% block main-content %}
+<div id="main-content" class="main-content container-fluid px-1 d-flex">
+    <div class="messages">
+        <div class="list-group" data-bs-theme="dark">
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1">ClonePen</h6>
+                        <p class="message-content text-white fw-medium">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</i></small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">Hyperplexed<i class="bi bi-arrow-up-right ms-1"></i></h6>
+                        <p class="message-content text-secondary">Hi man, i really like your work!</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-1 text-body-secondary">ClonePen</h6>
+                        <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
+                            for support if it does thine you can just .</p>
+                    </div>
+                    <small class="text-secondary">3d</small>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="chat d-flex flex-column justify-content-end">
+        <div class="chat-field d-flex justify-content-end">
+            <textarea name="" id=""></textarea>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block js %}
+{% endblock %}

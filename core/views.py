@@ -93,6 +93,11 @@ def landing(request):
     return render(request, 'core/menu/landing.html')
 
 
+class MessagesView(View):
+    def get(self, request, username):
+        return render(request, 'core/menu/messages.html')
+
+
 class PenCreateView(View):
     def get(self, request):
         # retrieve pen data from session if login/register was required 
