@@ -13,7 +13,6 @@
     width: 100%;
     height: 290px;
     background-color: black;
-    /* border: 1px solid red; */
     overflow: hidden !important;
     margin: 0;
 }
@@ -80,7 +79,7 @@ hr{
     margin-left: 12px; /* dependant variable!*/
     overflow: hidden;
     border-radius: 10px;
-    
+    margin-bottom: 12px;
     /* Width of pen-card = [ width(sidebar) + width(pen-card margin left 12px)*2 + width(scroll bar 17px) + width(next page overflow 170 px) ] / 2 (divided by two cards) */
     width: calc(50vw - 188px);
 }
@@ -220,5 +219,6 @@ iframe {
         top: 35%;
         right: 10px;
         left: unset;
+        z-index: 10;
     }
 }

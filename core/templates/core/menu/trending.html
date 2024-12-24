@@ -34,7 +34,11 @@
             {% for pen in page_object %}
             <div class="pen-card pb-0" data-bs-theme="dark">
                 <div class="card-background"></div>
+                {% if pen.owner.user == user %}
+                <a href="{% url 'core:pen-update' pen.slug %}" class="pen-link"></a>
+                {% else %}
                 <a href="{{pen.get_absolute_url}}" class="pen-link"></a>
+                {% endif %}
                 <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
                     frameborder="0" class="rounded-4" scrolling="no"></iframe>
                 <div class="card-body d-flex gap-2">
@@ -42,11 +46,19 @@
                         <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                     </a>
                     <div class="card-info">
-                        <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        {% if pen.owner.user == user %}
+                        <a href="{% url 'core:pen-update' pen.slug %}">
+                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'core:pen-detail' pen.slug %}">
+                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
+                        </a>
+                        {% endif %}
                         <a class="card-owner" href="{% url 'core:profile' pen.owner %}">{{pen.owner}}</a>
                     </div>
                 </div>
-                <div class="card-footer p-0">
+                <div class="card-footer p-0 d-flex gap-2">
                     {% if pen in user.profile.pinned_items.all %}
                     <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
                             class="bi bi-pin-fill"></i></button>
@@ -54,8 +66,10 @@
                     <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
                             class="bi bi-pin"></i></button>
                     {% endif %}
-                    <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8000</button>
-                    <button class="btn px-2 py-1"><i class="bi bi-eye-fill"></i> {{pen.views}}</button>
+                    <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill me-1"></i>8</button>
+                    <a href="{% url 'core:pen-detail' pen.slug %}">
+                        <button class="btn px-2 py-1"><i class="bi bi-eye-fill me-1"></i>{{pen.views}}</button>
+                    </a>
                 </div>
             </div>
             {% endfor %}

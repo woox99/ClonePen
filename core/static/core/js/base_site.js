@@ -11,6 +11,7 @@ const getPinnedItemsByActiveUser = () => {
     .then(response => response.json())
     .then(data => {
         items = data['pinned-items'];
+        console.log(items)
         pinnedItemsElement = document.querySelector('.pinned-items');
 
         // Clear existing html
