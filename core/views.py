@@ -79,8 +79,8 @@ class YourWorkGridView(View):
         return render(request, 'core/menu/your_work_grid.html', context=context)
 
 
-class YourWorkView(generic.ListView):
-    template_name = 'core/menu/your_work.html'
+class YourWorkListView(generic.ListView):
+    template_name = 'core/menu/your_work_list.html'
     model = Pen
 
     def get_context_data(self):
@@ -91,11 +91,6 @@ class YourWorkView(generic.ListView):
 # change to cbf
 def landing(request):
     return render(request, 'core/menu/landing.html')
-
-
-class MessagesView(View):
-    def get(self, request, username):
-        return render(request, 'core/menu/messages.html')
 
 
 class PenCreateView(View):
@@ -167,6 +162,9 @@ class PenDeleteView(View):
             raise Http404() # Create 404 view
 
 
+class MessagesView(View):
+    def get(self, request, username):
+        return render(request, 'core/menu/messages.html')
 
 
 

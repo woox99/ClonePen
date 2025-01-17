@@ -3,38 +3,34 @@
 }
 
 .main-content {
-    min-height: calc(100vh - 70px);
     position: relative;
+    /* Initial height set in messages.js */
+    height: 0;
+    overflow: hidden;
 }
 
-.messages {
+.list-group {
     position: relative;
     z-index: 1;
     background-color: #00000050;
-    height: calc(100vh - 70px);
-    width: 405px;
+    width: 400px;
     overflow-y: scroll;
+    margin-left: 5px;
 }
-.messages .list-group{
-    /* keeps scroll bar on screen */
-    min-height: 100vh; 
-}
-.messages::-webkit-scrollbar {
+
+.list-group::-webkit-scrollbar {
     width: 5px;
 }
 
-.messages::-webkit-scrollbar-track {
+.list-group::-webkit-scrollbar-track {
     background: #000000;
 }
 
-.messages::-webkit-scrollbar-thumb {
+.list-group::-webkit-scrollbar-thumb {
     background: #76daff;
     border-radius: 50px;
 }
 
-.list-group {
-    width: 400px;
-}
 
 .list-group img {
     width: 35px;
@@ -46,7 +42,8 @@
     font-size: 12px;
 }
 
-.message-content {
+/* message content for thread */
+.list-group .message-content {
     width: 275px;
     height: auto;
     overflow: hidden;
@@ -58,12 +55,55 @@
     font-size: 14px;
 }
 
-.chat-field{
+.chat {
+    overflow-y: scroll; /* Enable scrolling */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer */
+    width: calc(100vw - 600px);
+}
+
+/* Hide scrollbar for WebKit-based browsers (Chrome, Safari, etc.) */
+.chat::-webkit-scrollbar {
+    display: none;
+}
+.messages{
+    margin-bottom: 70px !important;
+
+    /* border: 1px solid white; */
+}
+.message{
+    /* border: 1px solid red; */
+}
+.message img{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+.chat-box{
     position: absolute;
     bottom: 0;
-    right: 0;
-    z-index: 0;
+    width: calc(100vw - 570px);
     background-color: #000000;
-    /* height: 50px; */
-    width: 100%;
+    height: 70px;
+    border-top: 1px solid #2b2c36;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 25px;
+    /* border: 1px solid red; */
+}
+.chat-box textarea{
+    resize: none;
+    overflow-y: hidden;
+}
+.chat-box form button{
+    background-color: #000000;
+    color: #76daff;
+    border: none;
+}
+
+@media (max-width: 768px) {
+
+    .list-group{
+        width: 100%;
+    }
 }

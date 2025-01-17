@@ -8,7 +8,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
-<link rel="stylesheet" href="{% static 'core/css/menu/your_work.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/menu/your_work_list.css' %}">
 {% endblock %}
 
 <!-- makes menu link icon active color -->
@@ -20,27 +20,27 @@
 {% endblock %}
 {% block your-work-link-navbar %}
 <button type="button" class="btn btn-primary px-4 rounded-end-1 selected">
-    <a href="{% url 'core:your-work' user.username %}" class="text-white text-decoration-none">Your Work</a>
+    <a href="{% url 'core:your-work-grid' user.username %}" class="text-white text-decoration-none">Your Work</a>
 </button>
 {% endblock %}
 
 <!-- main content -->
 {% block main-content %}
-<div id="main-content" class="main-content container-fluid p-4">
-    <div class="links d-flex align-items-end justify-content-between pb-2">
+<div id="main-content" class="main-content container-fluid p-5">
+    <div class="links d-flex align-items-end justify-content-between pb-2 mb-4">
         <div class="d-flex gap-4">
             <h6 class="text-white">Your Work</h6>
             <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Create New Pen</a></h6>
         </div>
-        <a href="{% url 'core:your-work-grid' user.username %}">
-            <div class="btn-group layout-btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn border border-secondary list-btn py-0 px-2"><i
-                        class="bi bi-list fs-4"></i></button>
-                <button type="button" class="btn border border-secondary grid-btn py-0 px-2"><i
-                        class="bi bi-grid-3x2-gap-fill text-white fs-4"></i></button>
-            </div>
-        </a>
     </div>
+    <a href="{% url 'core:your-work-grid' user.username %}">
+        <div class="btn-group layout-btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn border border-secondary list-btn py-0 px-2"><i
+                    class="bi bi-list fs-4"></i></button>
+            <button type="button" class="btn border border-secondary grid-btn py-0 px-2"><i
+                    class="bi bi-grid-3x2-gap-fill text-white fs-4"></i></button>
+        </div>
+    </a>
     <div class="row mt-4">
         <div class="col-6 col-lg-4">
             <p class="text-white fw-medium mb-0">Title</p>
