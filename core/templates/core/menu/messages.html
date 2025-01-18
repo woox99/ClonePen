@@ -22,8 +22,26 @@
 <!-- main content -->
 {% block main-content %}
 <div id="main-content" class="main-content container-fluid p-0 d-flex">
-    <div class="list-group" data-bs-theme="dark">
-        <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
+    <div class="conversations list-group" data-bs-theme="dark">
+        {% for conversation in conversations %}
+        <a href="#" class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
+            <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+            <div class="d-flex w-100 justify-content-between">
+                <div>
+                    <h6 class="mb-1">
+                        {% for participant in conversation.participants.all %}
+                        {% if participant != user %}
+                            {{participant.username}}
+                        {% endif %}
+                        {% endfor %}
+                    </h6>
+                    <p class="message-content text-white fw-medium">{{conversation.last_message}}</p>
+                </div>
+                <small class="text-secondary">3d</i></small>
+            </div>
+        </a>
+        {% endfor %}
+        <a href="#" class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
             <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
             <div class="d-flex w-100 justify-content-between">
                 <div>
@@ -40,58 +58,6 @@
                 <div>
                     <h6 class="mb-1 text-body-secondary">Hyperplexed<i class="bi bi-arrow-up-right ms-1"></i></h6>
                     <p class="message-content text-secondary">Hi man, i really like your work!</p>
-                </div>
-                <small class="text-secondary">3d</small>
-            </div>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
-            <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-            <div class="d-flex w-100 justify-content-between">
-                <div>
-                    <h6 class="mb-1 text-body-secondary">Hyperplexed<i class="bi bi-arrow-up-right ms-1"></i></h6>
-                    <p class="message-content text-secondary">Hi man, i really like your work!</p>
-                </div>
-                <small class="text-secondary">3d</small>
-            </div>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
-            <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-            <div class="d-flex w-100 justify-content-between">
-                <div>
-                    <h6 class="mb-1 text-body-secondary">Hyperplexed<i class="bi bi-arrow-up-right ms-1"></i></h6>
-                    <p class="message-content text-secondary">Hi man, i really like your work!</p>
-                </div>
-                <small class="text-secondary">3d</small>
-            </div>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
-            <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-            <div class="d-flex w-100 justify-content-between">
-                <div>
-                    <h6 class="mb-1 text-body-secondary">Hyperplexed<i class="bi bi-arrow-up-right ms-1"></i></h6>
-                    <p class="message-content text-secondary">Hi man, i really like your work!</p>
-                </div>
-                <small class="text-secondary">3d</small>
-            </div>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
-            <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-            <div class="d-flex w-100 justify-content-between">
-                <div>
-                    <h6 class="mb-1 text-body-secondary">ClonePen</h6>
-                    <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
-                        for support if it does thine you can just .</p>
-                </div>
-                <small class="text-secondary">3d</small>
-            </div>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
-            <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-            <div class="d-flex w-100 justify-content-between">
-                <div>
-                    <h6 class="mb-1 text-body-secondary">ClonePen</h6>
-                    <p class="message-content text-secondary">Welcome to ClonePen! You can message our team here
-                        for support if it does thine you can just .</p>
                 </div>
                 <small class="text-secondary">3d</small>
             </div>

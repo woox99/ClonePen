@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import View, generic
 from django.db.models import F
 from django.http import Http404
-from .models import Pen
+from .models import *
 from accounts.models import Profile
 from django.contrib.auth.models import User
 from .forms import PenForm
@@ -162,9 +162,20 @@ class PenDeleteView(View):
             raise Http404() # Create 404 view
 
 
+# remove username from url parameter. Not needed
 class MessagesView(View):
     def get(self, request, username):
-        return render(request, 'core/menu/messages.html')
+        conversations = request.user.conversations.all()
+        return render(request, 'core/menu/messages.html', {'conversations':conversations})
+
+class ConversationView(View):
+    def get(self, request, active_user, other_user):
+        pass
+
+class MessageCreateView(View):
+    def post(self, request, sender, receiver):
+        pass
+
 
 
 

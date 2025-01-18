@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-.list-group {
+.conversations {
     position: relative;
     z-index: 1;
     background-color: #00000050;
@@ -18,32 +18,32 @@
     margin-left: 5px;
 }
 
-.list-group::-webkit-scrollbar {
+.conversations::-webkit-scrollbar {
     width: 5px;
 }
 
-.list-group::-webkit-scrollbar-track {
+.conversations::-webkit-scrollbar-track {
     background: #000000;
 }
 
-.list-group::-webkit-scrollbar-thumb {
+.conversations::-webkit-scrollbar-thumb {
     background: #76daff;
     border-radius: 50px;
 }
 
 
-.list-group img {
+.conversations img {
     width: 35px;
     height: 35px;
     border-radius: 5px;
 }
 
-.list-group h6 i {
+.conversations h6 i {
     font-size: 12px;
 }
 
 /* message content for thread */
-.list-group .message-content {
+.conversations .message-content {
     width: 275px;
     height: auto;
     overflow: hidden;
@@ -103,7 +103,7 @@
 
 @media (max-width: 768px) {
 
-    .list-group{
+    .conversations{
         width: 100%;
     }
 }

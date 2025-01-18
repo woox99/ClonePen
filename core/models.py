@@ -37,6 +37,29 @@ def generate_slug(sender, instance, **kwargs):
             counter += 1
         instance.slug = slug 
 
+
+    
+
+
+class Conversation(models.Model):
+    participants = models.ManyToManyField(User, related_name='conversations')
+    last_message = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        participant_names = ", ".join([user.username for user in self.participants.all()])
+        return f"Conversation between: {participant_names}"
+
+class Message(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.sender.username} in Conversation ID: {self.conversation.id}"
+    
 # class Comment(models.Model):
 #     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
 #     pen = models.ForeignKey(Pen, on_delete=models.CASCADE, related_name='comments')
