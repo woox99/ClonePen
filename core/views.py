@@ -38,7 +38,7 @@ class ProfileView(View):
     def get(self, request, username):
         profile = get_object_or_404(Profile, user__username=username)
 
-        pens = Pen.objects.filter(owner=profile).order_by('-modified')
+        pens = Pen.objects.filter(owner=request.user).order_by('-modified')
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
@@ -60,7 +60,7 @@ class YourWorkGridView(View):
     def get(self, request, username):
         profile = get_object_or_404(Profile, user__username=username)
 
-        pens = Pen.objects.filter(owner=profile).order_by('-modified')
+        pens = Pen.objects.filter(owner=request.user).order_by('-modified')
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
@@ -83,7 +83,7 @@ class YourWorkListView(generic.ListView):
     model = Pen
 
     def get_context_data(self):
-        pens = Pen.objects.filter(owner=self.request.user.profile).order_by('-modified')
+        pens = Pen.objects.filter(owner=self.request.user).order_by('-modified')
         return {'pens':pens}
 
 
@@ -123,7 +123,7 @@ class PenCreateView(View):
                 del request.session['pen_form']
             if form.is_valid():
                 pen = form.save(commit=False)
-                pen.owner = request.user.profile
+                pen.owner = request.user
                 pen.save()
                 return redirect('core:profile', username=request.user.username)
         return render(request, 'core/pen/create.html', {'form':form})
@@ -154,9 +154,9 @@ class PenUpdateView(generic.UpdateView):
 class PenDeleteView(View):
     def post(self, request, pk):
         pen = get_object_or_404(Pen, pk=pk)
-        if request.user.profile == pen.owner:
+        if request.user == pen.owner:
             pen.delete()
-            return redirect('core:your-work', username=request.user.username)
+            return redirect('core:profile', username=request.user.username)
         else:
             raise Http404() # Create 404 view
 

@@ -31,7 +31,7 @@
             {% for pen in page_object %}
             <div class="pen-card pb-0" data-bs-theme="dark">
                 <div class="card-background"></div>
-                {% if pen.owner.user == user %}
+                {% if pen.owner == user %}
                 <a href="{% url 'core:pen-update' pen.slug %}" class="pen-link"></a>
                 {% else %}
                 <a href="{{pen.get_absolute_url}}" class="pen-link"></a>
@@ -40,7 +40,7 @@
                     frameborder="0" class="rounded-4" scrolling="no"></iframe>
                 <div class="card-body d-flex gap-2">
                     <div class="card-info ps-3 py-1">
-                        {% if pen.owner.user == user %}
+                        {% if pen.owner == user %}
                         <a href="{% url 'core:pen-update' pen.slug %}">
                             <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
                         </a>

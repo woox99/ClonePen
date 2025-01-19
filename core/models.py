@@ -7,6 +7,38 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+class Pen(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pens')
+    title = models.CharField(max_length=30, blank=False) #change
+    description = models.CharField(max_length=250, blank=True, null=True) #change
+    public = models.BooleanField(default=False)
+    html = models.TextField(blank=True, null=True)
+    css = models.TextField(blank=True, null=True)
+    js = models.TextField(blank=True, null=True)
+    views = models.PositiveIntegerField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(max_length=30, unique=True, blank=True)
+
+    def get_absolute_url(self):
+        return reverse_lazy('core:pen-detail', kwargs={'slug':self.slug})
+
+    def __str__(self):
+        return self.title
+    
+# Create slug field for any model that has slug attribute upon save()
+@receiver(pre_save)
+def generate_slug(sender, instance, **kwargs):
+    if hasattr(instance, 'slug') and hasattr(instance, '__str__'):
+        slug = slugify(instance.__str__())
+        base_slug = slug
+        counter = 2
+        while sender.objects.filter(slug=slug).exists():
+            slug = f'{base_slug}-{counter}'
+            counter += 1
+        instance.slug = slug 
+
+
 class Conversation(models.Model):
     participants = models.ManyToManyField(User, related_name='conversations')
     last_message = models.TextField()
@@ -50,36 +82,7 @@ def create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 
-class Pen(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='pens')
-    title = models.CharField(max_length=30, blank=False) #change
-    description = models.CharField(max_length=250, blank=True, null=True) #change
-    public = models.BooleanField(default=False)
-    html = models.TextField(blank=True, null=True)
-    css = models.TextField(blank=True, null=True)
-    js = models.TextField(blank=True, null=True)
-    views = models.PositiveIntegerField(default=0)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=30, unique=True, blank=True)
 
-    def get_absolute_url(self):
-        return reverse_lazy('core:pen-detail', kwargs={'slug':self.slug})
-
-    def __str__(self):
-        return self.title
-    
-# Create slug field for any model that has slug attribute upon save()
-@receiver(pre_save)
-def generate_slug(sender, instance, **kwargs):
-    if hasattr(instance, 'slug') and hasattr(instance, '__str__'):
-        slug = slugify(instance.__str__())
-        base_slug = slug
-        counter = 2
-        while sender.objects.filter(slug=slug).exists():
-            slug = f'{base_slug}-{counter}'
-            counter += 1
-        instance.slug = slug 
 
 
     

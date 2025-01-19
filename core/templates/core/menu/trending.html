@@ -34,7 +34,7 @@
             {% for pen in page_object %}
             <div class="pen-card pb-0" data-bs-theme="dark">
                 <div class="card-background"></div>
-                {% if pen.owner.user == user %}
+                {% if pen.owner == user %}
                 <a href="{% url 'core:pen-update' pen.slug %}" class="pen-link"></a>
                 {% else %}
                 <a href="{{pen.get_absolute_url}}" class="pen-link"></a>
@@ -46,7 +46,7 @@
                         <img data-bs-toggle="dropdown" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                     </a>
                     <div class="card-info">
-                        {% if pen.owner.user == user %}
+                        {% if pen.owner == user %}
                         <a href="{% url 'core:pen-update' pen.slug %}">
                             <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
                         </a>
