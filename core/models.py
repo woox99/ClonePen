@@ -1,10 +1,54 @@
 from django.db import models
 from django.contrib.auth.models import User
-from accounts.models import Profile
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
+
+
+class Conversation(models.Model):
+    participants = models.ManyToManyField(User, related_name='conversations')
+    last_message = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        participant_names = ", ".join([user.username for user in self.participants.all()])
+        return f"Conversation between: {participant_names}"
+
+
+class Message(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.sender.username} in Conversation ID: {self.conversation.id}"
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    demo = models.BooleanField(default=False)
+    following = models.ManyToManyField(User, related_name='followers')
+    pinned_items = models.ManyToManyField('core.Pen', related_name='pinned_profiles') # String reference to avoid circular import
+    last_conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, null=True, blank=True,)
+
+    # bio = models.TextField(blank=True)
+    # avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    # location = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.user.username
+    
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    # only execute if instance created (true), not updated (false)
+    if created:
+        Profile.objects.create(user=instance)
+
 
 class Pen(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='pens')
@@ -40,25 +84,6 @@ def generate_slug(sender, instance, **kwargs):
 
     
 
-
-class Conversation(models.Model):
-    participants = models.ManyToManyField(User, related_name='conversations')
-    last_message = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        participant_names = ", ".join([user.username for user in self.participants.all()])
-        return f"Conversation between: {participant_names}"
-
-class Message(models.Model):
-    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Message from {self.sender.username} in Conversation ID: {self.conversation.id}"
     
 # class Comment(models.Model):
 #     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')

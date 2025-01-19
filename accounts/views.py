@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from accounts.models import Profile
+from core.models import Profile
 
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.views.generic import FormView

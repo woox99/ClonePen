@@ -17,3 +17,4 @@ from core.models import *
 admin.site.register(Pen)
 admin.site.register(Conversation)
 admin.site.register(Message)
+admin.site.register(Profile)

@@ -4,7 +4,6 @@ from django.views import View, generic
 from django.db.models import F
 from django.http import Http404
 from .models import *
-from accounts.models import Profile
 from django.contrib.auth.models import User
 from .forms import PenForm
 
