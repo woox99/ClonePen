@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let windowWidth = window.innerWidth;
         let scale;
         
+        // Large screens
         if(windowWidth > 768){
             scale = 0.5 - (212 / windowWidth);
 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             pages.style.height = `${ iframeHeight * 2  + 250 }px`;
             mainContent.style.height = `${ iframeHeight * 2  + 650 }px`;
         }
+        // Mobile screens
         else{
             scale = 1.0 - (136 / windowWidth) ;
             

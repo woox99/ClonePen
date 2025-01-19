@@ -76,7 +76,7 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'core:your-work-grid' user.username %}"
+                    <a href="{% url 'core:profile' user.username %}"
                         class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block your-work-link %}
                         <i class="bi bi-grid-fill"></i>Your Work
@@ -120,7 +120,7 @@
                         {% if user.is_authenticated %}
                         {% block your-work-link-navbar %}
                         <button type="button" class="btn btn-primary px-4 rounded-end-1">
-                            <a href="{% url 'core:your-work-grid' user.username %}"
+                            <a href="{% url 'core:profile' user.username %}"
                                 class="text-white text-decoration-none">Your Work</a>
                         </button>
                         {% endblock %}
@@ -324,7 +324,7 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'core:your-work-grid' user.username %}"
+                    <a href="{% url 'core:profile' user.username %}"
                         class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block your-work-link-offcanvas %}
                         <i class="bi bi-grid-fill"></i>Your Work

@@ -53,6 +53,24 @@ hr{
     margin-left: 100px !important;
     margin-right: 100px !important;
 }
+
+.list-btn{
+    background-color: #44485750 !important;
+}
+.grid-btn{
+    background-color: #444857 !important;
+}
+.bi-grid-3x2-gap-fill{
+    color: #76daff;
+}
+.main-content .links {
+    border-bottom: 2px solid #76daff;
+}
+
+.main-content .links a:hover {
+    color: white !important;
+}
+
 .pages {
     position: absolute;
     left: 165px;

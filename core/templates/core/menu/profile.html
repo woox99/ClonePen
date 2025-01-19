@@ -10,6 +10,33 @@
 <link rel="stylesheet" href="{% static 'core/css/menu/profile.css' %}">
 {% endblock %}
 
+<!-- makes menu link icon active color -->
+{% block your-work-link-navbar %}
+{% if profile.user == user %}
+<button type="button" class="btn btn-primary px-4 rounded-end-1 selected">
+    <a href="{% url 'core:profile' user.username %}" class="text-white text-decoration-none">Your Work</a>
+</button>
+{% else %}
+<button type="button" class="btn btn-primary px-4 rounded-end-1">
+    <a href="{% url 'core:profile' user.username %}" class="text-white text-decoration-none">Your Work</a>
+</button>
+{% endif %}
+{% endblock %}
+{% block your-work-link %}
+{% if profile.user == user %}
+<i class="bi bi-grid-fill active"></i>Your Work
+{% else %}
+<i class="bi bi-grid-fill"></i>Your Work
+{% endif %}
+{% endblock %}
+{% block your-work-link-offcanvas %}
+{% if profile.user == user %}
+<i class="bi bi-grid-fill active"></i>Your Work
+{% else %}
+<i class="bi bi-grid-fill"></i>Your Work
+{% endif %}
+{% endblock %}
+
 <!-- main content -->
 {% block main-content %}
 <div id="main-content" class="main-content container-fluid" onload="scaleIframes();">
@@ -20,9 +47,31 @@
             <img src="{% static 'core/assets/profile_codepen.png' %}" alt="">
         </div>
     </div>
-    <div class="location text-secondary">United States</div>
+    <div class="location text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>United States</div>
     <div class="bio text-white px-4">This is my bio, and it should have a max length of 100?</div>
     <hr id="pages" class="text-secondary">
+    <div class="px-5">
+        <div class="links d-flex align-items-end justify-content-between pb-2 mb-4">
+            <div class="d-flex gap-4">
+                {% if profile.user == user %}
+                <h6 class="text-white">Your Work</h6>
+                <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Create New Pen</a></h6>
+                {% else %}
+                <h6 class="text-white">Pens</h6>
+                <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Follow</a></h6>
+                <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Send Message</a></h6>
+                {% endif %}
+            </div>
+        </div>
+        <a href="{% url 'core:your-work-list' user.username %}">
+            <div class="btn-group layout-btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn border border-secondary list-btn py-0 px-2"><i
+                        class="bi bi-list fs-4 text-white"></i></button>
+                <button type="button" class="btn border border-secondary grid-btn py-0 px-2"><i
+                        class="bi bi-grid-3x2-gap-fill fs-4"></i></button>
+            </div>
+        </a>
+    </div>
     <div class="pages d-flex">
         {% if page_object.has_previous %}
         <div class="page previous-page d-none d-md-block"></div>

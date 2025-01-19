@@ -38,7 +38,7 @@ class ProfileView(View):
     def get(self, request, username):
         profile = get_object_or_404(Profile, user__username=username)
 
-        pens = Pen.objects.filter(owner=request.user).order_by('-modified')
+        pens = Pen.objects.filter(owner=profile.user).order_by('-modified')
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
