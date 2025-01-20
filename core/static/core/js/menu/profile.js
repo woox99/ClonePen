@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let iframeHeight = iframes[0].offsetHeight * scale;
             iframeHeight = Math.ceil(iframeHeight);
             pages.style.height = `${ iframeHeight * 2  + 250 }px`;
-            mainContent.style.height = `${ iframeHeight * 2  + 650 }px`;
+            mainContent.style.height = `${ iframeHeight * 2  + 700 }px`;
         }
         // Mobile screens
         else{
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let iframeHeight = iframes[0].offsetHeight * scale;
             iframeHeight = Math.ceil(iframeHeight);
             pages.style.height = `${ iframeHeight * 4  + 400 }px`;
-            mainContent.style.height = `${ iframeHeight * 4  + 800 }px`;
+            mainContent.style.height = `${ iframeHeight * 4  + 900 }px`;
         }
         
         for (const iframe of iframes) {

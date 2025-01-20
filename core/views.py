@@ -167,9 +167,12 @@ class MessagesView(View):
         conversations = request.user.conversations.all()
         return render(request, 'core/menu/messages.html', {'conversations':conversations})
 
-class ConversationView(View):
-    def get(self, request, active_user, other_user):
-        pass
+class ChatView(View):
+    def get(self, request, pk):
+        conversations = request.user.conversations.all()
+        chat = get_object_or_404(Conversation, pk=pk)
+        messages = Message.objects.filter(conversation=chat)
+        return render(request, 'core/menu/chat.html', {'conversations':conversations, 'messages':messages})
 
 class MessageCreateView(View):
     def post(self, request, sender, receiver):

@@ -71,6 +71,13 @@
                         class="bi bi-grid-3x2-gap-fill fs-4"></i></button>
             </div>
         </a>
+        {% if not page_object %}
+        {% if profile.user == user %}
+        <p class="text-secondary mt-3">You haven't created any pens yet..</p>
+        {% else %}
+        <p class="text-secondary mt-3">This person doesn't have any public pens at this time.</p>
+        {% endif %}
+        {% endif %}
     </div>
     <div class="pages d-flex">
         {% if page_object.has_previous %}

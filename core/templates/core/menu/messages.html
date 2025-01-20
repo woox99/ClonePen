@@ -24,14 +24,14 @@
 <div id="main-content" class="main-content container-fluid p-0 d-flex">
     <div class="conversations list-group" data-bs-theme="dark">
         {% for conversation in conversations %}
-        <a href="#" class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
+        <a href="{% url 'core:chat' pk=conversation.pk %}" class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
             <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
             <div class="d-flex w-100 justify-content-between">
                 <div>
                     <h6 class="mb-1">
                         {% for participant in conversation.participants.all %}
                         {% if participant != user %}
-                            {{participant.username}}
+                        {{participant.username}}
                         {% endif %}
                         {% endfor %}
                     </h6>
@@ -41,7 +41,7 @@
             </div>
         </a>
         {% endfor %}
-        <a href="#" class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
+        <!-- <a href="#" class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
             <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
             <div class="d-flex w-100 justify-content-between">
                 <div>
@@ -51,7 +51,7 @@
                 </div>
                 <small class="text-secondary">3d</i></small>
             </div>
-        </a>
+        </a> -->
         <a href="#" class="list-group-item list-group-item-action d-flex" aria-current="true">
             <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
             <div class="d-flex w-100 justify-content-between">
@@ -159,8 +159,9 @@
         </div>
         <div class="chat-box">
             <form action="" class="d-flex">
-                    <textarea class="form-control rounded-pill" id="" rows="1" data-bs-theme="dark" placeholder="Write message.."></textarea>
-                    <button type="submit"><i class="bi bi-send"></i></button>
+                <textarea class="form-control rounded-pill" id="" rows="1" data-bs-theme="dark"
+                    placeholder="Write message.."></textarea>
+                <button type="submit"><i class="bi bi-send"></i></button>
             </form>
         </div>
     </div>
