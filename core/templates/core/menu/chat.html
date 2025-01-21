@@ -13,10 +13,10 @@
 
 <!-- makes menu link icon active color -->
 {% block messages-link %}
-<i class="bi bi-chat-left-fill active"></i>Messages<span class="bg-warning text-black badge rounded-pill">1</span>
+<i class="bi bi-chat-left-fill active"></i>Messages<span id="unread-count" class="bg-warning text-black badge rounded-pill"></span>
 {% endblock %}
-{% block your-work-link-offcanvas %}
-<i class="bi bi-grid-fill active"></i>Your Work
+{% block messages-link-offcanvas %}
+<i class="bi bi-chat-left-fill active"></i>Messages
 {% endblock %}
 
 <!-- main content -->
@@ -65,7 +65,7 @@
             {% for message in chat.messages.all %}
             <div class="message pt-3 pb-1">
                 <div class="d-flex">
-                    <img class="mx-3" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                    <img class="mx-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
                     <div class="">
                         <div class="d-flex gap-2">
                             <p class="sender m-0 fw-medium">{{message.sender}}</p>

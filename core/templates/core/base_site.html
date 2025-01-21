@@ -59,7 +59,7 @@
                     <a href="{% url 'core:messages' %}"
                         class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block messages-link %}
-                        <i class="bi bi-chat-left-fill"></i>Messages<span class="bg-warning text-black badge rounded-pill">1</span>
+                        <i class="bi bi-chat-left-fill"></i>Messages<span id="unread-count" class="bg-warning text-black badge rounded-pill"></span>
                         {% endblock %}
                     </a>
                     {% else %}
@@ -314,7 +314,9 @@
                 </li>
                 <li>
                     <a href="{% url 'core:messages' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        {% block messages-link-offcanvas %}
                         <i class="bi bi-chat-left-fill"></i>Messages
+                        {% endblock %}
                     </a>
                 </li>
                 <li>

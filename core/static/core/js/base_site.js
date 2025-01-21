@@ -1,4 +1,5 @@
 // Fetch Pinned Items AJAX
+// CHANGE TO GET REQUEST
 const getPinnedItemsByActiveUser = () => {
     const csrfToken = document.querySelector('[name=csrf-token]').content;
 
@@ -112,3 +113,14 @@ const togglePin = (button, penId) => {
         }
     })
 }
+
+// Fetch unread message count
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/clonepen.com/api/messages/unread-count/')
+        .then(response => response.json())
+        .then(data => {
+            if (data.unread_count > 0) {
+                document.getElementById('unread-count').innerText = data.unread_count;
+            }
+        });
+})

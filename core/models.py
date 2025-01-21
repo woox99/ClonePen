@@ -45,13 +45,6 @@ class Conversation(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    # def get_other_participant(self, current_user_id):
-    #     return self.participants.exclude(pk=current_user_id).first()
-
-    # @property
-    # def other_participant(self):
-    #     return self.participants.count()
-
     def __str__(self):
         participant_names = ", ".join([user.username for user in self.participants.all()])
         return f"Conversation between: {participant_names}"
@@ -97,7 +90,8 @@ def create_message(sender, instance, created, **kwargs):
     # only execute if instance created (true), not updated (false)
     if created:
         clonepen = User.objects.filter(username='ClonePen').first()
-        first_message = 'Welcome to ClonePen! You can message our team for support here.'
+        first_message = 'Welcome to ClonePen! You can message our team here if you need support. \
+                        This application is a clone of CodePen. We are not affiliated with ClonePen in anyway, nor are we trying to pose as the offical site.'
         conversation = Conversation.objects.create(last_message=first_message)
         conversation.participants.set([clonepen, instance])
         Message.objects.create(conversation=conversation, sender=clonepen, content=first_message)

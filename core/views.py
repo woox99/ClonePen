@@ -164,13 +164,21 @@ class PenDeleteView(View):
 # remove username from url parameter. Not needed
 class MessagesView(View):
     def get(self, request):
-        conversations = request.user.conversations.order_by('-created')
+        conversations = request.user.conversations.order_by('-updated')
         last_conversation = request.user.profile.last_conversation
+
+        # Sets unread messages to read if last conversation exists && sender is not current user
+        if last_conversation and last_conversation.messages.last().is_read == False:
+            unread_messages = last_conversation.messages.filter(is_read = False)
+            for message in unread_messages:
+                if message.sender != request.user:
+                    message.is_read = True
+                    message.save()
         return render(request, 'core/menu/messages.html', {'conversations':conversations, 'chat':last_conversation})
 
 class ChatView(View):
     def get(self, request, pk, username1, username2):
-        conversations = request.user.conversations.order_by('-created')
+        conversations = request.user.conversations.order_by('-updated')
         chat = get_object_or_404(Conversation, pk=pk)
         profile = get_object_or_404(Profile, user=request.user)
         profile.last_conversation = chat
@@ -190,7 +198,7 @@ class MessageCreateView(View):
         Message.objects.create(conversation=conversation, content=request.POST['content'], sender=request.user)
         conversation.last_message = request.POST['content']
         conversation.save()
-        return redirect('core:chat', pk=pk)
+        return redirect('core:chat', pk=pk, username1=conversation.participants.first(), username2=conversation.participants.last())
 
 
 
