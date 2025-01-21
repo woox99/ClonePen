@@ -56,7 +56,7 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'core:messages' user.username %}"
+                    <a href="{% url 'core:messages' %}"
                         class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block messages-link %}
                         <i class="bi bi-chat-left-fill"></i>Messages<span class="bg-warning text-black badge rounded-pill">1</span>
@@ -313,7 +313,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:messages' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-chat-left-fill"></i>Messages
                     </a>
                 </li>

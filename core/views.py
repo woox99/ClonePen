@@ -163,20 +163,34 @@ class PenDeleteView(View):
 
 # remove username from url parameter. Not needed
 class MessagesView(View):
-    def get(self, request, username):
-        conversations = request.user.conversations.all()
-        return render(request, 'core/menu/messages.html', {'conversations':conversations})
+    def get(self, request):
+        conversations = request.user.conversations.order_by('-created')
+        last_conversation = request.user.profile.last_conversation
+        return render(request, 'core/menu/messages.html', {'conversations':conversations, 'chat':last_conversation})
 
 class ChatView(View):
-    def get(self, request, pk):
-        conversations = request.user.conversations.all()
+    def get(self, request, pk, username1, username2):
+        conversations = request.user.conversations.order_by('-created')
         chat = get_object_or_404(Conversation, pk=pk)
-        messages = Message.objects.filter(conversation=chat)
-        return render(request, 'core/menu/chat.html', {'conversations':conversations, 'messages':messages})
+        profile = get_object_or_404(Profile, user=request.user)
+        profile.last_conversation = chat
+        profile.save()
+
+        unread_messages = chat.messages.filter(is_read = False)
+        for message in unread_messages:
+            if message.sender != request.user:
+                message.is_read = True
+                message.save()
+        return render(request, 'core/menu/chat.html', {'conversations':conversations, 'chat':chat})
 
 class MessageCreateView(View):
-    def post(self, request, sender, receiver):
-        pass
+    def post(self, request, pk):
+        conversation = get_object_or_404(Conversation, pk=pk)
+        # change this to model form?..
+        Message.objects.create(conversation=conversation, content=request.POST['content'], sender=request.user)
+        conversation.last_message = request.POST['content']
+        conversation.save()
+        return redirect('core:chat', pk=pk)
 
 
 

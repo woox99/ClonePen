@@ -79,7 +79,7 @@
                     </a>
                 </li> -->
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:messages' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-chat-left-fill"></i>Messages
                     </a>
                 </li>
@@ -90,7 +90,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li>
-                    <a href="{% url 'core:your-work-grid' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:profile' user.username %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-grid-fill"></i>Your Work
                     </a>
                 </li>
