@@ -4,6 +4,9 @@
 .navbar{
     height: 70px !important;
 }
+.navbar .fa-codepen{
+    font-size: 35px;
+}
 
 /* Main Content */
 .main-content{

@@ -131,3 +131,14 @@
         width: 100%;
     }
 }
+@media (max-width: 992px) {
+
+    .chat{
+        /* background-color: red; */
+        width: unset;
+        padding-right: 10px;
+    }
+    .chat-box{
+        width: 100%;
+    }
+}

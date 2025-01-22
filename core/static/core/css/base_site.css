@@ -98,6 +98,10 @@ a{
     border-bottom: 1px solid #2b2c36;
 }
 
+.navbar .fa-codepen{
+    font-size: 35px;
+}
+
 .navbar .btn-group button {
     background-color: #282b33;
     border: none;

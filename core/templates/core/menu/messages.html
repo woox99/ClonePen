@@ -13,7 +13,8 @@
 
 <!-- makes menu link icon active color -->
 {% block messages-link %}
-<i class="bi bi-chat-left-fill active"></i>Messages<span id="unread-count" class="bg-warning text-black badge rounded-pill"></span>
+<i class="bi bi-chat-left-fill active"></i>Messages<span id="unread-count"
+    class="bg-warning text-black badge rounded-pill"></span>
 {% endblock %}
 {% block messages-link-offcanvas %}
 <i class="bi bi-chat-left-fill active"></i>Messages
@@ -24,41 +25,47 @@
 <div id="main-content" class="main-content container-fluid p-0 d-flex">
     <div class="conversations list-group" data-bs-theme="dark">
         {% for conversation in conversations %}
-        <a href="{% url 'core:chat' pk=conversation.pk username1=conversation.participants.first username2=conversation.participants.last %}"
-            class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
-            <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
-            <div class="d-flex w-100 justify-content-between">
-                <div>
-                    {% for participant in conversation.participants.all %}
-                    {% if participant != user %}
-                    {% if conversation.messages.last.is_read and conversation.messages.last.sender == user%}
-                    <h6 class="mb-1 text-body-secondary">
-                        {{participant.username}} <i class="bi bi-check-all text-primary"></i>
-                    </h6>
-                    {% elif conversation.messages.last.sender == user %}
-                    <h6 class="mb-1 text-body-secondary">
-                        {{participant.username}}<i class="bi bi-arrow-up-right ms-1"></i>
-                    </h6>
-                    {% elif conversation.messages.last.is_read %}
-                    <h6 class="mb-1 text-body-secondary">
-                        {{participant.username}}
-                    </h6>
-                    {% else %}
-                    <h6 class="mb-1 text-white">
-                        {{participant.username}}
-                    </h6>
-                    {% endif %}
-                    {% endif %}
-                    {% endfor %}
-                    {% if conversation.messages.last.is_read or conversation.messages.last.sender == user %}
-                    <p class="message-content text-secondary fw-medium">{{conversation.last_message}}</p>
-                    {% else %}
-                    <p class="message-content text-white fw-medium">{{conversation.last_message}}</p>
-                    {% endif %}
+        {% if conversation == chat %}
+        <div style="opacity: 0.6;">
+        {% endif %}
+            <a href="{% url 'core:chat' pk=conversation.pk username1=conversation.participants.first username2=conversation.participants.last %}"
+                class="conversation list-group-item list-group-item-action d-flex" aria-current="true">
+                <img class="me-3 mt-1" src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        {% for participant in conversation.participants.all %}
+                        {% if participant != user %}
+                        {% if conversation.messages.last.is_read and conversation.messages.last.sender == user%}
+                        <h6 class="mb-1 text-body-secondary">
+                            {{participant.username}} <i class="bi bi-check-all text-primary"></i>
+                        </h6>
+                        {% elif conversation.messages.last.sender == user %}
+                        <h6 class="mb-1 text-body-secondary">
+                            {{participant.username}}<i class="bi bi-arrow-up-right ms-1"></i>
+                        </h6>
+                        {% elif conversation.messages.last.is_read %}
+                        <h6 class="mb-1 text-body-secondary">
+                            {{participant.username}}
+                        </h6>
+                        {% else %}
+                        <h6 class="mb-1 text-white">
+                            {{participant.username}}
+                        </h6>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        {% if conversation.messages.last.is_read or conversation.messages.last.sender == user %}
+                        <p class="message-content text-secondary fw-medium">{{conversation.last_message}}</p>
+                        {% else %}
+                        <p class="message-content text-white fw-medium">{{conversation.last_message}}</p>
+                        {% endif %}
+                    </div>
+                    <small class="text-body-secondary">3d</i></small>
                 </div>
-                <small class="text-body-secondary">3d</i></small>
-            </div>
-        </a>
+            </a>
+        {% if conversation == chat %}
+        </div>
+        {% endif %}    
         {% endfor %}
     </div>
     <div class="chat d-none d-lg-block">
