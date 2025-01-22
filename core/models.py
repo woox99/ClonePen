@@ -66,7 +66,7 @@ class Profile(models.Model):
     demo = models.BooleanField(default=False)
     following = models.ManyToManyField(User, related_name='followers')
     pinned_items = models.ManyToManyField('core.Pen', related_name='pinned_profiles') # String reference to avoid circular import
-    last_conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, null=True, blank=True,)
+    last_conversation = models.ForeignKey(Conversation, on_delete=models.SET_NULL, null=True, blank=True,)
 
     # bio = models.TextField(blank=True)
     # avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)

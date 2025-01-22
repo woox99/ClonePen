@@ -122,5 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.unread_count > 0) {
                 document.getElementById('unread-count').innerText = data.unread_count;
             }
+        })
+        .catch(error => {
+            console.error('Error fetching unread count:', error);
         });
-})
+});
