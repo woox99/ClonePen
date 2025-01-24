@@ -2,8 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-from django.db.models.signals import pre_save
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch import receiver
 
 
@@ -95,6 +94,14 @@ def create_message(sender, instance, created, **kwargs):
         conversation = Conversation.objects.create(last_message=first_message)
         conversation.participants.set([clonepen, instance])
         Message.objects.create(conversation=conversation, sender=clonepen, content=first_message)
+
+
+# Cascade deleting user to deleting conversation
+@receiver(pre_delete, sender=User)
+def delete_related_conversation(sender, instance, **kwargs):
+    conversations = Conversation.objects.filter(participants=instance)
+    for conversation in conversations:
+        conversation.delete()
 
     
 # class Comment(models.Model):

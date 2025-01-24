@@ -161,7 +161,6 @@ class PenDeleteView(View):
             raise Http404() # Create 404 view
 
 
-# remove username from url parameter. Not needed
 class MessagesView(View):
     def get(self, request):
         conversations = request.user.conversations.order_by('-updated')
@@ -195,10 +194,29 @@ class MessageCreateView(View):
     def post(self, request, pk):
         conversation = get_object_or_404(Conversation, pk=pk)
         # change this to model form?..
-        Message.objects.create(conversation=conversation, content=request.POST['content'], sender=request.user)
-        conversation.last_message = request.POST['content']
+        content = request.POST['content']
+        if len(content) == 0:
+            content = '[empty message]'
+        conversation.last_message = content
         conversation.save()
+        Message.objects.create(conversation=conversation, content=content, sender=request.user)
         return redirect('core:chat', pk=pk, username1=conversation.participants.first(), username2=conversation.participants.last())
+    
+
+class ChatCreateView(View):
+    def post(self, request, sender_pk, receiver_pk):
+        sender = get_object_or_404(User, pk=sender_pk)
+        receiver = get_object_or_404(User, pk=receiver_pk)
+        content = request.POST['content']
+        if len(content) == 0:
+            content = '[empty message]'
+        conversation = Conversation.objects.filter(participants=sender).filter(participants=receiver).first()
+        if not conversation:
+            conversation = Conversation.objects.create(last_message=content)
+            conversation.participants.set([sender, receiver])
+            conversation.save()
+        Message.objects.create(sender=sender, content=content, conversation=conversation)
+        return redirect('core:chat', pk=conversation.pk, username1=sender.username, username2=receiver.username)
 
 
 

@@ -101,7 +101,7 @@
     bottom: 0;
     width: calc(100vw - 570px);
     background-color: #00000099;
-    height: 70px;
+    height: 90px;
     border-top: 1px solid #2b2c36;
     padding-top: 15px;
     padding-left: 10px;
@@ -115,15 +115,13 @@
     overflow-y: hidden;
 }
 .chat-box form button{
-    background-color: #000000;
-    background-color: red;
     background-color: #76daff;
     border-radius: 50%;
     height: 35px;
     width: 35px;
-    /* color: #76daff; */
     border: none;
 }
+
 
 @media (max-width: 768px) {
 

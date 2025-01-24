@@ -53,7 +53,22 @@ hr{
     margin-left: 100px !important;
     margin-right: 100px !important;
 }
-
+.message-btn:hover{
+    color: #ffffff50 !important;
+    border: 1px solid #ffffff50 !important;
+}
+.follow-btn{
+    border: none;
+    background-color: #47cf73 !important;
+}
+.follow-btn:hover{
+    color: white;
+    background-color: #47cf7390 !important;
+}
+.message-btn{
+    border: none;
+    /* background-color: #76daff; */
+}
 .list-btn{
     background-color: #44485750 !important;
 }
@@ -210,6 +225,21 @@ iframe {
 .next-page-btn:hover{
     background-color: #47cf73 !important;
     color: black;
+}
+
+#message-modal textarea{
+    resize: none;
+}
+#message-modal form button{
+    background-color: #76daff;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    /* color: #76daff; */
+    border: none;
+}
+#message-modal form button:hover{
+    opacity: 0.5;
 }
 
 

@@ -14,6 +14,7 @@ urlpatterns=[
     path('messages/', MessagesView.as_view(), name='messages' ),
     path('messages/chat-<int:pk>/<str:username1>-<str:username2>/', ChatView.as_view(), name='chat' ),
     path('create-message/<int:pk>/', MessageCreateView.as_view(), name='message-create' ),
+    path('create-chat/<int:sender_pk>/<int:receiver_pk>/', ChatCreateView.as_view(), name='chat-create' ),
     path('pen/', PenCreateView.as_view(), name='pen-create' ),
     path('pen/<slug:slug>/', PenDetailView.as_view(), name='pen-detail' ),
     path('edit-pen/<slug:slug>/', PenUpdateView.as_view(), name='pen-update' ),
