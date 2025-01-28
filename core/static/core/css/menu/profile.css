@@ -65,6 +65,11 @@ hr{
     color: white;
     background-color: #47cf7390 !important;
 }
+.unfollow-btn{
+    border: none;
+    background-color: #47cf73 !important;
+    opacity: 0.5;
+}
 .message-btn{
     border: none;
     /* background-color: #76daff; */

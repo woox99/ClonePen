@@ -1,9 +1,9 @@
 from django.contrib import admin
 from core.models import *
 
-# class BookAdmin(admin.ModelAdmin):
-#     # adds field column on model list page
-#     list_display = ["title", "publisher", 'published_date', 'pages']
+class ProfileAdmin(admin.ModelAdmin):
+    # adds field column on model list page
+    list_display = ['user', 'id', 'demo']
 
 #     # adds filter box on model list page
 #     list_filter = ['publisher', 'published_date']
@@ -17,4 +17,4 @@ from core.models import *
 admin.site.register(Pen)
 admin.site.register(Conversation)
 admin.site.register(Message)
-admin.site.register(Profile)
+admin.site.register(Profile, ProfileAdmin)

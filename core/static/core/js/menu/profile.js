@@ -45,4 +45,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Toggle follow/unfollow button
+const toggleFollow = (button, profileId) => {
+    const csrfToken = document.querySelector('[name=csrf-token]').content;
+    
+    // console.log(button)
+    fetch(`/clonepen.com/api/toggle-follow/${profileId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken,
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.following){
+            button.innerHTML = '<i class="bi bi-person-dash me-2"></i>Unfollow'
+            button.classList.remove('follow-btn')
+            button.classList.add('unfollow-btn')
+        }
+        else{
+            button.innerHTML = '<i class="bi bi-person-add me-2"></i>Follow'
+            button.classList.remove('unfollow-btn')
+            button.classList.add('follow-btn')
+        }
+    })
+}
 

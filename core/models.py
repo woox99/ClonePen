@@ -63,7 +63,7 @@ class Message(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     demo = models.BooleanField(default=False)
-    following = models.ManyToManyField(User, related_name='followers')
+    following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     pinned_items = models.ManyToManyField('core.Pen', related_name='pinned_profiles') # String reference to avoid circular import
     last_conversation = models.ForeignKey(Conversation, on_delete=models.SET_NULL, null=True, blank=True,)
 

@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from core.models import Pen, Message
+from core.models import Pen, Message, Profile
+from django.contrib.auth.models import User
+
 from django.http import JsonResponse, HttpResponse
 from api.serializers import *
 
@@ -28,3 +30,16 @@ class GetUnreadMessageCount(View):
         messages = Message.objects.filter(conversation__participants=request.user)
         unread_count = messages.filter(is_read=False).exclude(sender=request.user).count()
         return JsonResponse({'unread_count': unread_count})
+    
+# Toggle follow/unfollow button
+class ToggleFollow(View):
+    def post(self, request, profile_id):
+        profile = get_object_or_404(Profile, pk=profile_id)
+        current_user = request.user
+        if profile in current_user.profile.following.all():
+            current_user.profile.following.remove(profile)
+            current_user.save()
+            return JsonResponse({'following': False})
+        current_user.profile.following.add(profile)
+        current_user.save()
+        return JsonResponse({'following': True})
