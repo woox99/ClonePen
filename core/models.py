@@ -4,6 +4,10 @@ from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch import receiver
+from django.utils.timesince import timesince
+from django.utils.timezone import now
+from datetime import timedelta
+
 
 
 class Pen(models.Model):
@@ -43,6 +47,22 @@ class Conversation(models.Model):
     last_message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
+    @property
+    def timestamp(self):
+        delta = now() - self.updated
+        
+        if delta < timedelta(minutes=1):
+            return "Now"
+        elif delta < timedelta(hours=1):
+            return f"{delta.seconds // 60}m"
+        elif delta < timedelta(days=1):
+            return f"{delta.seconds // 3600}h"
+        elif delta < timedelta(days=365):
+            return f"{delta.days}d"
+        else:
+            years = delta.days // 365
+            return f"{years}y"
 
     def __str__(self):
         participant_names = ", ".join([user.username for user in self.participants.all()])

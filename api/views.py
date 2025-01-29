@@ -17,8 +17,9 @@ class TogglePin(View):
         return JsonResponse({'pinned': True})
 
 # Fetch all pinned items by current user
+### Change to get request
 class GetPinnedItemsByActiveUser(View):
-    def post(self, request):
+    def post(self, request): 
         # fetch only public pinned items
         pinned_items = request.user.profile.pinned_items.filter(public=True)
         serialized_pinned_items = PenSerializer(pinned_items, many=True)
@@ -38,8 +39,6 @@ class ToggleFollow(View):
         current_user = request.user
         if profile in current_user.profile.following.all():
             current_user.profile.following.remove(profile)
-            current_user.save()
             return JsonResponse({'following': False})
         current_user.profile.following.add(profile)
-        current_user.save()
         return JsonResponse({'following': True})

@@ -179,6 +179,8 @@ class ChatView(View):
     def get(self, request, pk, username1, username2):
         conversations = request.user.conversations.order_by('-updated')
         chat = get_object_or_404(Conversation, pk=pk)
+        # for message in chat.messages.all():
+            # print(message.content)
         profile = get_object_or_404(Profile, user=request.user)
         profile.last_conversation = chat
         profile.save()
@@ -195,6 +197,7 @@ class MessageCreateView(View):
         conversation = get_object_or_404(Conversation, pk=pk)
         # change this to model form?..
         content = request.POST['content']
+        # print(content)
         if len(content) == 0:
             content = '[empty message]'
         conversation.last_message = content
