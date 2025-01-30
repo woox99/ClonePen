@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View, generic
-from django.db.models import F
+from django.db.models import F, Q
 from django.http import Http404
 from .models import *
 from django.contrib.auth.models import User
@@ -32,6 +32,27 @@ class TrendingView(generic.ListView):
             'next_page_object':next_page_object,
             }
         return context
+
+
+class SearchView(View):
+    def get(self, request):
+        query = request.GET.get('q', '')
+        pens = Pen.objects.filter( Q(title__icontains=query) | Q(owner__username__icontains=query), public=True)
+
+        paginator = Paginator(pens, 4)
+        page_number = self.request.GET.get('page')
+        if not page_number:
+            next_page_number = 2
+        else:
+            next_page_number = str(int(page_number) + 1)
+        page_object = paginator.get_page(page_number)
+        next_page_object = paginator.get_page(next_page_number)
+        context = {
+            'page_object':page_object,
+            'next_page_object':next_page_object,
+            'query':query,
+            }
+        return render(request, 'core/menu/search.html', context=context)
 
 
 class FollowingView(generic.ListView):

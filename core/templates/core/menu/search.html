@@ -8,27 +8,19 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/menu/trending.css' %}">
-{% endblock %}
-
-<!-- makes menu link icon active color -->
-{% block following-link %}
-<i class="bi bi-people-fill active"></i>Following
-{% endblock %}
-{% block following-link-offcanvase %}
-<i class="bi bi-people-fill active"></i>Following
+<link rel="stylesheet" href="{% static 'core/css/menu/search.css' %}">
 {% endblock %}
 
 
 <!-- main content -->
 {% block main-content %}
+<p class="search-string text-secondary p-4 fw-bolder">Search results for <i class="bi bi-chevron-right me-1"></i>"<span class="search-query">{{query}}</span>"</p>
+{% if not page_object %}
+<div class="empty-message d-flex flex-column justify-content-center align-items-center w-100">
+    <h1 class="text-secondary text-center fs-5 fw-bolder px-2">Sorry, our team couldn't find any results for that..</h1>
+</div>
+{% endif %}
 <div id="pages" class="main-content container-fluid" onload="scaleIframes();">
-    {% if not page_object %}
-    <div class="empty-message d-flex flex-column justify-content-center align-items-center w-100">
-        <p class="text-secondary text-center fs-5 m-0 fw-bolder">Nothing to see here. Maybe you could find some</p>
-        <p class="text-secondary text-center fs-5 fw-bolder">more people to follow in <a href="{% url 'core:trending' %}"
-                style="color: #76daff;">Trending</a>?</p>
-    </div>
-    {% endif %}
     <div class="pages d-flex">
         {% if page_object.has_previous %}
         <div class="page previous-page d-none d-md-block"></div>
@@ -79,7 +71,7 @@
         </div>
         {% if page_object.has_next %}
         <div class="page next-page">
-            <a href="?page={{ page_object.next_page_number }}" class="next-page-link d-none d-md-block"></a>
+            <a href="?page={{ page_object.next_page_number }}&q={{query}}" class="next-page-link d-none d-md-block"></a>
             {% for pen in next_page_object %}
             <div class="pen-card" data-bs-theme="dark">
                 <div class="card-background"></div>
@@ -114,14 +106,14 @@
 
         <!-- pagination -->
         {% if page_object.has_previous %}
-        <a href="?page={{ page_object.previous_page_number }}#pages">
+        <a href="?page={{ page_object.previous_page_number }}&q={{query}}">
             <div class="previous-page-btn d-flex justify-content-center align-items-center rounded-1">
                 <i class="bi bi-caret-left-fill fs-4"></i>
             </div>
         </a>
         {% endif %}
         {% if page_object.has_next %}
-        <a href="?page={{ page_object.next_page_number }}#pages">
+        <a href="?page={{ page_object.next_page_number }}&q={{query}}">
             <div class="next-page-btn d-flex justify-content-center align-items-center rounded-1">
                 <i class="bi bi-caret-right-fill fs-4"></i>
             </div>

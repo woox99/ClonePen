@@ -156,12 +156,12 @@
                         </button>
                     </div>
                     <!-- Searchbar -->
-                    <form action="">
+                    <form action="{% url 'core:search' %}" method="GET">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-search"></i>
                             </span>
-                            <input type="search " class="fw-bolder rounded-1" placeholder="Search ClonePen">
+                            <input type="search" name="q" class="fw-bolder rounded-1" placeholder="Search ClonePen" value="{{ query }}">
                         </div>
                     </form>
                     <div class="d-flex menus gap-2">

@@ -1,0 +1,18 @@
+.search-string{
+
+}
+
+.search-query{
+    color: #76daff;
+}
+
+.pages {
+    top: 135px;
+}
+
+@media (max-width: 768px) {
+    .pages {
+        max-width: calc(100vw - 17px);
+        left: 0;
+    }
+}

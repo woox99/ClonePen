@@ -8,6 +8,7 @@ urlpatterns=[
     path('', views.landing, name='landing-page' ),
     path('trending/', TrendingView.as_view(), name='trending' ),
     path('following/', FollowingView.as_view(), name='following' ),
+    path('search', SearchView.as_view(), name='search' ),
     # path('profile/<str:username>/list-view/', ProfileListView.as_view(), name='profile-list' ),
     path('your-work/list-view/<str:username>/', YourWorkListView.as_view(), name='your-work-list' ),
     path('your-work/grid-view/<str:username>/', YourWorkGridView.as_view(), name='your-work-grid' ),

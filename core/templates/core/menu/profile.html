@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="location text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>Hawaii, USA</div>
-    <div class="bio text-white px-4">This is my bio, and it should have a max length of 100?</div>
+    <em class="bio text-white px-4">"Demo or it didn't happen."</em>
     <hr id="pages" class="text-secondary">
     <div class="px-5">
         <div class="links d-flex align-items-end justify-content-between pb-2 mb-4">
@@ -85,13 +85,13 @@
         {% if not page_object %}
         {% if profile.user == user %}
         <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 40vh;">
-            <p class="text-secondary text-center fs-5 m-0">You haven't created anything yet..</p>
-            <a href="{% url 'core:pen-create' %}" style="color: #76daff;">Create Pen</a>
+            <p class="text-secondary text-center fs-5 m-0 fw-bolder">You haven't created anything yet..</p>
+            <a href="{% url 'core:pen-create' %}" class="fw-bolder" style="color: #76daff;">Create Pen</a>
         </div>
         {% else %}
         <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 40vh;">
-            <p class="text-secondary text-center fs-5 m-0">This person has not created</p>
-            <p class="text-secondary text-center fs-5 m-0">any public pens yet..</p>
+            <p class="text-secondary text-center fs-5 m-0 fw-bolder">This person has not created</p>
+            <p class="text-secondary text-center fs-5 m-0 fw-bolder">any public pens yet..</p>
         </div>
         {% endif %}
         {% endif %}
