@@ -11,21 +11,24 @@
 {% endblock %}
 
 <!-- makes menu link icon active color -->
-{% block trending-link %}
-<i class="bi bi-bar-chart-line-fill active"></i>Trending
+{% block following-link %}
+<i class="bi bi-people-fill active"></i>Following
 {% endblock %}
-{% block trending-link-offcanvas %}
-<i class="bi bi-bar-chart-line-fill active"></i>Trending
+{% block following-link-offcanvase %}
+<i class="bi bi-people-fill active"></i>Following
 {% endblock %}
-{% block tending-link-navbar %}
-<button type="button" class="btn btn-primary px-4 selected rounded-start-1">
-    <a href="{% url 'core:trending' %}" class="text-white text-decoration-none">Trending</a>
-</button>
-{% endblock %}
+
 
 <!-- main content -->
 {% block main-content %}
 <div id="pages" class="main-content container-fluid" onload="scaleIframes();">
+    {% if not page_object %}
+    <div class="empty-message d-flex flex-column justify-content-center align-items-center w-100">
+        <p class="text-white text-center fs-5 m-0">Nothing to see here. Maybe you could find some</p>
+        <p class="text-white text-center fs-5">more people to follow in <a href="{% url 'core:trending' %}"
+                style="color: #76daff;">Trending</a>?</p>
+    </div>
+    {% endif %}
     <div class="pages d-flex">
         {% if page_object.has_previous %}
         <div class="page previous-page d-none d-md-block"></div>

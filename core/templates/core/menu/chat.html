@@ -19,6 +19,11 @@
 {% block messages-link-offcanvas %}
 <i class="bi bi-chat-left-fill active"></i>Messages
 {% endblock %}
+{% block messages-link-navbar %}
+<button type="button" class="btn btn-primary px-4 selected">
+    <a href="{% url 'core:messages' %}" class="text-white text-decoration-none">Messages</a>
+</button>
+{% endblock %}
 
 <!-- main content -->
 {% block main-content %}

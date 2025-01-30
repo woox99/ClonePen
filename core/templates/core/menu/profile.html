@@ -47,7 +47,7 @@
             <img src="{% static 'core/assets/profile_codepen.png' %}" alt="">
         </div>
     </div>
-    <div class="location text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>United States</div>
+    <div class="location text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>Hawaii, USA</div>
     <div class="bio text-white px-4">This is my bio, and it should have a max length of 100?</div>
     <hr id="pages" class="text-secondary">
     <div class="px-5">
@@ -56,7 +56,7 @@
             <div class="d-flex gap-4">
                 <h6 class="text-white">Your Work</h6>
                 <h6><a href="" class="text-secondary">Pinned Items</a></h6>
-                <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Create New Pen</a></h6>
+                <h6><a href="{% url 'core:pen-create' %}" class="text-secondary">Create Pen</a></h6>
             </div>
             {% else %}
             <div class="d-flex w-100 justify-content-end gap-4">
@@ -65,9 +65,11 @@
                     <i class="bi bi-chat-quote-fill me-2"></i>Message
                 </button>
                 {% if profile in user.profile.following.all %}
-                <button class="unfollow-btn rounded-1 pe-3 ps-2" onclick="toggleFollow(this, {{profile.pk}})"><i class="bi bi-person-dash me-2"></i>Unfollow</button>
+                <button class="unfollow-btn rounded-1 pe-3 ps-2" onclick="toggleFollow(this, {{profile.pk}})"><i
+                        class="bi bi-person-dash me-2"></i>Unfollow</button>
                 {% else %}
-                <button class="follow-btn rounded-1 pe-3 ps-2" onclick="toggleFollow(this, {{profile.pk}})"><i class="bi bi-person-add me-2"></i>Follow</button>
+                <button class="follow-btn rounded-1 pe-3 ps-2" onclick="toggleFollow(this, {{profile.pk}})"><i
+                        class="bi bi-person-add me-2"></i>Follow</button>
                 {% endif %}
             </div>
             {% endif %}
@@ -82,9 +84,15 @@
         </a>
         {% if not page_object %}
         {% if profile.user == user %}
-        <p class="text-secondary mt-3">You haven't created any pens yet..</p>
+        <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 40vh;">
+            <p class="text-secondary text-center fs-5 m-0">You haven't created anything yet..</p>
+            <a href="{% url 'core:pen-create' %}" style="color: #76daff;">Create Pen</a>
+        </div>
         {% else %}
-        <p class="text-secondary mt-3">This person doesn't have any public pens at this time.</p>
+        <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 40vh;">
+            <p class="text-secondary text-center fs-5 m-0">This person has not created</p>
+            <p class="text-secondary text-center fs-5 m-0">any public pens yet..</p>
+        </div>
         {% endif %}
         {% endif %}
     </div>
@@ -117,11 +125,22 @@
                     </div>
                 </div>
                 <div class="card-footer p-0 ps-3 pb-3 d-flex gap-2">
+                    {% if pen.public %}
                     <button class="btn px-2 py-1"><i class="bi bi-pin-fill"></i> {{pen.pinned_profiles.count}}</button>
                     <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill me-1"></i>8000</button>
                     <a href="{% url 'core:pen-detail' pen.slug %}">
                         <button class="btn px-2 py-1"><i class="bi bi-eye-fill me-1"></i>{{pen.views}}</button>
                     </a>
+                    {% else %}
+                    <button class="btn px-2 py-1 text-secondary" disabled><i class="bi bi-pin-fill"></i>
+                        {{pen.pinned_profiles.count}}</button>
+                    <button class="btn px-2 py-1 text-secondary" disabled><i
+                            class="bi bi-chat-left-fill me-1"></i>8000</button>
+                    <button class="btn px-2 py-1 text-secondary" disabled><i
+                            class="bi bi-eye-fill me-1"></i>{{pen.views}}</button>
+                    <button class="btn px-2 py-1 text-white" disabled><i
+                            class="bi bi-lock-fill me-1 text-danger"></i>Not Public</button>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -142,7 +161,11 @@
                 <div class="card-footer p-0 ps-3 pb-3">
                     <button class="btn px-2 py-1"><i class="bi bi-pin-fill"></i> {{pen.pinned_profiles.count}}</button>
                     <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8000</button>
+                    {% if pen.public %}
                     <button class="btn px-2 py-1"><i class="bi bi-eye-fill"></i> {{pen.views}}</button>
+                    {% else %}
+                    <button class="btn px-2 py-1"><i class="bi bi-eye-slash"></i></button>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -167,17 +190,20 @@
     </div>
 </div>
 <!-- Modal -- Message -->
-<div class="modal fade" id="message-modal" data-bs-theme="dark" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="message-modal" data-bs-theme="dark" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <img class="rounded-pill me-2" src="{% static 'core/assets/profile_codepen.png' %}" alt=""
                     style="height: 30px; width: 30px;">
-                <p class="mb-0 text-white" id="staticBackdropLabel">@{{profile.user.username}}</p>
-                <button type="button" class="btn-close text-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                <p class="mb-0 text-white">@{{profile.user.username}}</p>
+                <button type="button" class="btn-close text-secondary" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{% url 'core:chat-create' user.pk profile.user.pk %}" class="d-flex align-items-end" method="POST">
+                <form action="{% url 'core:chat-create' user.pk profile.user.pk %}" class="d-flex align-items-end"
+                    method="POST">
                     {% csrf_token %}
                     <textarea class="form-control rounded-1" id="" rows="3" data-bs-theme="dark"
                         placeholder="Write message.." name="content"></textarea>
