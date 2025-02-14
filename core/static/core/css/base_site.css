@@ -237,15 +237,15 @@ footer .copyright {
 /* Model -- Pinned Items */
 .modal-content {
     background-color: #131417 !important;
-    border: 3px solid #262830 !important;
+    border: 1px solid #262830 !important;
 }
 
 .modal-header {
-    border-bottom: 3px solid #262830 !important;
+    border-bottom: 1px solid #262830 !important;
 }
 
 .modal-header i {
-    color: #76daff !important;
+    /* color: #76daff !important; */
 }
 
 .modal-body {

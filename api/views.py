@@ -18,12 +18,12 @@ class TogglePin(View):
 
 # Fetch all pinned items by current user
 ### Change to get request
-class GetPinnedItemsByActiveUser(View):
-    def post(self, request): 
-        # fetch only public pinned items
-        pinned_items = request.user.profile.pinned_items.filter(public=True)
-        serialized_pinned_items = PenSerializer(pinned_items, many=True)
-        return JsonResponse({'pinned-items': serialized_pinned_items.data})
+# class GetPinnedItemsByActiveUser(View):
+#     def post(self, request): 
+#         # fetch only public pinned items
+#         pinned_items = request.user.profile.pinned_items.filter(public=True)
+#         serialized_pinned_items = PenSerializer(pinned_items, many=True)
+#         return JsonResponse({'pinned-items': serialized_pinned_items.data})
 
 # Fetch unread message count
 class GetUnreadMessageCount(View):

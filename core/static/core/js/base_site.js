@@ -1,45 +1,41 @@
 // Fetch Pinned Items AJAX
 // CHANGE TO GET REQUEST
-const getPinnedItemsByActiveUser = () => {
-    const csrfToken = document.querySelector('[name=csrf-token]').content;
+// const getPinnedItemsByActiveUser = () => {
+//     const csrfToken = document.querySelector('[name=csrf-token]').content;
 
-    fetch('/clonepen.com/api/get-pinned-items/', {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': csrfToken,
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        items = data['pinned-items'];
-        // console.log(items)
-        pinnedItemsElement = document.querySelector('.pinned-items');
+//     fetch('/clonepen.com/api/get-pinned-items/', {
+//         method: 'POST',
+//         headers: {
+//             'X-CSRFToken': csrfToken,
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         items = data['pinned-items'];
+//         // console.log(items)
+//         pinnedItemsElement = document.querySelector('.pinned-items');
 
-        // Clear existing html
-        // pinnedItemsElement.innerHTML = '';
+//         // Clear existing html
+//         pinnedItemsElement.innerHTML = '';
 
-        for (const pen of items) {
-            let pinnedItemElement = document.querySelector('.pinned-item')
-            // const iframe = document.createElement('iframe');
-            // iframe = pinnedItemElement.querySelector('iframe')
-            // iframe.srcdoc = `<body>${pen.html}<style>${pen.css}</style><script>${pen.js}</script></body>`;
-            // pinnedItemElement.appendChild(iframe);
-            
-            pinnedItemsElement.appendChild(pinnedItemElement);
-            pinnedItemsElement.appendChild(pinnedItemElement);
-            // let windowWidth = window.innerWidth;
-            // let scale;
+//         let windowWidth = window.innerWidth;
+//         let scale;
+//         for (const pen of items) {
+//             iframe = document.createElement('iframe')
+//             iframe.srcdoc = `<body>${pen.html}<style>${pen.css}</style><script>${pen.js}</script></body>`;
+//             pinnedItemsElement.appendChild(iframe);
 
-            // if(windowWidth > 768){
-            //     scale = 0.5 - (212 / windowWidth);
-            // }
-            // else{
-            //     scale = 1.0 - (136 / windowWidth) ;
-            // }
-            // iframe.style.zoom = scale;
-        }
-    })
-}
+//             if(windowWidth > 768){
+//                 scale = 0.5 - (212 / windowWidth);
+//                 scale = 0.25
+//             }
+//             else{
+//                 scale = 1.0 - (136 / windowWidth) ;
+//             }
+//             iframe.style.zoom = scale;
+//         }
+//     })
+// }
 
 // Toggle Pin Item AJAX
 const togglePin = (button, penId) => {
