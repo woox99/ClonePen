@@ -59,7 +59,8 @@
                     <a href="{% url 'core:messages' %}"
                         class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block messages-link %}
-                        <i class="bi bi-chat-left-fill"></i>Messages<span id="unread-count" class="bg-warning text-black badge rounded-pill"></span>
+                        <i class="bi bi-chat-left-fill"></i>Messages<span id="unread-count"
+                            class="bg-warning text-black badge rounded-pill"></span>
                         {% endblock %}
                     </a>
                     {% else %}
@@ -71,13 +72,15 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'core:following' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:following' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block following-link %}
                         <i class="bi bi-people-fill"></i>Following
                         {% endblock %}
                     </a>
                     {% else %}
-                    <a href="{% url 'accounts:login' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'accounts:login' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-people-fill"></i>Following
                     </a>
                     {% endif %}
@@ -161,7 +164,8 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-search"></i>
                             </span>
-                            <input type="search" name="q" class="fw-bolder rounded-1" placeholder="Search ClonePen" value="{{ query }}">
+                            <input type="search" name="q" class="fw-bolder " placeholder="Search ClonePen"
+                                value="{{ query }}">
                         </div>
                     </form>
                     <div class="d-flex menus gap-2">
@@ -261,7 +265,7 @@
     <!-- Modal -- Pinned Items -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-theme="dark" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-dialog modal-md modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <p class="mb-0 fs-6 text-white" id="staticBackdropLabel"><i
@@ -269,19 +273,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-10 col-lg-5">
-                            <p class="text-white fw-semibold mb-0">Title</p>
-                        </div>
-                        <div class="col-3 d-none d-lg-block">
-                            <p class="text-white fw-semibold mb-0">Created</p>
-                        </div>
-                        <div class="col-3 d-none d-lg-block">
-                            <p class="text-white fw-semibold mb-0">Last Updated</p>
+                    <div class="pinned-items flex-wrap justify-content-around">
+                        <!-- Create pen that will be duplicated here in js -->
+                        <div class="pinned-item">
+                            <iframe
+                                srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
+                                frameborder="0" class="rounded-4" scrolling="no"></iframe>
+                            <p class="text-white">Test</p>
                         </div>
                     </div>
-                    <div class="pinned-items"></div>
-                    <p class="d-flex justify-content-center text-secondary mt-4">Pin items to add them here!</p>
                 </div>
             </div>
         </div>
@@ -328,19 +328,22 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'core:messages' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:messages' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block messages-link-offcanvas %}
                         <i class="bi bi-chat-left-fill"></i>Messages
                         {% endblock %}
                     </a>
                     {% else %}
-                    <a href="{% url 'accounts:login' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'accounts:login' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-chat-left-fill"></i>Messages
                     </a>
                     {% endif %}
                 </li>
                 <li>
-                    <a href="{% url 'core:following' %}" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                    <a href="{% url 'core:following' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         {% block following-link-offcanvase %}
                         <i class="bi bi-people-fill"></i>Following
                         {% endblock %}
