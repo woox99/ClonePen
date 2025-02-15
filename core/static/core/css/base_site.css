@@ -227,7 +227,7 @@ footer {
 }
 
 footer a:hover .label {
-    color: #0ebeff;
+    color: #76daff;
 }
 
 footer .copyright {
@@ -293,7 +293,7 @@ footer .copyright {
     color: #6c6e75;
 }
 .offcanvas .active{
-    color: #0ebeff;
+    color: #76daff;
 }
 
 .offcanvas .create-btn {

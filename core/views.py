@@ -34,6 +34,28 @@ class TrendingView(generic.ListView):
         return context
 
 
+class PinnedItemsView(generic.ListView):
+    template_name = 'core/menu/pinned_items.html'
+    model = Pen
+
+    def get_context_data(self):
+        # pens = Pen.objects.filter(public=True).order_by('-modified')
+        pens = self.request.user.profile.pinned_items.filter(public=True)
+        paginator = Paginator(pens, 4)
+        page_number = self.request.GET.get('page')
+        if not page_number:
+            next_page_number = 2
+        else:
+            next_page_number = str(int(page_number) + 1)
+        page_object = paginator.get_page(page_number)
+        next_page_object = paginator.get_page(next_page_number)
+        context = {
+            'page_object':page_object,
+            'next_page_object':next_page_object,
+            }
+        return context
+
+
 class SearchView(View):
     def get(self, request):
         query = request.GET.get('q', '')
@@ -104,6 +126,7 @@ class ProfileView(View):
             'profile':profile,
             }
         return render(request, 'core/menu/profile.html', context=context)
+
 
 
 class YourWorkGridView(View):

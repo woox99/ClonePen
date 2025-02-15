@@ -49,10 +49,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3"
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="getPinnedItemsByActiveUser()">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'core:pinned-items' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        {% block pinned-items-link %}
+                        <i class="bi bi-pin-fill"></i>Pinned Items
+                        {% endblock %}
+                    </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-pin-fill"></i>Pinned Items
                     </a>
+                    {% endif %}
                 </li>
                 <li>
                     {% if user.is_authenticated %}
@@ -124,14 +133,14 @@
                         </button>
                         {% endblock %}
                         {% if user.is_authenticated %}
-                        {% block messages-link-navbar %}
+                        {% block following-link-navbar %}
                         <button type="button" class="btn btn-primary px-4">
-                            <a href="{% url 'core:messages' %}" class="text-white text-decoration-none">Messages</a>
+                            <a href="{% url 'core:following' %}" class="text-white text-decoration-none">Following</a>
                         </button>
                         {% endblock %}
                         {% else %}
                         <button type="button" class="btn btn-primary px-4">
-                            <a href="{% url 'accounts:login' %}" class="text-white text-decoration-none">Messages</a>
+                            <a href="{% url 'accounts:login' %}" class="text-white text-decoration-none">Following</a>
                         </button>
                         {% endif %}
                         {% if user.is_authenticated %}
@@ -337,10 +346,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3"
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'core:pinned-items' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
+                        {% block pinned-items-offcanvas %}
+                        <i class="bi bi-pin-fill"></i>Pinned Items
+                        {% endblock %}
+                    </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}"
+                        class="link d-flex align-items-center gap-2 text-decoration-none text-white ps-3">
                         <i class="bi bi-pin-fill"></i>Pinned Items
                     </a>
+                    {% endif %}
                 </li>
                 <li>
                     {% if user.is_authenticated %}

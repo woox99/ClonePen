@@ -1,7 +1,7 @@
 {% extends 'core/base_site.html' %}
 
 {% block head_title %}
-<title>Trending - ClonePen</title>
+<title>Pinned Items - ClonePen</title>
 {% endblock %}
 
 {% load static %}
@@ -11,16 +11,11 @@
 {% endblock %}
 
 <!-- makes menu link icon active color -->
-{% block following-link-navbar %}
-<button type="button" class="btn btn-primary px-4 selected">
-    <a href="{% url 'core:following' %}" class="text-white text-decoration-none">Following</a>
-</button>
+{% block pinned-items-link %}
+<i class="bi bi-pin-fill active"></i>Pinned Items
 {% endblock %}
-{% block following-link %}
-<i class="bi bi-people-fill active"></i>Following
-{% endblock %}
-{% block following-link-offcanvase %}
-<i class="bi bi-people-fill active"></i>Following
+{% block pinned-items-offcanvas %}
+<i class="bi bi-pin-fill active"></i>Pinned Items
 {% endblock %}
 
 
@@ -29,9 +24,9 @@
 <div id="pages" class="main-content container-fluid" onload="scaleIframes();">
     {% if not page_object %}
     <div class="empty-message d-flex flex-column justify-content-center align-items-center w-100">
-        <p class="text-secondary text-center fs-5 m-0 fw-bolder">Nothing to see here. Maybe you could find some</p>
-        <p class="text-secondary text-center fs-5 fw-bolder">more people to follow in <a href="{% url 'core:trending' %}"
-                style="color: #76daff;">Trending</a>?</p>
+        <p class="text-secondary text-center fs-5 m-0 fw-bolder">Items you pin will be saved here. Maybe you</p>
+        <p class="text-secondary text-center fs-5 fw-bolder">want to find items to pin in <a
+                href="{% url 'core:trending' %}" style="color: #76daff;">Trending</a>?</p>
     </div>
     {% endif %}
     <div class="pages d-flex">

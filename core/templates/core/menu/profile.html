@@ -53,10 +53,14 @@
     <div class="px-5">
         <div class="links d-flex align-items-end justify-content-between pb-2 mb-4">
             {% if profile.user == user %}
-            <div class="d-flex gap-5">
-                <a href="" class="text-white"><i class="bi bi-grid-fill"></i> Your Work</a>
-                <a href="" class="text-secondary"><i class="bi bi-pin-fill"></i> Pinned Items</a>
-                <a href="{% url 'core:pen-create' %}" class="text-secondary"><i class="bi bi-grid-1x2-fill"></i> Create Pen</a>
+            <div class="d-flex justify-content-between w-100 mb-1">
+                <div class="d-flex gap-5">
+                    <a href="" class="text-white"><i class="bi bi-grid-fill"></i> Your Work</a>
+                    <a href="{% url 'core:pen-create' %}" class="text-secondary"><i class="bi bi-grid-1x2-fill"></i> Create Pen</a>
+                </div>
+                <div>
+                    <a href="" class="text-secondary"><i class="bi bi-gear-wide-connected"></i> Settings</a>
+                </div>
             </div>
             {% else %}
             <div class="d-flex w-100 justify-content-end gap-4">

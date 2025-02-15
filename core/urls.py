@@ -7,6 +7,7 @@ app_name='core'
 urlpatterns=[
     path('', views.landing, name='landing-page' ),
     path('trending/', TrendingView.as_view(), name='trending' ),
+    path('pinned-items/', PinnedItemsView.as_view(), name='pinned-items' ),
     path('following/', FollowingView.as_view(), name='following' ),
     path('search', SearchView.as_view(), name='search' ),
     # path('profile/<str:username>/list-view/', ProfileListView.as_view(), name='profile-list' ),
