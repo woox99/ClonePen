@@ -21,5 +21,6 @@ urlpatterns=[
     path('pen/<slug:slug>/', PenDetailView.as_view(), name='pen-detail' ),
     path('edit-pen/<slug:slug>/', PenUpdateView.as_view(), name='pen-update' ),
     path('delete-pen/<int:pk>/', PenDeleteView.as_view(), name='pen-delete' ),
+    path('profile/<str:username>/list-view/', ProfileListView.as_view(), name='profile-list-view' ),
     path('profile/<str:username>/', ProfileView.as_view(), name='profile' ), ### Keep at bottom
 ]

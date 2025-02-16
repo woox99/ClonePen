@@ -8,6 +8,7 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'core/css/base_site.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/menu/profile.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/menu/profile_list_view.css' %}">
 {% endblock %}
 
 <!-- makes menu link icon active color -->
@@ -56,7 +57,8 @@
             <div class="d-flex justify-content-between w-100 mb-1">
                 <div class="d-flex gap-5">
                     <a href="" class="text-white"><i class="bi bi-grid-fill"></i> Your Work</a>
-                    <a href="{% url 'core:pen-create' %}" class="text-secondary"><i class="bi bi-grid-1x2-fill"></i> Create Pen</a>
+                    <a href="{% url 'core:pen-create' %}" class="text-secondary"><i class="bi bi-grid-1x2-fill"></i>
+                        Create Pen</a>
                 </div>
                 <div>
                     <a href="" class="text-secondary"><i class="bi bi-gear-wide-connected"></i> Settings</a>
@@ -78,15 +80,16 @@
             </div>
             {% endif %}
         </div>
-        <a href="{% url 'core:profile-list-view' user.username %}">
+        <a href="{% url 'core:profile' user.username %}">
             <div class="btn-group layout-btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn border border-secondary list-btn py-0 px-2" style="background-color: #44485750;"><i
-                        class="bi bi-list fs-4 text-white"></i></button>
-                <button type="button" class="btn border border-secondary grid-btn py-0 px-2" style="background-color: #444857;"><i
-                        class="bi bi-grid-3x2-gap-fill fs-4" style="color:#76daff;"></i></button>
+                <button type="button" class="btn border border-secondary list-btn py-0 px-2"
+                    style="background-color: #444857;"><i class="bi bi-list fs-4" style="color:#76daff;"></i></button>
+                <button type="button" class="btn border border-secondary grid-btn py-0 px-2"
+                    style="background-color: #44485750;"><i
+                        class="bi bi-grid-3x2-gap-fill fs-4 text-white"></i></button>
             </div>
         </a>
-        {% if not page_object %}
+        {% if not pens %}
         {% if profile.user == user %}
         <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 40vh;">
             <p class="text-secondary text-center fs-5 m-0 fw-bolder">You haven't created anything yet..</p>
@@ -99,98 +102,37 @@
         </div>
         {% endif %}
         {% endif %}
-    </div>
-    <div class="pages d-flex">
-        {% if page_object.has_previous %}
-        <div class="page previous-page d-none d-md-block"></div>
-        {% endif %}
-        <div class="page">
-            {% for pen in page_object %}
-            <div class="pen-card pb-0" data-bs-theme="dark">
-                <div class="card-background"></div>
-                {% if pen.owner == user %}
-                <a href="{% url 'core:pen-update' pen.slug %}" class="pen-link"></a>
-                {% else %}
-                <a href="{{pen.get_absolute_url}}" class="pen-link"></a>
-                {% endif %}
-                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
-                    frameborder="0" class="rounded-4" scrolling="no"></iframe>
-                <div class="card-body d-flex gap-2">
-                    <div class="card-info ps-3 py-1">
-                        {% if pen.owner == user %}
-                        <a href="{% url 'core:pen-update' pen.slug %}">
-                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
-                        </a>
-                        {% else %}
-                        <a href="{% url 'core:pen-detail' pen.slug %}">
-                            <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="card-footer p-0 ps-3 pb-3 d-flex gap-2">
+        <!-- list goes here -->
+        <table class="table table-striped mt-4" data-bs-theme="dark">
+            <thead>
+                <tr>
+                    <th scope="col">Pen Title</th>
+                    <th scope="col" class="text-center">Status</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">Created</th>
+                    <th scope="col" class="text-center">Stats</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pen in pens %}
+                <tr>
+                    <td><a href="">{{pen.title}}</a></td>
                     {% if pen.public %}
-                    <button class="btn px-2 py-1 text-secondary" disabled><i class="bi bi-pin"></i> {{pen.pinned_profiles.count}}</button>
-                    <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill me-1"></i>8000</button>
-                    <a href="{% url 'core:pen-detail' pen.slug %}">
-                        <button class="btn px-2 py-1"><i class="bi bi-eye-fill me-1"></i>{{pen.views}}</button>
-                    </a>
+                    <td class="text-center"><small><i class="bi bi-unlock text-success"></i></small></td>
                     {% else %}
-                    <button class="btn px-2 py-1 text-secondary" disabled><i class="bi bi-pin-fill"></i>
-                        {{pen.pinned_profiles.count}}</button>
-                    <button class="btn px-2 py-1 text-secondary" disabled><i
-                            class="bi bi-chat-left-fill me-1"></i>8000</button>
-                    <button class="btn px-2 py-1 text-secondary" disabled><i
-                            class="bi bi-eye-fill me-1"></i>{{pen.views}}</button>
-                    <button class="btn px-2 py-1 text-white" disabled><i
-                            class="bi bi-lock-fill me-1 text-danger"></i>Not Public</button>
+                    <td class="text-center"><small><i class="bi bi-lock-fill text-danger"></i></small></td>
                     {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% if page_object.has_next %}
-        <div class="page next-page">
-            <a href="?page={{ page_object.next_page_number }}" class="next-page-link d-none d-md-block"></a>
-            {% for pen in next_page_object %}
-            <div class="pen-card pb-0" data-bs-theme="dark">
-                <div class="card-background"></div>
-                <iframe srcdoc="<body>{{pen.html}}<style>{{pen.css}}</style><script>{{pen.js}}</script></body>"
-                    frameborder="0" class="rounded-4" scrolling="no"></iframe>
-                <div class="card-body d-flex gap-2">
-                    <div class="card-info ps-3 py-1">
-                        <h2 class="card-title text-white fw-bolder">{{pen.title}}</h2>
-                    </div>
-                </div>
-                <div class="card-footer p-0 ps-3 pb-3">
-                    <button class="btn px-2 py-1"><i class="bi bi-pin-fill"></i> {{pen.pinned_profiles.count}}</button>
-                    <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill"></i> 8000</button>
-                    {% if pen.public %}
-                    <button class="btn px-2 py-1"><i class="bi bi-eye-fill"></i> {{pen.views}}</button>
-                    {% else %}
-                    <button class="btn px-2 py-1"><i class="bi bi-eye-slash"></i></button>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        <!-- pagination -->
-        {% if page_object.has_previous %}
-        <a href="?page={{ page_object.previous_page_number }}#pages">
-            <div class="previous-page-btn d-flex justify-content-center align-items-center rounded-1">
-                <i class="bi bi-caret-left-fill fs-4"></i>
-            </div>
-        </a>
-        {% endif %}
-        {% if page_object.has_next %}
-        <a href="?page={{ page_object.next_page_number }}#pages">
-            <div class="next-page-btn d-flex justify-content-center align-items-center rounded-1">
-                <i class="bi bi-caret-right-fill fs-4"></i>
-            </div>
-        </a>
-        {% endif %}
+                    <td><small>{{pen.modified}}</small></td>
+                    <td><small>{{pen.created}}</small></td>
+                    <td class="text-center text-secondary">
+                        <span><i class="bi bi-pin-fill me-1"></i>{{pen.pinned_profiles.count}}</span>
+                        <span><i class="bi bi-chat-left-fill me-1"></i>28</span>
+                        <span><i class="bi bi-eye-fill me-1"></i>{{pen.views}}</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 <!-- Modal -- Message -->

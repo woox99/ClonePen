@@ -128,6 +128,19 @@ class ProfileView(View):
         return render(request, 'core/menu/profile.html', context=context)
 
 
+class ProfileListView(View):
+    def get(self, request, username):
+        profile = get_object_or_404(Profile, user__username=username)
+
+        # If user is on their own profile get all pens, else only public pens
+        if request.user.profile == profile:
+            pens = Pen.objects.filter(owner=profile.user).order_by('-modified')
+        else:
+            pens = Pen.objects.filter(owner=profile.user).filter(public=True).order_by('-modified')
+
+        return render(request, 'core/menu/profile_list_view.html', {'pens':pens, 'profile':profile})
+
+
 
 class YourWorkGridView(View):
     def get(self, request, username):
