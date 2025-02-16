@@ -59,15 +59,17 @@ const toggleFollow = (button, profileId) => {
     .then(response => response.json())
     .then(data => {
         if(data.following){
-            button.innerHTML = '<i class="bi bi-person-dash me-2"></i>Unfollow'
-            button.classList.remove('follow-btn')
-            button.classList.add('unfollow-btn')
+            button.innerHTML = '<i class="bi bi-person-dash me-2"></i>Unfollow';
+            button.classList.remove('follow-btn');
+            button.classList.add('unfollow-btn');
         }
         else{
-            button.innerHTML = '<i class="bi bi-person-add me-2"></i>Follow'
-            button.classList.remove('unfollow-btn')
-            button.classList.add('follow-btn')
+            button.innerHTML = '<i class="bi bi-person-add me-2"></i>Follow';
+            button.classList.remove('unfollow-btn');
+            button.classList.add('follow-btn');
         }
     })
 }
+
+
 

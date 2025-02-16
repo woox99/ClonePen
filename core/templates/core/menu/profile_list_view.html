@@ -51,7 +51,7 @@
     <div class="location text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>Hawaii, USA</div>
     <em class="bio text-white px-4">"Demo or it didn't happen."</em>
     <hr id="pages" class="text-secondary">
-    <div class="px-5">
+    <div class="px-2 px-md-5">
         <div class="links d-flex align-items-end justify-content-between pb-2 mb-4">
             {% if profile.user == user %}
             <div class="d-flex justify-content-between w-100 mb-1">
@@ -102,37 +102,43 @@
         </div>
         {% endif %}
         {% endif %}
-        <!-- list goes here -->
-        <table class="table table-striped mt-4" data-bs-theme="dark">
+        <!-- Table -->
+        <table class="table table-striped mt-4 mb-5" data-bs-theme="dark">
             <thead>
                 <tr>
-                    <th scope="col">Pen Title</th>
+                    <th scope="col">Title</th>
                     <th scope="col" class="text-center">Status</th>
-                    <th scope="col">Last Updated</th>
-                    <th scope="col">Created</th>
+                    <th scope="col" class="text-center d-none d-md-table-cell">Updated</th>
+                    <th scope="col" class="d-none d-lg-table-cell">Created</th>
                     <th scope="col" class="text-center">Stats</th>
                 </tr>
             </thead>
             <tbody>
                 {% for pen in pens %}
                 <tr>
-                    <td><a href="">{{pen.title}}</a></td>
+                    {% if pen.owner == user %}
+                    <td ><a href="{% url 'core:pen-update' pen.slug %}"><p class="title">{{pen.title}}</p></a></td>
+                    {% else %}
+                    <td><a href="{{pen.get_absolute_url}}" class="title"><small>{{pen.title}}</small></a></td>
+                    {% endif %}
                     {% if pen.public %}
                     <td class="text-center"><small><i class="bi bi-unlock text-success"></i></small></td>
                     {% else %}
                     <td class="text-center"><small><i class="bi bi-lock-fill text-danger"></i></small></td>
                     {% endif %}
-                    <td><small>{{pen.modified}}</small></td>
-                    <td><small>{{pen.created}}</small></td>
-                    <td class="text-center text-secondary">
-                        <span><i class="bi bi-pin-fill me-1"></i>{{pen.pinned_profiles.count}}</span>
-                        <span><i class="bi bi-chat-left-fill me-1"></i>28</span>
-                        <span><i class="bi bi-eye-fill me-1"></i>{{pen.views}}</span>
+                    <td class="text-center d-none d-md-table-cell"><small>{{pen.modified_timestamp}} <span class="text-secondary">ago</span></small></td>
+                    <td class="d-none d-lg-table-cell"><small>{{pen.created}}</small></td>
+                    <td class="text-center text-secondary stats">
+                        <span class="me-4"><i class="bi bi-pin-fill"></i> {{pen.pinned_profiles.count}}</span>
+                        <span class="me-4"><i class="bi bi-chat-left-fill"></i> 28</span>
+                        <span><i class="bi bi-eye-fill"></i> {{pen.views}}</span>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+
+        
     </div>
 </div>
 <!-- Modal -- Message -->

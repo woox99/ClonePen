@@ -23,6 +23,10 @@ class Pen(models.Model):
     modified = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=30, unique=True, blank=True)
 
+    @property
+    def modified_timestamp(self):
+        return create_timestamp(self.modified)
+
     def get_absolute_url(self):
         return reverse_lazy('core:pen-detail', kwargs={'slug':self.slug})
 
@@ -50,19 +54,7 @@ class Conversation(models.Model):
     
     @property
     def timestamp(self):
-        delta = now() - self.updated
-        
-        if delta < timedelta(minutes=1):
-            return "Now"
-        elif delta < timedelta(hours=1):
-            return f"{delta.seconds // 60}m"
-        elif delta < timedelta(days=1):
-            return f"{delta.seconds // 3600}h"
-        elif delta < timedelta(days=365):
-            return f"{delta.days}d"
-        else:
-            years = delta.days // 365
-            return f"{years}y"
+        return create_timestamp(self.updated)
 
     def __str__(self):
         participant_names = ", ".join([user.username for user in self.participants.all()])
@@ -123,7 +115,24 @@ def delete_related_conversation(sender, instance, **kwargs):
     for conversation in conversations:
         conversation.delete()
 
+
+# Creates a shorthand timestamp
+def create_timestamp(date):
+    delta = now() - date
     
+    if delta < timedelta(minutes=1):
+        return "Now"
+    elif delta < timedelta(hours=1):
+        return f"{delta.seconds // 60}m"
+    elif delta < timedelta(days=1):
+        return f"{delta.seconds // 3600}h"
+    elif delta < timedelta(days=365):
+        return f"{delta.days}d"
+    else:
+        years = delta.days // 365
+        return f"{years}y"
+
+
 # class Comment(models.Model):
 #     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
 #     pen = models.ForeignKey(Pen, on_delete=models.CASCADE, related_name='comments')

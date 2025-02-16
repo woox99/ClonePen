@@ -1,24 +1,20 @@
 *{
     /* border: 1px solid red; */
 }
-.list-btn{
-    background-color: #444857 !important;
-}
-.grid-btn{
-    background-color: #44485750 !important;
-}
-.bi-list{
-    color: #76daff;
-}
-.main-content .links {
-    border-bottom: 2px solid #76daff;
-}
+table .title{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #76daff !important;
 
-.main-content .links a:hover {
-    color: white !important;
+    width: 120px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
-.your-work .title a {
-    color: #76daff;
-    font-size: 14px !important;
+table .title:hover{
+    color: #76daff80 !important;
+}
+table .stats{
+    font-size: 15px;
 }

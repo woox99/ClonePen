@@ -78,11 +78,12 @@
             </div>
             {% endif %}
         </div>
-        <a href="{% url 'core:profile-list-view' user.username %}">
+        <!-- Toggle Grid/List View Button -->
+        <a href="{% url 'core:profile-list-view' profile.user.username %}">
             <div class="btn-group layout-btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn border border-secondary list-btn py-0 px-2" style="background-color: #44485750;"><i
+                <button type="button" id="list-btn" class="btn border border-secondary list-btn py-0 px-2" style="background-color: #44485750;"><i
                         class="bi bi-list fs-4 text-white"></i></button>
-                <button type="button" class="btn border border-secondary grid-btn py-0 px-2" style="background-color: #444857;"><i
+                <button type="button" id="grid-btn" class="btn border border-secondary grid-btn py-0 px-2" style="background-color: #444857;"><i
                         class="bi bi-grid-3x2-gap-fill fs-4" style="color:#76daff;"></i></button>
             </div>
         </a>
@@ -130,19 +131,24 @@
                 </div>
                 <div class="card-footer p-0 ps-3 pb-3 d-flex gap-2">
                     {% if pen.public %}
-                    <button class="btn px-2 py-1 text-secondary" disabled><i class="bi bi-pin"></i> {{pen.pinned_profiles.count}}</button>
+                    {% if pen in user.profile.pinned_items.all %}
+                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
+                            class="bi bi-pin-fill"></i></button>
+                    {% else %}
+                    <button class="btn px-2 py-1" onclick="togglePin(this, {{pen.pk}})"><i
+                            class="bi bi-pin"></i></button>
+                    {% endif %}
                     <button class="btn px-2 py-1"><i class="bi bi-chat-left-fill me-1"></i>8000</button>
                     <a href="{% url 'core:pen-detail' pen.slug %}">
                         <button class="btn px-2 py-1"><i class="bi bi-eye-fill me-1"></i>{{pen.views}}</button>
                     </a>
                     {% else %}
-                    <button class="btn px-2 py-1 text-secondary" disabled><i class="bi bi-pin-fill"></i>
-                        {{pen.pinned_profiles.count}}</button>
-                    <button class="btn px-2 py-1 text-secondary" disabled><i
+                    <!-- <button class="btn px-2 py-1 text-secondary" disabled><i class="bi bi-pin"></i></button> -->
+                    <button class="btn px-2 py-1"><i
                             class="bi bi-chat-left-fill me-1"></i>8000</button>
-                    <button class="btn px-2 py-1 text-secondary" disabled><i
+                    <button class="btn px-2 py-1"><i
                             class="bi bi-eye-fill me-1"></i>{{pen.views}}</button>
-                    <button class="btn px-2 py-1 text-white" disabled><i
+                    <button class="btn px-2 py-1 text-secondary" disabled><i
                             class="bi bi-lock-fill me-1 text-danger"></i>Not Public</button>
                     {% endif %}
                 </div>
