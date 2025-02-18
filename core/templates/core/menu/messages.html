@@ -92,14 +92,8 @@
             <form action="{% url 'core:message-create' pk=chat.pk %}" class="d-flex align-items-center" method="POST">
                 {% csrf_token %}
                 <textarea class="form-control rounded-1" id="" rows="2" data-bs-theme="dark"
-                    placeholder="Write message.." name="content"></textarea>
+                    placeholder="Messaging @{{chat.other_participant}}.." name="content"></textarea>
                 <button type="submit" class="ms-2"><i class="bi bi-send"></i></button>
-            </form>
-            {% else %}
-            <form action="" class="d-flex" method="POST">
-                {% csrf_token %}
-                <textarea class="form-control rounded-pill" id="" rows="1" data-bs-theme="dark"
-                    placeholder="Write message.." name="content" disabled></textarea>
             </form>
             {% endif %}
         </div>

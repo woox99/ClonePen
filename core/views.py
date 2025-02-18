@@ -142,35 +142,6 @@ class ProfileListView(View):
 
 
 
-class YourWorkGridView(View):
-    def get(self, request, username):
-        profile = get_object_or_404(Profile, user__username=username)
-
-        pens = Pen.objects.filter(owner=request.user).order_by('-modified')
-        paginator = Paginator(pens, 4)
-        page_number = self.request.GET.get('page')
-        if not page_number:
-            next_page_number = 2
-        else:
-            next_page_number = str(int(page_number) + 1)
-        page_object = paginator.get_page(page_number)
-        next_page_object = paginator.get_page(next_page_number)
-
-        context = {
-            'page_object':page_object,
-            'next_page_object':next_page_object,
-            'profile':profile,
-            }
-        return render(request, 'core/menu/your_work_grid.html', context=context)
-
-
-class YourWorkListView(generic.ListView):
-    template_name = 'core/menu/your_work_list.html'
-    model = Pen
-
-    def get_context_data(self):
-        pens = Pen.objects.filter(owner=self.request.user).order_by('-modified')
-        return {'pens':pens}
 
 
 # change to cbf
@@ -255,6 +226,8 @@ class MessagesView(View):
         # Sets request user so other participant can be used in template
         for conversation in conversations:
             conversation.set_request_user(request.user)
+        if last_conversation:
+            last_conversation.set_request_user(request.user)
 
         # Sets unread messages to read if last conversation exists && sender is not current user
         if last_conversation and last_conversation.messages.last().is_read == False:
@@ -273,6 +246,7 @@ class ChatView(View):
         # Sets request user so other participant can be used in template
         for conversation in conversations:
             conversation.set_request_user(request.user)
+        chat.set_request_user(request.user)
 
         profile = get_object_or_404(Profile, user=request.user)
         profile.last_conversation = chat

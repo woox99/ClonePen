@@ -46,7 +46,7 @@ class CreateDemoAccount(View):
         if request.user.is_authenticated: 
             return redirect('core:trending')
         demo_count = len(Profile.objects.filter(is_demo=True))
-        username = f'DemoAccount_' + str(demo_count)
+        username = f'DemoAccount#' + str(demo_count)
         while User.objects.filter(username=username).exists():
             demo_count += 1
             username = f'DemoAccount#' + str(demo_count)
