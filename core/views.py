@@ -239,9 +239,17 @@ class MessagesView(View):
         return render(request, 'core/menu/messages.html', {'conversations':conversations, 'chat':last_conversation})
 
 class ChatView(View):
-    def get(self, request, pk, username1, username2):
+    def post(self, request):
+        chat = get_object_or_404(Conversation, pk=request.POST['conversation_id'])
+        request.session['conversation_id'] = chat.pk
+
+        chat.set_request_user(request.user)
+        return redirect(f'/clonepen.com/chat/#{chat.other_participant}')
+    
+    def get(self, request):
+        chat_id = request.session.get('conversation_id')
+        chat = get_object_or_404(Conversation, pk=chat_id)
         conversations = request.user.conversations.order_by('-modified')
-        chat = get_object_or_404(Conversation, pk=pk)
         
         # Sets request user so other participant can be used in template
         for conversation in conversations:
@@ -267,8 +275,9 @@ class MessageCreateView(View):
             content = '[empty message]'
         conversation.last_message = content
         conversation.save()
+        conversation.set_request_user(request.user)
         Message.objects.create(conversation=conversation, content=content, sender=request.user)
-        return redirect('core:chat', pk=pk, username1=conversation.participants.first(), username2=conversation.participants.last())
+        return redirect(f'/clonepen.com/chat/#{conversation.other_participant}')
     
 
 class ChatCreateView(View):
@@ -283,8 +292,9 @@ class ChatCreateView(View):
             conversation = Conversation.objects.create(last_message=content)
             conversation.participants.set([sender, receiver])
             conversation.save()
+        conversation.set_request_user(request.user)
         Message.objects.create(sender=sender, content=content, conversation=conversation)
-        return redirect('core:chat', pk=conversation.pk, username1=sender.username, username2=receiver.username)
+        return redirect(f'/clonepen.com/chat/#{conversation.other_participant}')
 
 
 
