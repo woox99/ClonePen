@@ -1,14 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from core.models import Profile
+from django.views import View
 
+
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.views.generic import FormView
 from .forms import RegisterForm
 from django.http import JsonResponse
-
-import random
 
 class UserLogin(LoginView):
     template_name = 'registration/login.html'
@@ -40,7 +41,18 @@ class UserRegister(FormView):
         return reverse_lazy('core:trending')
     
 
-# class DemoAccount():
-    
-#     pass
-    
+class CreateDemoAccount(View):
+    def get(self, request):
+        if request.user.is_authenticated: 
+            return redirect('core:trending')
+        demo_count = len(Profile.objects.filter(is_demo=True))
+        username = f'DemoAccount_' + str(demo_count)
+        while User.objects.filter(username=username).exists():
+            demo_count += 1
+            username = f'DemoAccount#' + str(demo_count)
+        demo_account = User.objects.create(username=username)
+        profile = Profile.objects.get(user=demo_account)
+        profile.is_demo = True
+        profile.save()
+        login(request, demo_account)
+        return redirect('core:trending')

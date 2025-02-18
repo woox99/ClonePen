@@ -35,7 +35,7 @@
                 <div class="form-floating">
                     <input type="text" class="form-control is-invalid" name="username" id=""
                     value="{{ form.username.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Choose Username</label>
+                    <label class="text-secondary" for="floatingInput">Choose Username *</label>
                 </div>
             </div>
             <span class="text-danger-emphasis error-message">
@@ -47,7 +47,7 @@
                 <div class="form-floating">
                     <input type="text" class="form-control" name="username" id=""
                         value="{{ form.username.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Choose Username</label>
+                    <label class="text-secondary" for="floatingInput">Choose Username *</label>
                 </div>
             </div>
             {% endif %}
@@ -58,7 +58,7 @@
                 <div class="form-floating">
                     <input type="email" class="form-control is-invalid" name="email" id=""
                         value="{{ form.email.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Email</label>
+                    <label class="text-secondary" for="floatingInput">Email (Optional)</label>
                 </div>
             </div>
             <span class="text-danger-emphasis error-message">
@@ -70,27 +70,30 @@
                 <div class="form-floating">
                     <input type="email" class="form-control" name="email" id=""
                         value="{{ form.email.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Email</label>
+                    <label class="text-secondary" for="floatingInput">Email <small>(Optional)</small></label>
                 </div>
             </div>
             {% endif %}
 
-            {% if form.errors.password2 %}
+            {% if form.errors.password1 %}
             <div class="input-group mb-1">
                 <span class="input-group-text px-4" id=""><i class="bi bi-lock"></i></span>
                 <div class="form-floating">
                     <input type="password" class="form-control is-invalid" name="password1" id=""
                         value="{{ form.password1.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Create Password</label>
+                    <label class="text-secondary" for="floatingInput">Create Password *</label>
                 </div>
             </div>
+            <span class="text-danger-emphasis error-message">
+                {{form.errors.password1}}
+            </span>
             {% else %}
             <div class="input-group mb-1">
                 <span class="input-group-text px-4" id=""><i class="bi bi-lock"></i></span>
                 <div class="form-floating">
                     <input type="password" class="form-control" name="password1" id=""
                         value="{{ form.password1.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Create Password</label>
+                    <label class="text-secondary" for="floatingInput">Create Password *</label>
                 </div>
             </div>
             {% endif %}
@@ -101,7 +104,7 @@
                 <div class="form-floating">
                     <input type="password" class="form-control is-invalid" name="password2" id=""
                         value="{{ form.password2.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Confirm Password</label>
+                    <label class="text-secondary" for="floatingInput">Confirm Password *</label>
                 </div>
             </div>
             <span class="text-danger-emphasis error-message">
@@ -113,7 +116,7 @@
                 <div class="form-floating">
                     <input type="password" class="form-control" name="password2" id=""
                         value="{{ form.password2.value|default:'' }}">
-                    <label class="text-secondary" for="floatingInput">Confirm Password</label>
+                    <label class="text-secondary" for="floatingInput">Confirm Password *</label>
                 </div>
             </div>
             {% endif %}

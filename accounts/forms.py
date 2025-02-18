@@ -5,7 +5,7 @@ from django import forms
 
 
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required=False)
     usable_password = None
 
     class Meta:
@@ -14,7 +14,10 @@ class RegisterForm(UserCreationForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
+        # Email is optional
+        if email == '':
+            return email
+        elif User.objects.filter(email=email).exists():
             raise forms.ValidationError("This email address is already in use.")
         return email
 
