@@ -152,22 +152,22 @@
                             <span data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="This Pen will only be visible by you. Visit the Your Work page to view.">
                                 <div class="form-check form-check-inline">
-                                    {% if not pen.public %}
-                                    <input class="form-check-input" type="radio" name="public" id="inlineRadio1"
+                                    {% if not pen.is_public %}
+                                    <input class="form-check-input" type="radio" name="is_public" id="inlineRadio1"
                                         value="False" checked>
                                     {% else %}
-                                    <input class="form-check-input" type="radio" name="public" id="inlineRadio1"
+                                    <input class="form-check-input" type="radio" name="is_public" id="inlineRadio1"
                                         value="False">
                                     {% endif %}
                                     <label class="form-check-label" for="inlineRadio1">Private</label>
                                 </div>
                             </span>
                             <div class="form-check form-check-inline enabled-radio">
-                                {% if pen.public %}
-                                <input class="form-check-input" type="radio" name="public" id="inlineRadio2"
+                                {% if pen.is_public %}
+                                <input class="form-check-input" type="radio" name="is_public" id="inlineRadio2"
                                     value="True" checked>
                                 {% else %}
-                                <input class="form-check-input" type="radio" name="public" id="inlineRadio2"
+                                <input class="form-check-input" type="radio" name="is_public" id="inlineRadio2"
                                     value="True">
                                 {% endif %}
                                 <label class="form-check-label" for="inlineRadio2">Public</label>
@@ -175,7 +175,7 @@
                             <span data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="This feature is temporarily unavailable.">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="public" id="inlineRadio3"
+                                    <input class="form-check-input" type="radio" name="is_public" id="inlineRadio3"
                                         value="public" disabled>
                                     <label class="form-check-label" for="inlineRadio3">
                                         <i class="bi bi-lock me-1"></i>Public
@@ -185,7 +185,7 @@
                             <span data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="You are currently using a Demo Account.">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="public" id="inlineRadio3"
+                                    <input class="form-check-input" type="radio" name="is_public" id="inlineRadio3"
                                         value="public" disabled>
                                     <label class="form-check-label" for="inlineRadio3">
                                         <i class="bi bi-lock me-1"></i>Public

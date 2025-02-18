@@ -18,7 +18,7 @@ class TrendingView(generic.ListView):
     model = Pen
 
     def get_context_data(self):
-        pens = Pen.objects.filter(public=True).order_by('-modified')
+        pens = Pen.objects.filter(is_public=True).order_by('-modified')
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
@@ -39,8 +39,8 @@ class PinnedItemsView(generic.ListView):
     model = Pen
 
     def get_context_data(self):
-        # pens = Pen.objects.filter(public=True).order_by('-modified')
-        pens = self.request.user.profile.pinned_items.filter(public=True)
+        # pens = Pen.objects.filter(is_public=True).order_by('-modified')
+        pens = self.request.user.profile.pinned_items.filter(is_public=True)
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
         if not page_number:
@@ -59,7 +59,7 @@ class PinnedItemsView(generic.ListView):
 class SearchView(View):
     def get(self, request):
         query = request.GET.get('q', '')
-        pens = Pen.objects.filter( Q(title__icontains=query) | Q(owner__username__icontains=query), public=True)
+        pens = Pen.objects.filter( Q(title__icontains=query) | Q(owner__username__icontains=query), is_public=True)
 
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
@@ -84,7 +84,7 @@ class FollowingView(generic.ListView):
     def get_context_data(self):
         following_profile_set = self.request.user.profile.following.all()
         following_user_set = User.objects.filter(profile__in=following_profile_set)
-        pens = Pen.objects.filter(owner__in=following_user_set).filter(public=True).order_by('-modified')
+        pens = Pen.objects.filter(owner__in=following_user_set).filter(is_public=True).order_by('-modified')
 
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
@@ -109,7 +109,7 @@ class ProfileView(View):
         if request.user.profile == profile:
             pens = Pen.objects.filter(owner=profile.user).order_by('-modified')
         else:
-            pens = Pen.objects.filter(owner=profile.user).filter(public=True).order_by('-modified')
+            pens = Pen.objects.filter(owner=profile.user).filter(is_public=True).order_by('-modified')
 
         paginator = Paginator(pens, 4)
         page_number = self.request.GET.get('page')
@@ -136,7 +136,7 @@ class ProfileListView(View):
         if request.user.profile == profile:
             pens = Pen.objects.filter(owner=profile.user).order_by('-modified')
         else:
-            pens = Pen.objects.filter(owner=profile.user).filter(public=True).order_by('-modified')
+            pens = Pen.objects.filter(owner=profile.user).filter(is_public=True).order_by('-modified')
 
         return render(request, 'core/menu/profile_list_view.html', {'pens':pens, 'profile':profile})
 
@@ -230,7 +230,7 @@ class PenDetailView(generic.DetailView):
 
 class PenUpdateView(generic.UpdateView):
     model = Pen
-    fields = ['title', 'description', 'html', 'css', 'js', 'public']
+    fields = ['title', 'description', 'html', 'css', 'js', 'is_public']
     template_name = 'core/pen/update.html'
 
     def get_success_url(self):

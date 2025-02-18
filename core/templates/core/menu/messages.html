@@ -35,29 +35,26 @@
             {% endif %}
             <div class="d-flex w-100 justify-content-between">
                 <div>
-                    <!-- chat preview username -->
                     {% if conversation.messages.last.is_read and conversation.messages.last.sender == user%}
                     <h6 class="mb-1 text-body-secondary">
                         {{conversation.other_participant.username}}<i class="bi bi-check-all text-primary ms-1"></i>
                     </h6>
+                    <p class="message-content text-secondary fw-medium">{{conversation.last_message}}</p>
                     {% elif conversation.messages.last.sender == user %}
                     <h6 class="mb-1 text-body-secondary">
                         {{conversation.other_participant.username}}<i class="bi bi-arrow-up-right ms-1"></i>
                     </h6>
+                    <p class="message-content text-secondary fw-medium">{{conversation.last_message}}</p>
                     {% elif conversation.messages.last.is_read %}
                     <h6 class="mb-1 text-body-secondary">
                         {{conversation.other_participant.username}}
                     </h6>
+                    <p class="message-content text-secondary fw-medium">{{conversation.last_message}}</p>
                     {% else %}
                     <h6 class="mb-1 text-white">
                         {{conversation.other_participant.username}}
                     </h6>
-                    {% endif %}
-                    <!-- chat preview message content -->
-                    {% if conversation.messages.last.is_read or conversation.messages.last.sender == user %}
-                    <p class="message-content text-secondary fw-medium">{{conversation.last_message}}</p>
-                    {% else %}
-                    <p class="message-content text-white fw-medium">{{conversation.last_message}}</p>
+                    <em class="message-content text-white fw-normal">{{conversation.last_message}}</em>
                     {% endif %}
                 </div>
                 <small class="text-body-secondary">{{conversation.timestamp}}</small>

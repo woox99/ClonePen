@@ -6,8 +6,9 @@ from core.models import Profile
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.views.generic import FormView
 from .forms import RegisterForm
-
 from django.http import JsonResponse
+
+import random
 
 class UserLogin(LoginView):
     template_name = 'registration/login.html'
@@ -39,6 +40,7 @@ class UserRegister(FormView):
         return reverse_lazy('core:trending')
     
 
-class DemoAccount():
-    pass
+# class DemoAccount():
+    
+#     pass
     

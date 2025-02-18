@@ -14,7 +14,7 @@ class Pen(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pens')
     title = models.CharField(max_length=30, blank=False) #change
     description = models.CharField(max_length=250, blank=True, null=True) #change
-    public = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=False)
     html = models.TextField(blank=True, null=True)
     css = models.TextField(blank=True, null=True)
     js = models.TextField(blank=True, null=True)
@@ -89,7 +89,7 @@ class Message(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    demo = models.BooleanField(default=False)
+    is_demo = models.BooleanField(default=False)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     pinned_items = models.ManyToManyField('core.Pen', related_name='pinned_profiles') # String reference to avoid circular import
     last_conversation = models.ForeignKey(Conversation, on_delete=models.SET_NULL, null=True, blank=True,)

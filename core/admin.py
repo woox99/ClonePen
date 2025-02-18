@@ -3,7 +3,7 @@ from core.models import *
 
 class ProfileAdmin(admin.ModelAdmin):
     # adds field column on model list page
-    list_display = ['user', 'id', 'demo']
+    list_display = ['user', 'id', 'is_demo']
 
 #     # adds filter box on model list page
 #     list_filter = ['publisher', 'published_date']
@@ -14,7 +14,7 @@ class ProfileAdmin(admin.ModelAdmin):
 #         ("Date information", {"fields": ["published_date"]}),
 #     ]
 
-admin.site.register(Pen)
+# admin.site.register(Pen)
 admin.site.register(Conversation)
 admin.site.register(Message)
 admin.site.register(Profile, ProfileAdmin)
