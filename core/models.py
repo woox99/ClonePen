@@ -63,8 +63,9 @@ class Conversation(models.Model):
             return self.participants.exclude(id=request_user.id).first()
         return None
     
-    def set_request_user(self, user):
-        self._current_user = user
+    def set_request_user(self, current_user):
+        # sets an attribute to the model
+        self._current_user = current_user
 
     def __str__(self):
         participant_names = ", ".join([user.username for user in self.participants.all()])
@@ -77,6 +78,10 @@ class Message(models.Model):
     content = models.TextField()
     is_read = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def timestamp(self):
+        return create_timestamp(self.created)
 
     def __str__(self):
         return f"Message from {self.sender.username} in Conversation ID: {self.conversation.id}"

@@ -38,3 +38,7 @@ class UserRegister(FormView):
             return next_url
         return reverse_lazy('core:trending')
     
+
+class DemoAccount():
+    pass
+    
