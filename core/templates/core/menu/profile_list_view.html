@@ -45,7 +45,11 @@
         <div class="background"></div>
         <div class="profile-header">
             <h2 class="text-white fw-bold">@{{profile}}</h2>
+            {% if profile.user.username == 'ClonePen' %}
+            <img src="{% static 'core/assets/logo_codepen.png' %}" alt="" style="background-color: black;">
+            {% else %}
             <img src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+            {% endif %}
         </div>
     </div>
     <div class="location text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>Hawaii, USA</div>
@@ -80,7 +84,7 @@
             </div>
             {% endif %}
         </div>
-        <a href="{% url 'core:profile' user.username %}">
+        <a href="{% url 'core:profile' profile.user.username %}">
             <div class="btn-group layout-btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn border border-secondary list-btn py-0 px-2"
                     style="background-color: #444857;"><i class="bi bi-list fs-4" style="color:#76daff;"></i></button>
@@ -101,7 +105,7 @@
             <p class="text-secondary text-center fs-5 m-0 fw-bolder">any public pens yet..</p>
         </div>
         {% endif %}
-        {% endif %}
+        {% else %}
         <!-- Table -->
         <table class="table table-striped mt-4 mb-5" data-bs-theme="dark">
             <thead>
@@ -126,8 +130,8 @@
                     {% else %}
                     <td class="text-center"><small><i class="bi bi-lock-fill text-danger"></i></small></td>
                     {% endif %}
-                    <td class="text-center d-none d-md-table-cell"><small>{{pen.modified_timestamp}} <span class="text-secondary">ago</span></small></td>
-                    <td class="d-none d-lg-table-cell"><small>{{pen.created}}</small></td>
+                    <td class="text-center d-none d-md-table-cell"><small>{{pen.modified_timestamp}} <span class="text-secondary ago">ago</span></small></td>
+                    <td class="d-none d-lg-table-cell"><small class="created">{{pen.created}}</small></td>
                     <td class="text-center text-secondary stats">
                         <span class="me-4"><i class="bi bi-pin-fill"></i> {{pen.pinned_profiles.count}}</span>
                         <span class="me-4"><i class="bi bi-chat-left-fill"></i> 28</span>
@@ -137,6 +141,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
 
         
     </div>
@@ -147,8 +152,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                {% if profile.user.username == 'ClonePen' %}
+                <img class="rounded-pill me-2" src="{% static 'core/assets/logo_codepen.png' %}" alt=""
+                    style="height: 30px; width: 30px">
+                {% else %}
                 <img class="rounded-pill me-2" src="{% static 'core/assets/profile_codepen.png' %}" alt=""
                     style="height: 30px; width: 30px;">
+                {% endif %}
                 <p class="mb-0 text-white">@{{profile.user.username}}</p>
                 <button type="button" class="btn-close text-secondary" data-bs-dismiss="modal"
                     aria-label="Close"></button>

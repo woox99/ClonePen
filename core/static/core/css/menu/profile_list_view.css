@@ -15,6 +15,12 @@ table .title{
 table .title:hover{
     color: #76daff80 !important;
 }
+table .ago{
+    font-size: 12px;
+}
+/* table .created{
+    font-size: 12px;
+} */
 table .stats{
     font-size: 15px;
 }

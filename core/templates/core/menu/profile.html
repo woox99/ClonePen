@@ -44,7 +44,11 @@
         <div class="background"></div>
         <div class="profile-header">
             <h2 class="text-white fw-bold">@{{profile}}</h2>
+            {% if profile.user.username == 'ClonePen' %}
+            <img src="{% static 'core/assets/logo_codepen.png' %}" alt="" style="background-color: black;">
+            {% else %}
             <img src="{% static 'core/assets/profile_codepen.png' %}" alt="">
+            {% endif %}
         </div>
     </div>
     <div class="location text-secondary"><i class="bi bi-geo-alt-fill me-1"></i>Hawaii, USA</div>
@@ -205,8 +209,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                {% if profile.user.username == 'ClonePen' %}
+                <img class="rounded-pill me-2" src="{% static 'core/assets/logo_codepen.png' %}" alt=""
+                    style="height: 30px; width: 30px">
+                {% else %}
                 <img class="rounded-pill me-2" src="{% static 'core/assets/profile_codepen.png' %}" alt=""
                     style="height: 30px; width: 30px;">
+                {% endif %}
                 <p class="mb-0 text-white">@{{profile.user.username}}</p>
                 <button type="button" class="btn-close text-secondary" data-bs-dismiss="modal"
                     aria-label="Close"></button>

@@ -21,7 +21,7 @@ class Pen(models.Model):
     views = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=30, unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True)
 
     @property
     def modified_timestamp(self):
@@ -50,11 +50,21 @@ class Conversation(models.Model):
     participants = models.ManyToManyField(User, related_name='conversations')
     last_message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    modified = models.DateTimeField(auto_now=True)
     
     @property
     def timestamp(self):
-        return create_timestamp(self.updated)
+        return create_timestamp(self.modified)
+    
+    @property
+    def other_participant(self):
+        request_user = getattr(self, '_current_user', None)
+        if request_user:
+            return self.participants.exclude(id=request_user.id).first()
+        return None
+    
+    def set_request_user(self, user):
+        self._current_user = user
 
     def __str__(self):
         participant_names = ", ".join([user.username for user in self.participants.all()])

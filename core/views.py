@@ -249,8 +249,12 @@ class PenDeleteView(View):
 
 class MessagesView(View):
     def get(self, request):
-        conversations = request.user.conversations.order_by('-updated')
+        conversations = request.user.conversations.order_by('-modified')
         last_conversation = request.user.profile.last_conversation
+
+        # Sets request user so other participant can be used in template
+        for conversation in conversations:
+            conversation.set_request_user(request.user)
 
         # Sets unread messages to read if last conversation exists && sender is not current user
         if last_conversation and last_conversation.messages.last().is_read == False:
@@ -263,10 +267,13 @@ class MessagesView(View):
 
 class ChatView(View):
     def get(self, request, pk, username1, username2):
-        conversations = request.user.conversations.order_by('-updated')
+        conversations = request.user.conversations.order_by('-modified')
         chat = get_object_or_404(Conversation, pk=pk)
-        # for message in chat.messages.all():
-            # print(message.content)
+        
+        # Sets request user so other participant can be used in template
+        for conversation in conversations:
+            conversation.set_request_user(request.user)
+
         profile = get_object_or_404(Profile, user=request.user)
         profile.last_conversation = chat
         profile.save()
@@ -281,9 +288,7 @@ class ChatView(View):
 class MessageCreateView(View):
     def post(self, request, pk):
         conversation = get_object_or_404(Conversation, pk=pk)
-        # change this to model form?..
         content = request.POST['content']
-        # print(content)
         if len(content) == 0:
             content = '[empty message]'
         conversation.last_message = content
