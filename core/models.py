@@ -117,7 +117,7 @@ def create_message(sender, instance, created, **kwargs):
     if created:
         clonepen = User.objects.filter(username='ClonePen').first()
         first_message = 'Welcome to ClonePen! You can message our team here if you need support. \
-                        This application is a clone of CodePen. We are not affiliated with ClonePen in anyway, nor are we trying to pose as the offical site.'
+                        This application is a clone of CodePen. We are not affiliated with ClonePen in anyway, nor are we trying to pose as the official site.'
         conversation = Conversation.objects.create(last_message=first_message)
         conversation.participants.set([clonepen, instance])
         Message.objects.create(conversation=conversation, sender=clonepen, content=first_message)

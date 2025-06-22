@@ -6,7 +6,10 @@
 /* blue #76daff */
 /* green #47cf73 */
 /* Sidebar grey #1e1f26; */
-
+/* Light Text white/grey #c7c9d3 */
+.text-light-white{
+    color: #c7c9d3;
+}
 
 /* Global */
 .logo {
